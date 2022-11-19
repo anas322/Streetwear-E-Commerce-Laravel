@@ -1,10 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Marhey:wght@300;400&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Marhey:wght@300;400&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     box-sizing: border-box;
     letter-spacing: 2px;
+}
+
+/* quick view product style  */
+
+.product-view .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+/* quick view product style  */
+.img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    /*set the size of the lens:*/
+    width: 40px;
+    height: 40px;
 }

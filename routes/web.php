@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\livewire\ProductQuickView;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +20,14 @@ Route::get('/', function () {
 });
 
 Route::get('/products', function () {
-    return view('pages.products');
+    return view('pages.products.index');
 });
+
+Route::get('/products/show', function () {
+    return view('pages.products.show');
+});
+
+Route::get('/test',ProductQuickView::class);
 
 Route::middleware([
     'auth:sanctum',
