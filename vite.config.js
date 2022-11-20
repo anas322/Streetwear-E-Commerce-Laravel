@@ -8,6 +8,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/app.js",
                 "resources/js/main.js",
+                "resources/js/jquery.js",
             ],
             refresh: [...refreshPaths, "app/Http/Livewire/**"],
         }),
