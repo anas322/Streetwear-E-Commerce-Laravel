@@ -27,6 +27,8 @@ Route::get('/products/show', function () {
     return view('pages.products.show');
 });
 
+Route::get('/products/cart',App\Http\Livewire\Cart::class );
+
 Route::get('/test',ProductQuickView::class);
 
 Route::middleware([

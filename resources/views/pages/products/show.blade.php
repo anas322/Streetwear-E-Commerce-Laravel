@@ -140,7 +140,7 @@ $src7 =
             class="w-full h-4/5 mx-auto swiper product-view-carousel">
             <div class="swiper-wrapper">
                 <div class="swiper-slide flex justify-center items-center">
-                    <img src="{{ $src1 }}" class="object-contain block w-full h-full" />
+                    <img src="{{ $src1 }}" class="example object-contain block w-full h-full" />
                 </div>
                 <div class="swiper-slide flex justify-center items-center">
                     <img src="{{ $src2 }}" class="object-contain block w-full h-full" />

@@ -90,7 +90,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide pl-4 ">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
-                            <img src="{{ asset('images/products/image8.jpg') }}"
+                            <img src="{{ asset('images/products/image1.webp') }}"
                                 class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -102,7 +102,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
-                            <img src="{{ asset('images/dashboard/image7.jpg') }}"
+                            <img src="{{ asset('images/products/image2.webp') }}"
                                 class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -114,7 +114,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
-                            <img src="{{ asset('images/products/image8.jpg') }}"
+                            <img src="{{ asset('images/products/image3.webp') }}"
                                 class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -126,7 +126,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
-                            <img src="{{ asset('images/products/image8.jpg') }}"
+                            <img src="{{ asset('images/products/image4.webp') }}"
                                 class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
