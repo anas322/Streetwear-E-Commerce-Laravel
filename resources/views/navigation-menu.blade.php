@@ -30,7 +30,7 @@
                         <x-svgs.shopping-cart  class="w-7 h-7"/>
                     </a>
                     
-                    <a href='#' >
+                    <a href='{{ route('profile.show') }}' >
                         <x-svgs.profile-icon class="w-7 h-7"/>
                     </a>
                 </div>
