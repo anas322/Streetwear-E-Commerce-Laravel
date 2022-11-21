@@ -84,7 +84,7 @@
                             <label for="large"
                                 class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">size</label>
                             <select id="large"
-                                class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm bg-gray-50 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                                 <option selected disabled>Choose a size</option>
                                 <option value="M">M</option>
                                 <option value="LG">LG</option>

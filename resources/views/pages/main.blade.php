@@ -11,6 +11,7 @@
                     <img src="{{asset('images/dashboard/image7.jpg')}}"
                         class="object-cover h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
+                   
                 </div>
                 <!-- Item 2 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
@@ -18,6 +19,7 @@
                     <img src="{{asset('images/dashboard/image5.jpg')}}"
                         class="object-cover h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
+                       
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform"
@@ -68,7 +70,7 @@
 
         <div class="sm:hidden  h-[50vh]">
             <header class="flex items-center flex-col justify-center h-full font-semibold max-w-3xl mx-auto space-y-4">
-                <h1 class="md:text-6xl text-5xl text-center font-moda uppercase pb-7 px-2"> fashion quote </h1>
+                <h1 class="md:text-6xl text-5xl text-center font-roboto uppercase pb-7 px-2"> fashion quote </h1>
                 <p class="text-gray-400 text-center font-normal px-8 mt-4">Don't be into trends. Don't make fashion own
                     you, but you decide what you are, what you want to express by the way you dress and the way to live.
                 </p>
@@ -80,7 +82,7 @@
         {{-- latest arrivals section  --}}
         <div class="min-h-screen pb-8 z-10">
             <header class="pt-12 font-semibold max-w-3xl mx-auto h-[30vh]"> 
-                <h1 class="md:text-6xl text-4xl text-center font-moda pb-7"> LATEST ARRIVALS </h1>
+                <h1 class="md:text-6xl text-4xl text-center font-roboto pb-7"> LATEST ARRIVALS </h1>
                 <p class="text-gray-400 text-center font-normal px-4">Fashion is part of the daily air and it changes all the
                     time, with all the events. You can even see the approaching of a revolution in clothes. You can see and
                     feel everything in clothes.</p>
@@ -143,7 +145,7 @@
         {{-- categories section  --}}
         <div class="mb-8 ">
             <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
-                <h1 class="md:text-6xl text-5xl text-center font-moda"> SHOP CATEGORIES </h1>
+                <h1 class="md:text-6xl text-5xl text-center font-roboto"> SHOP CATEGORIES </h1>
             </header>
 
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
@@ -207,9 +209,9 @@
         </div>
 
         {{-- where to find us section  --}}
-        <div class="min-h-screen py-20 bg-slate-50">
+        <div class="min-h-screen py-20 ">
             <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
-                <h1 class="md:text-6xl text-5xl text-center font-moda px-3"> WHERE TO FIND US </h1>
+                <h1 class="md:text-6xl text-5xl text-center font-roboto px-3"> WHERE TO FIND US </h1>
             </header>
 
             <div class="flex flex-col lg:flex-row justify-around items-center md:space-x-8 space-y-8 lg:pt-40 pt-16 px-4">
@@ -239,7 +241,7 @@
     {{-- why shop with us  --}}
     <div class="bg-slate-100">
         <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
-            <h1 class="md:text-6xl text-5xl text-center font-moda"> Why Shop With Us? </h1>
+            <h1 class="md:text-6xl text-5xl text-center font-roboto"> Why Shop With Us? </h1>
         </header>
         <div class="flex flex-wrap py-24 justify-start gap-y-8">
             <div class="space-y-3 md:basis-2/4 basis-full">

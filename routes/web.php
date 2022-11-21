@@ -21,13 +21,29 @@ Route::get('/', function () {
 
 Route::get('/products', function () {
     return view('pages.products.index');
-});
+})->name('products.index');
 
 Route::get('/products/show', function () {
     return view('pages.products.show');
 });
 
-Route::get('/products/cart',App\Http\Livewire\Cart::class );
+Route::get('/orders', function () {
+    return view('pages.customer.orders');
+})->name('orders');
+
+Route::get('/single-order', function () {
+    return view('pages.customer.single-order');
+})->name('single-order');
+
+Route::get('/address', function () {
+    return view('pages.customer.adress');
+})->name('address');
+
+Route::get('/contact', function () {
+    return view('pages.contact-us');
+})->name('contact');
+
+Route::get('/products/cart',App\Http\Livewire\Cart::class )->name('cart');
 
 Route::get('/test',ProductQuickView::class);
 

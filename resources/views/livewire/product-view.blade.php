@@ -1,5 +1,5 @@
 <div class="lg:col-span-2 col-span-3">
-    <div class="image-wrapper 2xl:h-[40rem] xl:h-[35rem] lg:h-[28rem] md:h-[30rem] h-[22rem]">
+    <div class="image-wrapper 2xl:h-[45rem] xl:h-[35rem] lg:h-[28rem] md:h-[30rem] sm:h-[30rem] h-[45rem]">
         <div class="inner-image-wrapper h-full relative">
             <img class="h-full w-full object-cover  absolute top-0 left-1/2 -translate-x-1/2 first-image transition-all duration-700"
                 src="{{$src1}}" />
@@ -8,7 +8,7 @@
                 src="{{$src2}}" />
 
             <span
-                class="absolute top-4 left-4 uppercase py-1 rounded-sm px-4 font-moda bg-red-600 text-white">HOT</span>
+                class="absolute top-4 left-4 uppercase py-1 rounded-sm px-4 font-roboto bg-red-600 text-white">HOT</span>
             <span
                 class="expand absolute top-4 right-4 px-2 py-2 rounded-full bg-white opacity-0 transition-opacity duration-700 hover:cursor-pointer hover:bg-gray-50"
                 data-tooltip-target="tooltip-left" data-tooltip-placement="left">

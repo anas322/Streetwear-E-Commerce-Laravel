@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" id="navbar" class="fixed top-0 left-0 w-full z-50 py-1 transition-colors duration-700">
+<nav x-data="{ open: false }" id="navbar" class="bg-white z-50 w-full shadow-md">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -12,8 +12,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="text-xl text-black font-thin">
+                    <x-jet-nav-link href="{{ url('/') }}" :active="request()->routeIs('dashboard')" class="text-xl font-thin">
                         {{ __('Home') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ url('/products') }}" :active="request()->routeIs('dashboard')" class="text-xl font-thin">
+                        {{ __('Shop') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -22,7 +26,7 @@
 
                 {{-- right hand navbar items  --}}
                 <div class="flex gap-x-4">
-                    <a href='#' >
+                    <a href='{{ route('cart') }}' >
                         <x-svgs.shopping-cart  class="w-7 h-7"/>
                     </a>
                     
