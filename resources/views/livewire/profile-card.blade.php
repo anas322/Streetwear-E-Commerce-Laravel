@@ -20,7 +20,7 @@
                 </div>
             </a>
             <a class="w-full" href="{{ route('profile.show') }}">
-                <div class="flex justify-between px-2 py-3 border border-gray-200 bg-gray-200 hover:bg-gray-300">
+                <div class="flex justify-between px-2 py-3 border border-gray-200 hover:bg-gray-300">
                     <div class="flex items-center">
                         <x-svgs.profile2-icon class="w-7 h-7 pr-2" />
                         <span class="text-gray-800 font-semibold">Profile</span>
