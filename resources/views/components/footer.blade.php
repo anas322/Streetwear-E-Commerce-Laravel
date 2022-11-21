@@ -45,7 +45,8 @@
                         <li class="mb-3">
                             <a href="{{ route('profile.show') }}" class="hover:underline text-gray-500 hover:text-gray-600 capitalize">My account</a>
                         </li>
-                    @elseauth
+                    @endauth
+                    @guest
                         <li class="mb-3">
                             <a href="{{route('login')}}" class="hover:underline text-gray-500 hover:text-gray-600 capitalize ">login</a>
                         </li>

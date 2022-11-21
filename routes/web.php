@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\livewire\ProductQuickView;
 
+use App\Http\Livewire\Cart;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,25 +27,28 @@ Route::get('/products/show', function () {
     return view('pages.products.show');
 });
 
-Route::get('/orders', function () {
-    return view('pages.customer.orders');
-})->name('orders');
-
-Route::get('/single-order', function () {
-    return view('pages.customer.single-order');
-})->name('single-order');
-
-Route::get('/address', function () {
-    return view('pages.customer.adress');
-})->name('address');
-
 Route::get('/contact', function () {
     return view('pages.contact-us');
 })->name('contact');
 
-Route::get('/products/cart',App\Http\Livewire\Cart::class )->name('cart');
+Route::get('/products/cart',Cart::class)->name('cart');
 
-Route::get('/test',ProductQuickView::class);
+Route::middleware('auth')->group(function () {
+
+    Route::get('/orders', function () {
+        return view('pages.customer.orders');
+    })->name('orders');
+    
+    Route::get('/single-order', function () {
+        return view('pages.customer.single-order');
+    })->name('single-order');
+    
+    Route::get('/address', function () {
+        return view('pages.customer.adress');
+    })->name('address');
+    
+});
+
 
 Route::middleware([
     'auth:sanctum',

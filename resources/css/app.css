@@ -15,30 +15,28 @@
 }
 
 /* quick view product style  */
-.magnify {
-    margin: 20px auto;
-    display: inline-block;
-    position: relative;
-}
-.magnify .magnified {
-    display: block;
-    z-index: 10;
-    margin: auto;
-    width: 600px;
-    height: 450px;
-    border: 5px solid #fff;
-}
-.magnify .magnifier {
+/* scroll bar style  */
+.scroll {
+    width: 20px;
     height: 200px;
-    width: 200px;
-    position: absolute;
-    z-index: 20;
-    border: 4px solid white;
-    border-radius: 50%;
-    background-size: 1000%;
-    background-repeat: no-repeat;
-    margin-left: -100px !important;
-    margin-top: -100px !important;
-    pointer-events: none;
-    display: none;
+    overflow: auto;
+    float: left;
+    margin: 0 10px;
 }
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fdfdfd;
+}
+
+::-webkit-scrollbar-track {
+    /* From https://css.glass */
+    background: rgba(204, 204, 204, 0.49);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.7px);
+    -webkit-backdrop-filter: blur(10.7px);
+}
+/* scroll bar style */
