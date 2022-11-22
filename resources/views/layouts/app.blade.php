@@ -13,10 +13,10 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js', 'resources/js/jquery.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -45,30 +45,14 @@
         @stack('modals')
 
         @livewireScripts
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-            new WOW().init();
-        </script>
-        <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>   
+        {{-- jquery  --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-            $(".image-wrapper").mouseenter(function () {
-                $(this).find(".expand").removeClass("opacity-0");
-            });
-
-            $(".image-wrapper").mouseleave(function () {
-                $(this).find(".expand").addClass("opacity-0");
-            });
-
-            $(".filter").click(function () {
-                const id = $(this).attr("id");
-                const element = $(`[data-filter-name=${id}]`);
-                element.toggleClass("max-h-0");
-                element.toggleClass("max-h-[100rem]");
-                let sign = element.hasClass("max-h-0") ? "+" : "-";
-                $(this).children("[id=sign]").text(sign);
-            });
-
-        </script>
+        {{-- wow.js --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {{-- wow.js initilization  --}}
+        <script>new WOW().init();</script>
+        {{-- jquery js file  --}}
+        @vite(['resources/js/jquery.js','resources/js/main.js'])
+    
     </body>
 </html>

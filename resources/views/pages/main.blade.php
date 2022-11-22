@@ -9,24 +9,24 @@
                 <!-- Item 1 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
                     id="carousel-item-1" data-carousel-item="active">
-                    <img src="{{asset('images/dashboard/image7.jpg')}}"
-                        class="object-cover h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                        class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                     
                 </div>
                 <!-- Item 2 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
                     id="carousel-item-2" data-carousel-item="">
-                    <img src="{{asset('images/dashboard/image5.jpg')}}"
-                        class="object-cover h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                        class="object-contain h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                         
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform"
                     id="carousel-item-3" data-carousel-item="">
-                    <img src="{{asset('images/dashboard/image6.jpg')}}"
-                        class="object-cover h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                        class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                 </div>
             </div>

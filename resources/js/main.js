@@ -1,6 +1,6 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-
+import "flowbite";
 // ===================Start latest arrival swiper=================//
 const swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
@@ -80,23 +80,6 @@ const options = {
 const carousel = new Carousel(items, options);
 carousel.cycle();
 // ===================End header slider=================//
-
-$(".image-wrapper").mouseenter(function () {
-    $(this).find(".expand").removeClass("opacity-0");
-});
-
-$(".image-wrapper").mouseleave(function () {
-    $(this).find(".expand").addClass("opacity-0");
-});
-
-$(".filter").click(function () {
-    const id = $(this).attr("id");
-    const element = $(`[data-filter-name=${id}]`);
-    element.toggleClass("max-h-0");
-    element.toggleClass("max-h-[100rem]");
-    let sign = element.hasClass("max-h-0") ? "+" : "-";
-    $(this).children("[id=sign]").text(sign);
-});
 
 // ===================start quick view product=================//
 
