@@ -92,7 +92,7 @@
             <div class="swiper mySwiper !mr-4 !pt-8 " >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide pl-4 ">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
+                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('images/products/image1.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="swiper-slide pl-4">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
+                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('images/products/image2.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="swiper-slide pl-4">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
+                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('images/products/image3.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="swiper-slide pl-4">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
+                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('images/products/image4.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
