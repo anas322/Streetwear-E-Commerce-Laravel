@@ -1,7 +1,7 @@
 <x-app-layout>
 
      <x-slot name="header">
-        <div class="overflow-hidden h-64 sm:h-96 relative">
+        <div class="wow zoomInDown overflow-hidden h-64 sm:h-96 relative">
             <img src="{{ asset('images/dashboard/contact.jpg') }}" class="object-cover h-full w-full"
                 style="object-position: 13% 21%" alt="streetwearts prducts header background">
 
@@ -11,7 +11,7 @@
         </div>
 
 
-        <div class="w-full py-24 container mx-auto md:px-0 px-8">
+        <div class="wow zoomInRight w-full py-24 container mx-auto md:px-0 px-8">
 
             <div class="flex flex-col justify-start items-center md:flex-row gap-8">
                 <div class="md:basis-1/2 basis-full">
