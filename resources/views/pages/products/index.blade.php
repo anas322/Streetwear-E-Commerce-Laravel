@@ -1,9 +1,9 @@
 <x-app-layout>
     {{-- background header  --}}
     <x-slot name="header">
-        <div class="overflow-hidden h-64 sm:h-96">
+        <div class="overflow-hidden h-64 sm:h-[50vh]">
             <img src="{{ asset('images/products/header.jpeg') }}" class="object-cover h-full w-full"
-                style="object-position: 13% 21%" alt="streetwearts prducts header background">
+                style="object-position: 13% 36%" alt="streetwearts prducts header background">
         </div>
     </x-slot>
 
