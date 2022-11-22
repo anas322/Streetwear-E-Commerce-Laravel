@@ -17,7 +17,7 @@ use App\Http\Livewire\Cart;
 
 Route::get('/', function () {
     return view('pages.main');
-});
+})->name('home');
 
 Route::get('/products', function () {
     return view('pages.products.index');

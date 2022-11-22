@@ -5,18 +5,19 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" class="flex items-center pr-4">
                         <x-jet-application-mark class="block h-12 w-auto" />
+                        <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap">Street Wear</span>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ url('/') }}" :active="request()->routeIs('dashboard')" class="text-xl font-light font-roboto">
+                    <x-jet-nav-link href="{{ url('/') }}" :active="request()->routeIs('home')" class="text-xl font-light font-roboto">
                         {{ __('Home') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ url('/products') }}" :active="request()->routeIs('dashboard')" class="text-xl font-light font-roboto">
+                    <x-jet-nav-link href="{{ url('/products') }}" :active="request()->routeIs('products.index')" class="text-xl font-light font-roboto">
                         {{ __('Shop') }}
                     </x-jet-nav-link>
                 </div>

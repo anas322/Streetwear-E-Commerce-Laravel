@@ -5,7 +5,7 @@
         <div class="wow slideInLeft mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center pr-4">
                 <x-application-logo class="mr-3 h-16 w-16 fill-slate-50" alt="street wear Logo" />
-                <span class="self-center text-2xl font-roboto font-semibold whitespace-nowrap text-white">Street Wear</span>
+                <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap text-white">Street Wear</span>
             </a>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
