@@ -16,6 +16,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js', 'resources/js/jquery.js'])
 
         <!-- Styles -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -44,6 +45,10 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            new WOW().init();
+        </script>
         <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>   
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>

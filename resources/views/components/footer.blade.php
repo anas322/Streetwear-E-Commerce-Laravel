@@ -2,14 +2,14 @@
 <footer class="px-4 sm:px-6 dark:bg-gray-900 bg-gray-800 relative z-[1] overflow-x-hidden">
     <x-svgs.footer-background class="absolute right-0 bottom-0 top-0 z-[-1] w-full h-full" />
     <div class="md:flex md:justify-between max-w-7xl mx-auto py-24">
-        <div class="mb-6 md:mb-0">
+        <div class="wow slideInLeft mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center pr-4">
                 <x-application-logo class="mr-3 h-16 w-16 fill-slate-50" alt="street wear Logo" />
                 <span class="self-center text-2xl font-roboto font-semibold whitespace-nowrap text-white">Street Wear</span>
             </a>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
-            <div>
+            <div class="wow slideInRight">
                 <h2 class="mb-6 text-sm font-semibold uppercase text-white">Social</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-3">
@@ -20,7 +20,7 @@
                     </li>
                 </ul>
             </div>
-            <div>
+            <div class="wow slideInRight">
                 <h2 class="mb-6 text-sm font-semibold uppercase text-white">Shop</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-3">
@@ -38,7 +38,7 @@
                 </ul>
             </div>
 
-            <div>
+            <div class="wow slideInRight">
                 <h2 class="mb-6 text-sm font-semibold uppercase text-white">COMPANY</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     @auth
@@ -61,7 +61,7 @@
                     </li>
                 </ul>
             </div>
-            <div>
+            <div class="wow slideInRight">
                 <h2 class="mb-6 text-sm font-semibold uppercase text-white">HELP AND SUPPORT</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-4">

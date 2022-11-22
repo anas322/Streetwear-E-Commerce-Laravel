@@ -1,4 +1,4 @@
-<div class="lg:col-span-2 col-span-3">
+<div class="wow fadeInUp lg:col-span-2 col-span-3">
     <div class="image-wrapper 2xl:h-[45rem] xl:h-[35rem] lg:h-[28rem] md:h-[30rem] sm:h-[30rem] h-[45rem]">
         <div class="inner-image-wrapper h-full relative">
             <img class="h-full w-full object-cover  absolute top-0 left-1/2 -translate-x-1/2 first-image transition-all duration-700"

@@ -3,7 +3,7 @@
     {{-- header slider  --}}
     <x-slot name="header">
         {{-- carousel header  --}}
-        <div id="indicators-carousel" class="relative sm:h-screen h-[50vh]" data-carousel="static">
+        <div id="indicators-carousel" class="wow fadeIn relative sm:h-screen h-[50vh]" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative overflow-hidden h-full">
                 <!-- Item 1 -->
@@ -82,7 +82,7 @@
     <div class="container mx-auto">
         {{-- latest arrivals section  --}}
         <div class="min-h-screen pb-8 z-10">
-            <header class="pt-12 font-semibold max-w-3xl mx-auto h-[30vh]"> 
+            <header class="wow fadeInDown pt-12 font-semibold max-w-3xl mx-auto h-[30vh]"> 
                 <h1 class="md:text-6xl text-4xl text-center font-roboto pb-7"> LATEST ARRIVALS </h1>
                 <p class="text-gray-400 text-center font-normal px-4">Fashion is part of the daily air and it changes all the
                     time, with all the events. You can even see the approaching of a revolution in clothes. You can see and
@@ -94,7 +94,7 @@
                     <div class="swiper-slide pl-4 ">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
                             <img src="{{ asset('images/products/image1.webp') }}"
-                                class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -106,7 +106,7 @@
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
                             <img src="{{ asset('images/products/image2.webp') }}"
-                                class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -118,7 +118,7 @@
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
                             <img src="{{ asset('images/products/image3.webp') }}"
-                                class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -130,7 +130,7 @@
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-xl">
                             <img src="{{ asset('images/products/image4.webp') }}"
-                                class="w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -145,14 +145,14 @@
 
         {{-- categories section  --}}
         <div class="mb-8 ">
-            <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
+            <header class="wow fadeInDown lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
                 <h1 class="md:text-6xl text-5xl text-center font-roboto"> SHOP CATEGORIES </h1>
             </header>
 
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
                 <div class="col-span-3 ">
                     <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/035/medium/image.png?1666317293" class="object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/035/medium/image.png?1666317293" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
                     </div>
 
                     <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
@@ -166,7 +166,7 @@
                 
                 <div class="col-span-3 ">
                     <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/036/medium/image.png?1666317388" class="object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/036/medium/image.png?1666317388" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
                     </div>
 
                     <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
@@ -180,7 +180,7 @@
 
                 <div class="col-span-3 ">
                     <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/033/medium/image.png?1666317206" class="object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/033/medium/image.png?1666317206" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
                     </div>
 
                     <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
@@ -194,7 +194,7 @@
 
                 <div class="col-span-3 ">
                     <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/032/medium/image.png?1666317169" class="object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/032/medium/image.png?1666317169" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
                     </div>
 
                     <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
@@ -211,14 +211,16 @@
 
         {{-- where to find us section  --}}
         <div class="min-h-screen py-20 ">
-            <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
+            <header class="wow fadeInDown lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
                 <h1 class="md:text-6xl text-5xl text-center font-roboto px-3"> WHERE TO FIND US </h1>
             </header>
 
             <div class="flex flex-col lg:flex-row justify-around items-center md:space-x-8 space-y-8 lg:pt-40 pt-16 px-4">
-                <x-svgs.location class="p-8 lg:h-auto h-96 max-w-full" />
+                <div class="wow slideInLeft">
+                    <x-svgs.location class="p-8 lg:h-auto h-96 max-w-full" />
+                </div>
 
-                <div class="flex flex-col space-y-8">
+                <div class="wow slideInRight flex flex-col space-y-8">
                     <div class="flex flex-col items-center justify-center space-y-7">
                         <p class="text-2xl text-end font-bold pb-4 font-arabic" style="letter-spacing:initial">فرع بنها : أمام بوابة القاعات لنادي بنها الرياضي اخر شارع كلية طب</p>
                         <a href="https://goo.gl/maps/237yXv4tbSRPJxQ79" class="rounded-lg py-3 px-6 bg-gray-900 hover:scale-105 transition inline-flex items-center space-x-4 text-white box-content ">
@@ -241,29 +243,29 @@
 
     {{-- why shop with us  --}}
     <div class="bg-slate-100">
-        <header class="lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
+        <header class="wow fadeInDown lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
             <h1 class="md:text-6xl text-5xl text-center font-roboto"> Why Shop With Us? </h1>
         </header>
         <div class="flex flex-wrap py-24 justify-start gap-y-8">
-            <div class="space-y-3 md:basis-2/4 basis-full">
+            <div class="wow slideInLeft space-y-3 md:basis-2/4 basis-full">
                 <x-svgs.cash-on-delivery class="w-40 h-auto mx-auto "/>
                 <p class="font-light text-center">CASH ON DELIVERY</p>
                 <p class="text-sm text-center">Pay by card or Cash on delivery</p>
             </div>
 
-            <div class="space-y-3 md:basis-2/4 basis-full">
+            <div class="wow slideInRight space-y-3 md:basis-2/4 basis-full">
                 <x-svgs.car-icon class="w-40 h-auto mx-auto "/>
                 <p class="font-light text-center">FREE & EASY RETURNS</p>
                 <p class="text-sm text-center">We understand people change their minds</p>
             </div>
 
-            <div class="space-y-3 md:basis-2/4 basis-full">
+            <div class="wow slideInLeft space-y-3 md:basis-2/4 basis-full">
                 <x-svgs.t-shirt class="w-40 h-auto mx-auto "/>
                 <p class="font-light text-center">NEW STYLES EVERYDAY</p>
                 <p class="text-sm text-center">We offer affordable everyday styles for everyone</p>
             </div>
 
-            <div class="space-y-3 md:basis-2/4 basis-full">
+            <div class="wow slideInRight space-y-3 md:basis-2/4 basis-full">
                 <x-svgs.like-stars class="w-40 h-auto mx-auto "/>
                 <p class="font-light text-center">SATISFACTION GUARANTEED</p>
                 <p class="text-sm text-center">You are at the heart of everything we do</p>
