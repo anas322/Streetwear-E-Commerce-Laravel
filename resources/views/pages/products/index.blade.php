@@ -7,7 +7,7 @@
         </div>
     </x-slot>
 
-    <div class="flex gap-x-8 py-28 mb-8 overflow-x-hidden">
+    <div class="flex gap-x-8 py-28 px-8 mb-8 overflow-x-hidden">
        <!-- left filter products -->
         <livewire:left-filter-products />
         
