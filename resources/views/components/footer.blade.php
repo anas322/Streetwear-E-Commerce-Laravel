@@ -10,7 +10,7 @@
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
             <div class="wow slideInRight">
-                <h2 class="mb-6 text-sm font-semibold uppercase text-white">Social</h2>
+                <h2 class="mb-6 text-lg font-semibold uppercase text-white">Social</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-3">
                         <a href="https://www.instagram.com/streetwearts/?hl=en" target="_blank" class="hover:underline text-gray-500 hover:text-gray-600">Instagram</a>
@@ -21,7 +21,7 @@
                 </ul>
             </div>
             <div class="wow slideInRight">
-                <h2 class="mb-6 text-sm font-semibold uppercase text-white">Shop</h2>
+                <h2 class="mb-6 text-lg font-semibold uppercase text-white">Shop</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-3">
                         <a href="#" class="hover:underline text-gray-500 hover:text-gray-600 ">SHOES</a>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="wow slideInRight">
-                <h2 class="mb-6 text-sm font-semibold uppercase text-white">COMPANY</h2>
+                <h2 class="mb-6 text-lg font-semibold uppercase text-white">COMPANY</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     @auth
                         <li class="mb-3">
@@ -62,7 +62,7 @@
                 </ul>
             </div>
             <div class="wow slideInRight">
-                <h2 class="mb-6 text-sm font-semibold uppercase text-white">HELP AND SUPPORT</h2>
+                <h2 class="mb-6 text-lg font-semibold uppercase text-white">HELP AND SUPPORT</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-4">
                         <a href="{{ route('contact') }}" class="hover:underline text-gray-500 hover:text-gray-600">Contact Us</a>
