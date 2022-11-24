@@ -6,7 +6,7 @@
                 style="object-position: 13% 21%" alt="streetwearts prducts header background">
 
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <span class="uppercase  font-bold font-roboto text-white text-7xl" >contact</span>
+                    <span class="uppercase  font-bold font-roboto text-white text-9xl" >contact</span>
                 </div>
         </div>
 
