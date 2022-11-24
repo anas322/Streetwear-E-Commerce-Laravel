@@ -3,7 +3,7 @@
     <x-svgs.footer-background class="absolute right-0 bottom-0 top-0 z-[-1] w-full h-full" />
     <div class="md:flex md:justify-between max-w-7xl mx-auto py-24">
         <div class="wow slideInLeft mb-6 md:mb-0">
-            <a href="https://flowbite.com/" class="flex items-center pr-4">
+            <a href="{{ route('home') }}" class="flex items-center pr-4">
                 <x-application-logo class="mr-3 h-16 w-16 fill-slate-50" alt="street wear Logo" />
                 <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap text-white">Street Wear</span>
             </a>
