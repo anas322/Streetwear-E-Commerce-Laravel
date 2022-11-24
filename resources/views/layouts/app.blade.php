@@ -20,6 +20,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        {{-- <livewire:search-input />  --}}
         <x-jet-banner />
 
         <div class="font-sans antialiased bg-white">
