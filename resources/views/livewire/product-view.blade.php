@@ -1,14 +1,16 @@
-<div class="wow fadeInUp lg:col-span-2 col-span-3">
-    <div class="image-wrapper 2xl:h-[45rem] xl:h-[35rem] lg:h-[28rem] md:h-[30rem] sm:h-[30rem] h-[45rem]">
-        <div class="inner-image-wrapper h-full relative">
-            <img class="h-full w-full object-cover  absolute top-0 left-1/2 -translate-x-1/2 first-image transition-all duration-700"
-                src="{{$src1}}" />
-
-            <img class="h-full w-full object-cover  absolute top-0 left-1/2 -translate-x-1/2 second-image transition-all duration-700 opacity-0 hover:opacity-100"
-                src="{{$src2}}" />
-
+<div class="wow fadeInUp xl:basis-1/3 basis-1/2 md:pl-4 p-2 md:p-0">
+    <div class="image-wrapper relative ">
+        <div class="inner-image-wrapper relative">
+            <a href="#" class="block relative overflow-hidden" >
+                <div class="relative pt-[150%]">
+                    <img class="inline-block object-contain object-center absolute top-0 left-0 h-full w-full transition-all duration-700"
+                        src="{{$src1}}" />
+                    <img class="inline-block object-contain object-center absolute top-0 left-0 h-full w-full transition-opacity duration-700 opacity-0 hover:opacity-100"
+                        src="{{$src2}}" />
+                </div>
+            </a>
             <span
-                class="absolute top-4 left-4 uppercase py-1 rounded-sm px-4 font-roboto bg-red-600 text-white">HOT</span>
+                class="absolute top-4 left-4 uppercase py-1 px-3.5 font-roboto bg-red-400 text-white text-sm">HOT</span>
             <span
                 class="expand absolute top-4 right-4 px-2 py-2 rounded-full bg-white opacity-0 transition-opacity duration-700 hover:cursor-pointer hover:bg-gray-50"
                 data-tooltip-target="tooltip-left" data-tooltip-placement="left">

@@ -17,4 +17,15 @@ $(function () {
         let sign = element.hasClass("max-h-0") ? "+" : "-";
         $(this).children("[id=sign]").text(sign);
     });
+
+    window.addEventListener("scroll", () => {
+        let windowOffset = window.pageYOffset;
+        let { top } = $(".sticky-side-bar").offset();
+
+        if (windowOffset >= top) {
+            $(".sticky-side-bar").css("padding-top", "5rem");
+        } else {
+            $(".sticky-side-bar").css("padding-top", "0");
+        }
+    });
 });

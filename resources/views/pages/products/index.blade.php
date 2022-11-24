@@ -1,22 +1,24 @@
 <x-app-layout>
     {{-- background header  --}}
     <x-slot name="header">
-        <div class="overflow-hidden h-64 sm:h-[50vh]">
+        <div class="overflow-hidden h-64 sm:h-[50vh] pt-12">
             <img src="{{ asset('images/products/header.jpeg') }}" class="object-cover h-full w-full"
                 style="object-position: 13% 36%" alt="streetwearts prducts header background">
         </div>
     </x-slot>
-
-    <div class="flex gap-x-8 py-28 px-8 mb-8 overflow-x-hidden">
+    
+    <div class="flex items-start pt-28 px-10 relative">
        <!-- left filter products -->
-        <livewire:left-filter-products />
+       <div class="sticky-side-bar sticky top-0 md:inline-block hidden">
+           <livewire:left-filter-products />
+        </div>
         
         {{-- products section  --}}
-        <div class="w-full md:pr-8 px-8 md:pl-0 ">
+        <div class="md:ml-10 flex-grow relative overflow-hidden">
             {{-- filter above products--}}
           <livewire:above-filter-products />
-
-            <div class="grid sm:grid-cols-6 grid-cols-1 2xl:gap-x-12 xl:gap-x-10 gap-x-4 sm:gap-y-28 gap-y-32 w-full">
+          
+            <div class="flex flex-wrap gap-y-8">
                 {{-- images  --}}
                 @for ($i = 0; $i < 10; $i++)
                     <livewire:product-view />
@@ -24,6 +26,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- product quick view -->
     <livewire:product-quick-view />

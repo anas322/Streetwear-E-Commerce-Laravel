@@ -22,7 +22,7 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="font-sans antialiased overflow-x-hidden bg-white">
+        <div class="font-sans antialiased bg-white">
             <div class="min-h-screen relative">
                 @livewire('navigation-menu')
                 

@@ -26,11 +26,11 @@
                     <span class="font-extralight text-base text-gray-500 w-full">Price</span>
                     <div class="flex pb-3">
                         <input type="number" id="phone"
-                            class="focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                            class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                             placeholder="LE: " min="0" max="10000" autocomplete="off" required>
                         <span class="text-gray-500 text-2xl px-2">-</span>
                         <input type="number" id="phone"
-                            class="focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                            class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                             placeholder="LE: " min="0" max="10000" autocomplete="off" required>
                     </div>
                     <input id="small-range" type="range" value="50" min='0' max="10000"
