@@ -3,13 +3,13 @@
     {{-- header slider  --}}
     <x-slot name="header">
         {{-- carousel header  --}}
-        <div id="indicators-carousel" class="wow fadeIn relative sm:h-screen h-[50vh]" data-carousel="static">
+        <div id="indicators-carousel" class="wow fadeIn relative sm:h-screen h-[50vh] pt-16" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative overflow-hidden h-full">
                 <!-- Item 1 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
                     id="carousel-item-1" data-carousel-item="active">
-                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                    <img src="{{asset('images/dashboard/carousol1.webp')}}"
                         class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                     
@@ -17,7 +17,7 @@
                 <!-- Item 2 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
                     id="carousel-item-2" data-carousel-item="">
-                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                    <img src="{{asset('images/dashboard/carousol2.webp')}}"
                         class="object-contain h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                         
