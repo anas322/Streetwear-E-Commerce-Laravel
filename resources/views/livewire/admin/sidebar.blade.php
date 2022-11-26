@@ -1,7 +1,7 @@
 
     {{-- aside menu in medium screen and above  --}}
     <aside class="md:block hidden w-64 bg-[#0E2238] z-40 h-screen" aria-label="Sidebar">
-        <div class="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
+        <div class="overflow-y-auto py-4 rounded dark:bg-gray-800">
             <a href="{{ route('home')}}" class="flex items-center pr-4 pb-8">
                 <x-application-logo class="mr-3 h-16 w-16 fill-slate-50" alt="street wear Logo" />
                 <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap text-white">Street Wear</span>

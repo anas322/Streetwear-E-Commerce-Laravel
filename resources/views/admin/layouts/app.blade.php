@@ -25,14 +25,18 @@
 
         <div class="font-sans antialiased bg-white">
             <div class="min-h-screen relative">
-                <div class="flex items-start">
+                <div class="flex items-start bg-slate-50">
                     @livewire('admin.sidebar')
-                    @livewire('admin.navigation')
+                    <div class="container mx-auto min-h-screen px-4">
+                        @livewire('admin.navigation')
+
+                        <!-- Page Content -->
+                        <main>
+                            {{ $slot }}
+                        </main>
+
+                    </div>
                 </div>
-                <!-- Page Content -->
-                <main>
-                    {{ $slot }}
-                </main>
             </div>
 
         </div>

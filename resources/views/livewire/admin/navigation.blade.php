@@ -1,5 +1,4 @@
-<nav class="flex-1 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 mt-4">
-    <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <div class="flex flex-wrap items-center justify-between mt-4 mb-8">
 
         <form class="flex items-center">
             <label for="simple-search" class="sr-only">Search</label>
