@@ -1,4 +1,4 @@
-<nav class="flex-1 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+<nav class="flex-1 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 mt-4">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
 
         <form class="flex items-center">
@@ -13,7 +13,7 @@
                     </svg>
                 </div>
                 <input type="text" id="simple-search"
-                    class="focus:ring-0 focus:border-gray-300 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="focus:ring-0 focus:border-0 bg-gray-50 border-0 text-gray-700 text-xs rounded-lg block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search" required>
             </div>
         </form>
