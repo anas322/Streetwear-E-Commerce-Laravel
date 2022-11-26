@@ -50,6 +50,18 @@ Route::middleware('auth')->group(function () {
 });
 
 
+// sign in as admin or user 
+Route::get('redirects',function () {
+
+    if(!auth()->user()->role_as == 1){
+        return redirect()->route('home')->with('success','Logged In Successfully');
+    }else {
+            return redirect()->route('admin.home')->with('success','Welcome to Dashboard');
+    }
+    
+});
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
