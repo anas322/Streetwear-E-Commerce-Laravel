@@ -4,12 +4,6 @@
 
     </div>
 
-    @if ($errors->any())
-        @foreach ($errors as $error)
-            {{ $error}}
-        @endforeach
-    @endif
-
     <!-- table of categories -->
     
     <livewire:admin.category.index />
