@@ -21,7 +21,7 @@
         </button>
         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                 <li>
-                    <a  href="#" class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Products</a>
+                    <a  href="{{ route('admin.product.index') }}" class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Products</a>
                 </li>
                 <li>
                     <a  href="#" class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Billing</a>
