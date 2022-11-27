@@ -9,17 +9,8 @@ use App\Http\Requests\Admin\StoreCategoryRequest;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        $categories = Category::paginate(4);
 
-        return view('admin.pages.category.index',['categories' => $categories]);
-    }
-
-    public function store(StoreCategoryRequest $request)
-    {
-        $validatedData = $request->validated();
-
-        Category::create($validatedData);
-
-        return redirect()->route('admin.category.index')->with('success','Category has been created');
+        return view('admin.pages.category.index');
     }
 }
