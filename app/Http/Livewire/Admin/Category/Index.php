@@ -23,9 +23,9 @@ class Index extends Component
     public $search = '';
 
     protected $rules = [
-        "categoryId"  => ['nullable'],
+        "categoryId"  => ['nullable','integer'],
         "name"        => ['required','string'],
-        "slug"        => ['required','string'],
+        "slug"        => ['required','string','max:255'],
         "description" => ['required'],
         "status"      => ['required','in:Active,Draft'],
     ];

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('slug')->unique();
             $table->longText('description')->nullable();
@@ -26,7 +27,6 @@ return new class extends Migration
             $table->mediumText('meta_keyword')->nullable();
             $table->mediumText('meta_description')->nullable();
 
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

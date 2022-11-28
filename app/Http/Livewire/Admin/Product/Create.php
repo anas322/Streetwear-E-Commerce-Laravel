@@ -13,7 +13,7 @@ class Create extends Component
     
     public $categories;
 
-    public $category;
+    public $categoryId;
     public $name;
     public $slug;
     public $description;
@@ -32,28 +32,36 @@ class Create extends Component
 
 
     protected $rules = [
+        "categoryId"       => ['required','integer'], 
         "name"             => ['required','string'],
         "slug"             => ['required','string','max:255'],
         "description"      => ['required','string'],
         "price"            => ['required','integer','min:0'],
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
-        "images"           => ['required'],
+        "images.*"         => ['required','image','mimes:jpg,jpeg,png,webp'],
     
-        "meta_title"       => ['nullable','string'],
+        "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
         "meta_description" => ['nullable','string']
     ];
 
-    // public function selectAsThumbnail($image){
-    //     dd($image);
-    // }
+
     public function submit()
     {
         $validatedData = $this->validate();
-        
-        dd($validatedData);
-        Product::create($validatedData);
+
+        $category = Category::findOrFail($this->categoryId);
+
+        $product = $category->products()->create($validatedData);
+
+        if(count($this->images)){
+            foreach ($this->images as $image) {
+                $path = $image->store('images/products');
+                
+                $product->productImages()->create(['image' => $path]);
+            }
+        }
         
         session()->flash('success','Product has been created successfully');
     }

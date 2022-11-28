@@ -19,6 +19,11 @@ class Category extends Model
     ]; 
 
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+
      protected function status(): Attribute
     {
         return Attribute::make(
