@@ -48,7 +48,7 @@ class Create extends Component
 
 
     public function submit()
-    {
+    {   
         $validatedData = $this->validate();
 
         $category = Category::findOrFail($this->categoryId);
@@ -57,13 +57,13 @@ class Create extends Component
 
         if(count($this->images)){
             foreach ($this->images as $image) {
-                $path = $image->store('images/products');
+                $path = $image->store('products');
                 
                 $product->productImages()->create(['image' => $path]);
             }
         }
         
-        session()->flash('success','Product has been created successfully');
+        return redirect()->route('admin.product.index')->with('success','The product has been created successfully');
     }
 
 

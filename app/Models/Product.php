@@ -23,21 +23,30 @@ class Product extends Model
         'meta_description'
     ];
 
-    public function productImages(){
-        return $this->hasMany(ProductImage::class);
-    }
-
-       protected function status(): Attribute
+    
+    protected function status(): Attribute
     {
         return Attribute::make(
             set: fn ($value) => $value == 'Active' ? 1 : 0,
         );
     }
 
-     protected function slug(): Attribute
+    protected function slug(): Attribute
     {
         return Attribute::make(
             set: fn ($value) => Str::slug($value),
         );
+    }
+
+    public function productImages(){
+        return $this->hasMany(ProductImage::class);
+    }
+
+     public static function boot() {
+        parent::boot();
+
+        static::updating(function($product) { 
+            $product->productImages()->delete();
+        });
     }
 }

@@ -19,6 +19,6 @@ class ProductController extends Controller
     }
     public function edit(Product $product)
     {
-        return view('admin.pages.product.index',['product' => $product]);
+        return view('admin.pages.product.edit',['product' => $product]);
     }
 }
