@@ -77,8 +77,7 @@ class Edit extends Component
 
     
     public function updatedImages($value){
-        $this->dispatchBrowserEvent('name-updated');
-        // validate the temporary uploaded file     
+      // validate the temporary uploaded file     
       $upload = end($value);
       $extensions = ["jpg", "jpeg","png","webp"];
       $ext = $upload->getClientOriginalExtension();
@@ -107,7 +106,7 @@ class Edit extends Component
             }
         }
         
-        // return redirect()->route('admin.product.index')->with('success','The product has been created successfully');
+        return redirect()->route('admin.product.index')->with('success','The product has been edited successfully');
     } 
 
 

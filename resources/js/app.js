@@ -34,4 +34,3 @@ $(function () {
             });
     });
 });
-window.addEventListener("name-updated", () => {});
