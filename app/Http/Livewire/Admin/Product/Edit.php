@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
+use App\Models\Color;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
@@ -13,6 +14,7 @@ class Edit extends Component
     
     public $categories;
     public $product;
+    public $load_colors;
 
     public $categoryId;
     public $name;
@@ -22,6 +24,7 @@ class Edit extends Component
     public $quantity;
     public $status;
     public $images = [];
+    public $colors = [];
 
     public $meta_title;
     public $meta_keyword;
@@ -31,6 +34,7 @@ class Edit extends Component
 
     public function mount(Product $product){
         $this->categories = Category::all();
+        $this->load_colors = Color::all();
         $this->product = $product;
 
         $this->categoryId = $product->category_id;
@@ -40,7 +44,7 @@ class Edit extends Component
         $this->price = $product->price;
         $this->quantity = $product->quantity;
         $this->status = $product->status == 1 ? 'Active' :'Draft';
-
+        $this->colors = $this->product->colors->pluck('id')->toArray();
       
 
         foreach ($product->productImages as $productImage) {
@@ -68,7 +72,8 @@ class Edit extends Component
         "price"            => ['required','integer','min:0'],
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
-        "images.*"      => ['required'],
+        "images.*"         => ['required'],
+        "colors.*"         => ['required','integer'],
     
         "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
@@ -104,6 +109,10 @@ class Edit extends Component
                     $this->product->productImages()->create(['image' => $image]);
                 }
             }
+        }
+
+        if(count($this->colors)){
+           $this->product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
         }
         
         return redirect()->route('admin.product.index')->with('success','The product has been edited successfully');

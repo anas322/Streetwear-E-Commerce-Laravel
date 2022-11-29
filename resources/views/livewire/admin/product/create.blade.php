@@ -110,6 +110,42 @@
                             @enderror
                         </div>
 
+                        <div class="relative z-10 mb-6 w-full group">
+
+                            <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
+                                class="flex items-center justify-between w-full py-2.5 px-0 text-sm font-medium text-center text-gray-500 border-0 border-b-2 border-gray-200 appearance-none   focus:ring-0 focus:outline-none   "
+                                type="button">Select Colors <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg></button>
+
+                            <!-- Dropdown menu -->
+                            <div id="dropdownSearch" class="hidden z-10 w-60 bg-white rounded shadow dark:bg-gray-700">
+                                <ul class="overflow-y-auto  px-3 py-3 h-48 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownSearchButton">
+                                    @foreach ($load_colors as $color)
+                                        <li>
+                                            <div
+                                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                <input type="checkbox" wire:model.defer="colors"  id="checkbox-item-{{$color->id}}"  value="{{$color->id}}"
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <label for="checkbox-item-{{$color->id}}"
+                                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{$color->name}}</label>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                    
+                            </div>
+
+
+
+                            @error('colors')
+                            <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
+                                    snapp!</span> {{ $message }}.</p>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </li>
@@ -215,7 +251,7 @@
 
                     <input multiple wire:model="images"
                         class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        id="images" type="file"  accept=".jpg, .jpeg, .png, .webp" >
+                        id="images" type="file" accept=".jpg, .jpeg, .png, .webp">
 
                     <div x-show="isUploading">
                         <progress max="100" x-bind:value="progress"></progress>

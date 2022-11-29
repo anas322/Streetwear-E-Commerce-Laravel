@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
-use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Color;
 use Livewire\WithFileUploads;
 
 class Create extends Component
@@ -12,6 +12,7 @@ class Create extends Component
     use WithFileUploads;
     
     public $categories;
+    public $load_colors;
 
     public $categoryId;
     public $name;
@@ -21,6 +22,7 @@ class Create extends Component
     public $quantity;
     public $status;
     public $images = [];
+    public $colors = [];
 
     public $meta_title;
     public $meta_keyword;
@@ -28,6 +30,7 @@ class Create extends Component
 
     public function mount(){
         $this->categories = Category::all();
+        $this->load_colors = Color::all();
     }
 
 
@@ -40,6 +43,7 @@ class Create extends Component
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
         "images.*"         => ['required','image','mimes:jpg,jpeg,png,webp'],
+        "colors.*"         => ['required','integer'],
     
         "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
@@ -61,6 +65,10 @@ class Create extends Component
                 
                 $product->productImages()->create(['image' => $path]);
             }
+        }
+
+        if(count($this->colors)){
+           $product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
         }
         
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');

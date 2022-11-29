@@ -47,6 +47,9 @@
                         Quantity
                     </th>
                     <th scope="col" class="py-3 px-6">
+                        Colors
+                    </th>
+                    <th scope="col" class="py-3 px-6">
                         Status
                     </th>
                     <th scope="col" class="py-3 px-6">
@@ -72,6 +75,13 @@
                     </td>
                     <td class="py-4 px-6">
                         {{$pro->quantity}}
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="space-x-1 ">
+                            @foreach ($pro->colors as $color)
+                            <span>{{ $color->name }}</span>
+                            @endforeach
+                        </div>
                     </td>
                     <td class="py-4 px-6 ">
                         <span @class(['border-2 font-bold py-2 px-3 rounded-lg text-xs', 'border-green-600 text-green-700' => $pro->status == 1 ,'border-red-600 text-red-700' => $pro->status == 0])>
