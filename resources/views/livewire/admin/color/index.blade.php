@@ -12,7 +12,7 @@
             </div>
             <input wire:model="search" type="search" id="table-search"
                 class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-white rounded-lg focus:ring-0 border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white placeholder:text-xs"
-                placeholder="Search by category name..">
+                placeholder="Search by color name..">
         </div>
         <div>
             <button wire:click="editModel" type="button"
@@ -20,7 +20,7 @@
                 <span
                     class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                     Add
-                    Category
+                    Color
                 </span>
             </button>
         </div>
@@ -33,10 +33,7 @@
                         Name
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Slug
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Description
+                        Code
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Status
@@ -47,28 +44,25 @@
                 </tr>
             </thead>
             <tbody wire:loading.remove wire:target="search">
-                @foreach ($categories as $cat)
+                @foreach ($colors as $color)
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$cat->name}}
+                        {{$color->name}}
                     </th>
                     <td class="py-4 px-6">
-                        {{$cat->slug}}
-                    </td>
-                    <td class="py-4 px-6">
-                        {{$cat->description}}
+                        {{$color->code}}
                     </td>
                     <td class="py-4 px-6 ">
-                        <span @class(['border-2 font-bold py-2 px-3 rounded-lg text-xs', 'border-green-600 text-green-700' => $cat->status == 1 ,'border-red-600 text-red-700' => $cat->status == 0])>
-                            {{ $cat->status == 1 ? "Active" : "Draft" }}
+                        <span @class(['border-2 font-bold py-2 px-3 rounded-lg text-xs', 'border-green-600 text-green-700' => $color->status == 1 ,'border-red-600 text-red-700' => $color->status == 0])>
+                            {{ $color->status == 1 ? "Active" : "Draft" }}
                         </span>
                     </td>
                     <td class="py-4 px-6 space-x-2 flex flex-nowrap">
                         <button type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                            wire:click="editModel({{ $cat }})">Edit</button>
+                            wire:click="editModel({{ $color }})">Edit</button>
                         <button type="button" class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                            wire:click="deleteModal({{ $cat }})">Delete</button>
+                            wire:click="deleteModal({{ $color }})">Delete</button>
                     </td>
                 </tr>
                 @endforeach
@@ -78,7 +72,7 @@
     </div>
 
     <div class="pt-6">
-        {{ $categories->links() }}
+        {{ $colors->links() }}
     </div>
 
     {{-- add/edit category modal  --}}
@@ -100,10 +94,10 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="py-6 px-6 lg:px-8">
-                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Cateogry</h3>
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Color</h3>
 
                     <form wire:submit.prevent="submit">
-                        <input type="hidden" wire:model="categoryId">
+                        <input type="hidden" wire:model="colorId">
                         <div class="relative z-0 mb-6 w-full group">
                             <input type="text" wire:model="name" id="name"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -113,33 +107,21 @@
                                     snapp!</span> {{ $message }}.</p>
                             @enderror
                             <label for="name"
-                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Color
                                 Name</label>
-                        </div>
-
-                        <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model="description" id="description"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " />
-                            @error('description')
-                            <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
-                                    snapp!</span> {{ $message }}.</p>
-                            @enderror
-                            <label for="description"
-                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
                         </div>
 
                         <div class="grid md:grid-cols-2 md:gap-6">
                             <div class="relative z-0 mb-6 w-full group">
-                                <input type="text" wire:model="slug" id="slug"
+                                <input type="text" wire:model="code" id="code"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " />
-                                @error('slug')
+                                @error('code')
                                 <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
                                         snapp!</span> {{ $message }}.</p>
                                 @enderror
-                                <label for="slug"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Slug</label>
+                                <label for="code"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Code</label>
                             </div>
 
                             <div class="relative z-0 mb-6 w-full group">
@@ -211,7 +193,7 @@
                             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
-                        delete this category?</h3>
+                        delete this color?</h3>
                     <button wire:click="delete" type="button"
                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                         Yes, I'm sure
