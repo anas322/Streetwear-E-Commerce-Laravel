@@ -39,7 +39,7 @@ class Edit extends Component
         $this->description = $product->description;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
-        $this->status = $product->status;
+        $this->status = $product->status == 1 ? 'Active' :'Draft';
 
       
 

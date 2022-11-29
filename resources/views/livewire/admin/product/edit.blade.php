@@ -101,16 +101,10 @@
                             <label for="status" class="sr-only">select</label>
                             <select id="status" wire:model="status"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                                @if ($categoryId)
-                                <option value="{{ $status == 1 ? 'Active' : 'Draft' }}" @selected($status==1)>
-                                    {{ $status == 1 ? 'Active' : 'Draft' }}</option>
-                                <option value="{{ $status == 1 ? 'Draft' : 'Active' }}" @selected($status==0)>
-                                    {{ $status == 1 ? 'Draft' : 'Active' }}</option>
-                                @else
+
                                 <option selected>Choose Status</option>
-                                <option value="Active">Active</option>
-                                <option value="Draft">Draft</option>
-                                @endif
+                                <option value="Active"  @selected($status == 'Active')>Active</option>
+                                <option value="Draft" @selected($status == 'Draft')>Draft</option>
 
                             </select>
                             @error('status')

@@ -45,7 +45,7 @@ class Product extends Model
      public static function boot() {
         parent::boot();
 
-        static::updating(function($product) { 
+        static::saving(function($product) { 
             $product->productImages()->delete();
         });
     }

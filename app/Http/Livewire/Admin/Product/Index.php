@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Product;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
@@ -21,7 +22,12 @@ class Index extends Component
     }
 
     public function delete()
-    {      
+    {   
+        $images = $this->product->productImages;
+        foreach ($images as $imageObject ) {
+            Storage::delete($imageObject->image);
+        }   
+        
         $this->product->delete();
         $this->reset(['showDeleteModal','product']);
         session()->flash('success','This record has been deleted successfully');

@@ -42,7 +42,7 @@ class Index extends Component
            $this->name = $category['name'];
            $this->description = $category['description'];
            $this->slug = $category['slug'];
-           $this->status = $category['status'];
+           $this->status = $category['status'] == 1 ? 'Active' : 'Draft';
         }
 
     }
