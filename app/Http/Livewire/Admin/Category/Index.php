@@ -5,15 +5,19 @@ namespace App\Http\Livewire\Admin\Category;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     
     public $categoryId;
     public $name;
     public $slug;
     public $description;
+    public $image;
     public $status;
 
     public $showModel = false;
@@ -27,6 +31,7 @@ class Index extends Component
         "name"        => ['required','string'],
         "slug"        => ['required','string','max:255'],
         "description" => ['required'],
+        "image"       => ['required','image','mimes:jpeg,png,jpg,webp','max:2048'],
         "status"      => ['required','in:Active,Draft'],
     ];
     
@@ -34,13 +39,15 @@ class Index extends Component
     public function editModel(Array $category = [])
     {   
         $this->resetValidation();
-        $this->reset("categoryId", "name", "slug", "description", "status");
+        $this->reset("categoryId", "name", "slug", "description","image", "status");
         $this->showModel = true;
 
        if($category){   
-            $this->categoryId = $category['id'];   
+        dd($category['image']);
+           $this->categoryId = $category['id'];   
            $this->name = $category['name'];
            $this->description = $category['description'];
+           $this->image = $category['image'];
            $this->slug = $category['slug'];
            $this->status = $category['status'] == 1 ? 'Active' : 'Draft';
         }
@@ -55,11 +62,16 @@ class Index extends Component
     public function submit()
     {
         $validatedData = $this->validate();
+
+        $path = $this->image->store('category');
+        $validatedData['image'] = $path;
         
+
         Category::updateOrCreate(
         ['id' => $validatedData['categoryId']],
         array_merge($validatedData, ['id' => $validatedData['categoryId']]));
         
+
         $this->reset('showModel');
         session()->flash('success','This record has been updated successfully');
     }
@@ -67,6 +79,8 @@ class Index extends Component
     public function delete()
     {      
         $this->category->delete();
+        Storage::delete($this->category->image);
+
         $this->reset(['showDeleteModal','category']);
         session()->flash('success','This record has been deleted successfully');
     }

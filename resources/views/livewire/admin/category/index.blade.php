@@ -39,6 +39,9 @@
                         Description
                     </th>
                     <th scope="col" class="py-3 px-6">
+                        Image
+                    </th>
+                    <th scope="col" class="py-3 px-6">
                         Status
                     </th>
                     <th scope="col" class="py-3 px-6">
@@ -59,8 +62,15 @@
                     <td class="py-4 px-6">
                         {{$cat->description}}
                     </td>
+                    <td class="py-4 px-6">
+                        <div class="h-20">
+                            <img src="{{ asset('/storage/'.$cat->image) }}" class="object-contain w-full h-full">
+                        </div>
+                    </td>
                     <td class="py-4 px-6 ">
-                        <span @class(['border-2 font-bold py-2 px-3 rounded-lg text-xs', 'border-green-600 text-green-700' => $cat->status == 1 ,'border-red-600 text-red-700' => $cat->status == 0])>
+                        <span @class(['border-2 font-bold py-2 px-3 rounded-lg
+                            text-xs', 'border-green-600 text-green-700'=> $cat->status == 1 ,'border-red-600
+                            text-red-700' => $cat->status == 0])>
                             {{ $cat->status == 1 ? "Active" : "Draft" }}
                         </span>
                     </td>
@@ -149,9 +159,9 @@
                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
                                     <option selected>Choose Status</option>
-                                    <option value="Active"  @selected($status == 'Active')>Active</option>
-                                    <option value="Draft" @selected($status == 'Draft')>Draft</option>
-                                    
+                                    <option value="Active" @selected($status=='Active' )>Active</option>
+                                    <option value="Draft" @selected($status=='Draft' )>Draft</option>
+
                                 </select>
                                 @error('status')
                                 <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
@@ -160,6 +170,29 @@
                             </div>
 
                         </div>
+
+                        <div class="relative z-0 mb-6 w-full group">
+                            
+                            <div class="flex items-center justify-center w-full">
+                                @if ($image)
+                                <div class="max-h-80 overflow-hidden relative">
+                                    <img src="{{ $image->temporaryUrl() }}" class="object-contain w-full h-full">
+                                    <span class="absolute right-4 top-4 px-2 py-[2px] text-white bg-gray-400 rounded-full hover:cursor-pointer" wire:click="$set('image',null)">X</span>
+                                </div>
+                                @else
+                                    <label for="dropzone-file" class="{{ $image ? 'hidden' : 'flex' }} flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span></p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, JPEG (MAX. 2MB)</p>
+                                        </div>
+                                        <input id="dropzone-file" type="file" wire:model="image" class="hidden" />
+                                    </label>
+                                @endif
+                            </div> 
+
+                        </div>
+
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <span wire:loading.remove wire:target="submit">Save</span>
