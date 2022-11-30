@@ -176,8 +176,13 @@
                             <div class="flex items-center justify-center w-full">
                                 @if ($image)
                                 <div class="max-h-80 overflow-hidden relative">
+                                    @if (gettype($image) != 'string')
                                     <img src="{{ $image->temporaryUrl() }}" class="object-contain w-full h-full">
                                     <span class="absolute right-4 top-4 px-2 py-[2px] text-white bg-gray-400 rounded-full hover:cursor-pointer" wire:click="$set('image',null)">X</span>
+                                    @else
+                                    <img src="{{ asset('/storage/'. $image) }}" class="object-contain w-full h-full">
+                                    <span class="absolute right-4 top-4 px-2 py-[2px] text-white bg-gray-400 rounded-full hover:cursor-pointer" wire:click="$set('image',null)">X</span>
+                                    @endif
                                 </div>
                                 @else
                                     <label for="dropzone-file" class="{{ $image ? 'hidden' : 'flex' }} flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -191,6 +196,10 @@
                                 @endif
                             </div> 
 
+                            @error('image')
+                                <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
+                                    snapp!</span> {{ $message }}.</p>
+                            @enderror
                         </div>
 
                         <button type="submit"

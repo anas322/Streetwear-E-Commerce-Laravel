@@ -31,7 +31,7 @@ class Index extends Component
         "name"        => ['required','string'],
         "slug"        => ['required','string','max:255'],
         "description" => ['required'],
-        "image"       => ['required','image','mimes:jpeg,png,jpg,webp','max:2048'],
+        "image"       => ['required'],
         "status"      => ['required','in:Active,Draft'],
     ];
     
@@ -43,7 +43,6 @@ class Index extends Component
         $this->showModel = true;
 
        if($category){   
-        dd($category['image']);
            $this->categoryId = $category['id'];   
            $this->name = $category['name'];
            $this->description = $category['description'];
@@ -63,9 +62,16 @@ class Index extends Component
     {
         $validatedData = $this->validate();
 
-        $path = $this->image->store('category');
-        $validatedData['image'] = $path;
-        
+        $category = Category::findOrFail($validatedData['categoryId']);
+        if($category){
+            Storage::delete(($category->image));
+        }
+
+        if(gettype($this->image) != 'string'){
+            $path = $this->image->store('category');
+            $validatedData['image'] = $path;
+        }
+
 
         Category::updateOrCreate(
         ['id' => $validatedData['categoryId']],
