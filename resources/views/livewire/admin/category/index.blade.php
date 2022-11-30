@@ -52,7 +52,7 @@
             <tbody wire:loading.remove wire:target="search">
                 @foreach ($categories as $cat)
                 <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 leading-[5rem]">
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$cat->name}}
                     </th>
@@ -75,9 +75,9 @@
                         </span>
                     </td>
                     <td class="py-4 px-6 space-x-2 flex flex-nowrap">
-                        <button type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        <button type="button" class=" font-medium text-blue-600 dark:text-blue-500 hover:underline"
                             wire:click="editModel({{ $cat }})">Edit</button>
-                        <button type="button" class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        <button type="button" class=" font-medium text-red-600 dark:text-red-500 hover:underline"
                             wire:click="deleteModal({{ $cat }})">Delete</button>
                     </td>
                 </tr>
