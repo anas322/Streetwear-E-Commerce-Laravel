@@ -175,7 +175,7 @@
                             
                             <div class="flex items-center justify-center w-full">
                                 @if ($image)
-                                <div class="max-h-80 overflow-hidden relative">
+                                <div class="h-80 overflow-hidden relative">
                                     @if (gettype($image) != 'string')
                                     <img src="{{ $image->temporaryUrl() }}" class="object-contain w-full h-full">
                                     <span class="absolute right-4 top-4 px-2 py-[2px] text-white bg-gray-400 rounded-full hover:cursor-pointer" wire:click="$set('image',null)">X</span>

@@ -62,12 +62,12 @@ class Index extends Component
     {
         $validatedData = $this->validate();
 
-        $category = Category::findOrFail($validatedData['categoryId']);
+        $category = Category::find($validatedData['categoryId']);
         if($category){
             Storage::delete(($category->image));
         }
 
-        if(gettype($this->image) != 'string'){
+        if(gettype($this->image) != 'string'){  
             $path = $this->image->store('category');
             $validatedData['image'] = $path;
         }
