@@ -18,7 +18,7 @@ class Edit extends Component
 
     public $categoryId;
     public $name;
-    public $slug;
+    // public $slug;
     public $description;
     public $price;
     public $quantity;
@@ -39,7 +39,7 @@ class Edit extends Component
 
         $this->categoryId = $product->category_id;
         $this->name = $product->name;
-        $this->slug = $product->slug;
+        // $this->slug = $product->slug;
         $this->description = $product->description;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
@@ -67,7 +67,7 @@ class Edit extends Component
     protected $rules = [
         "categoryId"       => ['required','integer'], 
         "name"             => ['required','string'],
-        "slug"             => ['required','string','max:255'],
+        // "slug"             => ['required','string','max:255'],
         "description"      => ['required','string'],
         "price"            => ['required','integer','min:0'],
         "quantity"         => ['required','integer','min:0'],

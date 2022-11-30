@@ -17,6 +17,10 @@ class Category extends Model
         'description',
         'image',
         'status',
+
+        'meta_title',
+        'meta_keyword',
+        'meta_description'
     ]; 
 
 
@@ -41,6 +45,10 @@ class Category extends Model
 
     public static function boot() {
         parent::boot();
+
+        static::saving(function ($category) {
+            $category->slug = $category->name;
+        });
 
         static::created(function ($category) {
             $category->slug = $category->createSlug($category->name);

@@ -15,7 +15,7 @@ class Index extends Component
     
     public $categoryId;
     public $name;
-    public $slug;
+    // public $slug;
     public $description;
     public $image;
     public $status;
@@ -29,7 +29,7 @@ class Index extends Component
     protected $rules = [
         "categoryId"  => ['nullable','integer'],
         "name"        => ['required','string'],
-        "slug"        => ['required','string','max:255'],
+        // "slug"        => ['required','string','max:255'],
         "description" => ['required'],
         "image"       => ['required'],
         "status"      => ['required','in:Active,Draft'],
@@ -39,7 +39,7 @@ class Index extends Component
     public function editModel(Array $category = [])
     {   
         $this->resetValidation();
-        $this->reset("categoryId", "name", "slug", "description","image", "status");
+        $this->reset("categoryId", "name", "description","image", "status");
         $this->showModel = true;
 
        if($category){   
@@ -47,7 +47,7 @@ class Index extends Component
            $this->name = $category['name'];
            $this->description = $category['description'];
            $this->image = $category['image'];
-           $this->slug = $category['slug'];
+        //    $this->slug = $category['slug'];
            $this->status = $category['status'] == 1 ? 'Active' : 'Draft';
         }
 

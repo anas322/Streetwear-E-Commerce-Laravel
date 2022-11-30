@@ -35,8 +35,11 @@
                         Name
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Slug
+                        Category
                     </th>
+                    {{-- <th scope="col" class="py-3 px-6">
+                        Slug
+                    </th> --}}
                     <th scope="col" class="py-3 px-6">
                         Description
                     </th>
@@ -64,8 +67,11 @@
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pro->name}}
                     </th>
-                    <td class="py-4 px-6">
+                    {{-- <td class="py-4 px-6">
                         {{$pro->slug}}
+                    </td> --}}
+                    <td class="py-4 px-6">
+                        {{$pro->category->name}}
                     </td>
                     <td class="py-4 px-6">
                         {{$pro->description}}

@@ -38,6 +38,10 @@ class Product extends Model
         );
     }
 
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
     public function productImages(){
         return $this->hasMany(ProductImage::class);
     }
@@ -51,6 +55,7 @@ class Product extends Model
 
         static::saving(function($product) { 
             $product->productImages()->delete();
+            $product->slug = $product->name;
         });
 
         static::created(function ($product) {
