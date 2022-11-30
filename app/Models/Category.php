@@ -37,4 +37,32 @@ class Category extends Model
             set: fn ($value) => Str::slug($value),
         );
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::created(function ($category) {
+            $category->slug = $category->createSlug($category->name);
+            $category->save();
+        });
+    }
+
+    
+
+    private function createSlug($name)
+    {   //create a unique slug
+        if (static::whereSlug($slug = Str::slug($name))->exists()) {
+            $max = static::whereTitle($name)->latest('id')->skip(1)->value('slug');
+
+            if (is_numeric($max[-1])) {
+                return preg_replace_callback('/(\d+)$/', function ($mathces) {
+                    return $mathces[1] + 1;
+                }, $max);
+            }
+
+            return "{$slug}-2";
+        }
+
+        return $slug;
+    }
 }
