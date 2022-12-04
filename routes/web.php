@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Product;
 
 
 use App\Http\Livewire\Cart;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/products', function () {
-    return view('pages.products.index');
+    $products = Product::all();
+    return view('pages.products.index',['products' => $products]);
 })->name('products.index');
 
 Route::get('/products/show', function () {

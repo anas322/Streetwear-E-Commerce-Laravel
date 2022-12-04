@@ -46,10 +46,6 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-    public function colors(){
-        return $this->belongsToMany(Color::class,'color_products');
-    }
-
      public static function boot() {
         parent::boot();
 

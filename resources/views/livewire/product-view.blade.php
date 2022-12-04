@@ -3,10 +3,10 @@
         <div class="inner-image-wrapper relative">
             <a href="#" class="block relative overflow-hidden" >
                 <div class="relative pt-[150%]">
-                    <img class="inline-block object-contain object-center absolute top-0 left-0 h-full w-full transition-all duration-700"
-                        src="{{$src1}}" />
-                    <img class="inline-block object-contain object-center absolute top-0 left-0 h-full w-full transition-opacity duration-700 opacity-0 hover:opacity-100"
-                        src="{{$src2}}" />
+                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700"
+                        src="{{asset('/storage/'.$product->productImages[0]->image)}}" />
+                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-opacity duration-700 opacity-0 hover:opacity-100"
+                        src="{{asset('/storage/'.$product->productImages[1]->image)}}" />
                 </div>
             </a>
             <span
@@ -25,8 +25,8 @@
             </span>
         </div>
         <div class="space-y-3 my-4 ">
-            <p class="font-normal">THE EVERYDAY HOODIE FOR HIM - MINT GREEN</p>
-            <p class="font-semibold">LE 680.00</p>
+            <p class="font-normal">{{ $product->name }}</p>
+            <p class="font-semibold">LE {{ number_format($product->price,2,'.','') }}</p>
         </div>
     </div>
 </div>
