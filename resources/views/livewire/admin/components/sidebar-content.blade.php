@@ -79,7 +79,7 @@
     </li>
 
     <li>
-        <a href="#"
+        <a href="{{ route('admin.customer.index') }}"
             class="font-sans inline-flex items-center py-3 pl-3 pr-24 text-sm font-normal dark:text-gray-400 rounded-r-full text-white hover:text-[#00b8c5] hover:bg-[#0c3549] dark:hover:bg-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor"
@@ -88,7 +88,7 @@
                     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap tracking-wide">Users</span>
+            <span class="flex-1 ml-3 whitespace-nowrap tracking-wide">Customers</span>
             <span
                 class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
         </a>
