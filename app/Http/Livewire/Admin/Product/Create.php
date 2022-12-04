@@ -20,9 +20,9 @@ class Create extends Component
     public $description;
     public $price;
     public $quantity;
-    public $status;
+    public $status = "Active";
     public $images = [];
-    public $colors = [];
+    // public $colors = [];
 
     public $meta_title;
     public $meta_keyword;
@@ -30,7 +30,7 @@ class Create extends Component
 
     public function mount(){
         $this->categories = Category::all();
-        $this->load_colors = Color::all();
+        // $this->load_colors = Color::all();
     }
 
 
@@ -43,7 +43,7 @@ class Create extends Component
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
         "images.*"         => ['required','image','mimes:jpg,jpeg,png,webp','max:2048'],
-        "colors.*"         => ['required','integer'],
+        // "colors.*"         => ['required','integer'],
     
         "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
@@ -67,9 +67,9 @@ class Create extends Component
             }
         }
 
-        if(count($this->colors)){
-           $product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
-        }
+        // if(count($this->colors)){
+        //    $product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
+        // }
         
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');
     }

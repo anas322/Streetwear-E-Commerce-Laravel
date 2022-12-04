@@ -24,7 +24,7 @@ class Edit extends Component
     public $quantity;
     public $status;
     public $images = [];
-    public $colors = [];
+    // public $colors = [];
 
     public $meta_title;
     public $meta_keyword;
@@ -44,7 +44,7 @@ class Edit extends Component
         $this->price = $product->price;
         $this->quantity = $product->quantity;
         $this->status = $product->status == 1 ? 'Active' :'Draft';
-        $this->colors = $this->product->colors->pluck('id')->toArray();
+        // $this->colors = $this->product->colors->pluck('id')->toArray();
       
 
         foreach ($product->productImages as $productImage) {
@@ -73,7 +73,7 @@ class Edit extends Component
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
         "images.*"         => ['required'],
-        "colors.*"         => ['required','integer'],
+        // "colors.*"         => ['required','integer'],
     
         "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
@@ -111,9 +111,9 @@ class Edit extends Component
             }
         }
 
-        if(count($this->colors)){
-           $this->product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
-        }
+        // if(count($this->colors)){
+        //    $this->product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
+        // }
         
         return redirect()->route('admin.product.index')->with('success','The product has been edited successfully');
     } 

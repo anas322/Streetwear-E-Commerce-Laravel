@@ -113,7 +113,7 @@
                             @enderror
                         </div>
 
-                        <div class="relative z-10 mb-6 w-full group">
+                        {{-- <div class="relative z-10 mb-6 w-full group">
 
                             <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
                                 class="flex items-center justify-between w-full py-2.5 px-0 text-sm font-medium text-center text-gray-500 border-0 border-b-2 border-gray-200 appearance-none   focus:ring-0 focus:outline-none   "
@@ -148,7 +148,7 @@
                             <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
                                     snapp!</span> {{ $message }}.</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
