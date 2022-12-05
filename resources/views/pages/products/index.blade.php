@@ -17,20 +17,15 @@
         <div class="md:ml-10 flex-grow relative overflow-hidden">
             {{-- filter above products--}}
           <livewire:above-filter-products />
-          
-            <div class="flex flex-wrap gap-y-8">
-                {{-- products  --}}
-                @forelse ($products as $product)
-                    <livewire:product-view :product="$product"/>
-                @empty
-                    <p class="font-roboto text-xl text-center">No Products Available :(</p>
-                @endforelse
-            </div>
+
+            {{-- products  --}}
+            <livewire:product-view :products="$products"/>
+            
         </div>
     </div>
 
 
-    <!-- product quick view -->
-    <livewire:product-quick-view />
+    {{-- <!-- product quick view -->
+    <livewire:product-quick-view /> --}}
 
 </x-app-layout>

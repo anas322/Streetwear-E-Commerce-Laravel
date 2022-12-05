@@ -34,27 +34,6 @@ const swiper = new Swiper(".mySwiper", {
     },
 });
 // ===================End latest arrival swiper=================//
-// ===================Start quick product view =================//
-const swiper2 = new Swiper(".product-view", {
-    loop: true,
-    spaceBetween: 1,
-    slidesPerView: 6,
-    freeMode: true,
-    watchSlidesProgress: true,
-});
-const swiper3 = new Swiper(".product-view-carousel", {
-    loop: true,
-    spaceBetween: 1,
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    thumbs: {
-        swiper: swiper2,
-    },
-});
-// ===================End quick product view =================//
-
 // ===================start header slider=================//
 const items = [
     {
@@ -79,7 +58,3 @@ const options = {
 const carousel = new Carousel(items, options);
 carousel.cycle();
 // ===================End header slider=================//
-
-// ===================start quick view product=================//
-
-// ===================end quick view product=================//

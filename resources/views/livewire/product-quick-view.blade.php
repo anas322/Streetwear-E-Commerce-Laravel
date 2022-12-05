@@ -1,14 +1,13 @@
   <!-- Main modal -->
-  <div id="defaultModal" tabindex="-1" aria-hidden="true"
-      class="hidden overflow-y-auto overflow-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-screen">
-      <div class="relative w-full max-w-7xl md:h-5/6 h-auto">
+  <div
+      class="flex justify-center items-center bg-black/30 overflow-y-auto overflow-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-screen">
+      <div class="relative w-full max-w-7xl md:h-5/6 h-auto" wire:ignore>
           <!-- Modal content -->
           <div class="mt-[31rem] md:mt-0 relative bg-white rounded-sm shadow dark:bg-gray-700 h-full">
               <!-- Modal header -->
               <div class="absolute top-4 right-4">
-                  <button type="button"
-                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                      data-modal-toggle="defaultModal">
+                  <button type="button" wire:click="$emit('closeModal')"
+                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                       <svg aria-hidden="true" class="w-5 h-5 " fill="currentColor" viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd"
@@ -20,65 +19,41 @@
               </div>
               <!-- Modal body -->
               <div class="h-full md:block flex flex-col">
+
                   <div class="p-6  md:w-1/2 w-full md:h-full h-[49rem] md:float-left">
                       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
                           class="w-full h-4/5 mx-auto swiper product-view-carousel">
                           <div class="swiper-wrapper">
+
+                              @foreach ($product->productImages as $productImage)
                               <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src1 }}" class="object-contain block w-full h-full" />
+                                  <img src="{{ asset('/storage/'.$productImage->image) }}"
+                                      class="object-contain block w-full h-full" />
                               </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src2 }}" class="object-contain block w-full h-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src3 }}" class="object-contain block w-full h-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src4 }}" class="object-contain block w-full h-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src5 }}" class="object-contain block w-full h-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src6 }}" class="object-contain block w-full h-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ $src7 }}" class="object-contain block w-full h-full" />
-                              </div>
+                              @endforeach
+
                           </div>
                           <div class="swiper-button-next !text-gray-500"></div>
                           <div class="swiper-button-prev !text-gray-500"></div>
                       </div>
                       <div thumbsSlider="" class="w-full h-1/5 py-3 mx-auto swiper product-view !pt-4">
                           <div class="swiper-wrapper">
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src1 }}" class="object-contain block h-full w-full" />
+
+                              @foreach ($product->productImages as $productImage)
+                              <div class="swiper-slide flex justify-center items-center">
+                                  <img src="{{ asset('/storage/'.$productImage->image) }}"
+                                      class="object-contain block h-full w-full" />
                               </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src2 }}" class="object-contain block h-full w-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src3 }}" class="object-contain block h-full w-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src4 }}" class="object-contain block h-full w-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src5 }}" class="object-contain block h-full w-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src6 }}" class="object-contain block h-full w-full" />
-                              </div>
-                              <div class="swiper-slide flex justify-center items-center w-48 h-full opacity-40">
-                                  <img src="{{ $src7 }}" class="object-contain block h-full w-full" />
-                              </div>
+                              @endforeach
+
                           </div>
                       </div>
                   </div>
                   <div class="p-6  md:w-1/2 w-full h-full md:float-right">
                       <div class="flex flex-col justify-start gap-y-12">
-                          <h1 class="text-3xl font-bold ">Black blouse</h1>
-                          <span class="block text-2xl font-medium">$40.00</span>
+                          <h1 class="text-3xl font-bold ">{{ $product->name }}</h1>
+                          <span class="block text-2xl font-medium">LE
+                              {{ number_format($product->price,2,'.','') }}</span>
 
                           <div>
                               <label for="large"

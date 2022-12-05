@@ -9,7 +9,7 @@
                 <!-- Item 1 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
                     id="carousel-item-1" data-carousel-item="active">
-                    <img src="{{asset('images/dashboard/carousol1.webp')}}"
+                    <img src="{{asset('storage/dashboard/carousol1.webp')}}"
                         class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                     
@@ -17,7 +17,7 @@
                 <!-- Item 2 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
                     id="carousel-item-2" data-carousel-item="">
-                    <img src="{{asset('images/dashboard/carousol2.webp')}}"
+                    <img src="{{asset('storage/dashboard/carousol2.webp')}}"
                         class="object-contain h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                         
@@ -25,7 +25,7 @@
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform"
                     id="carousel-item-3" data-carousel-item="">
-                    <img src="{{asset('images/dashboard/carousol3.jpeg')}}"
+                    <img src="{{asset('storage/dashboard/carousol3.jpeg')}}"
                         class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                 </div>
@@ -93,7 +93,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide pl-4 ">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('images/products/image1.webp') }}"
+                            <img src="{{ asset('storage/products/image1.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -105,7 +105,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('images/products/image2.webp') }}"
+                            <img src="{{ asset('storage/products/image2.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -117,7 +117,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('images/products/image3.webp') }}"
+                            <img src="{{ asset('storage/products/image3.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -129,7 +129,7 @@
 
                     <div class="swiper-slide pl-4">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('images/products/image4.webp') }}"
+                            <img src="{{ asset('storage/products/image4.webp') }}"
                                 class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
@@ -273,6 +273,9 @@
         </div>
     </div>
     
+    @push('scripts')
+           @vite(['resources/js/main.js'])
+    @endpush
 </x-app-layout>
 
 

@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit" class="pb-24">
+    <form wire:submit.prevent="submit" class="pb-24 ml-4">
 
 
         <ol class="relative border-l border-gray-200 dark:border-gray-700 pb-8">
