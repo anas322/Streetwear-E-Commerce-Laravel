@@ -9,7 +9,7 @@
             <h4 class="text-sm text-gray-500 font-semibold text-center">Los Angeles, CA</h4>
         </a>
         <div class="flex flex-col items-center mt-2.5">
-            <a class="w-full" href="{{ route('orders') }}">
+            <a class="w-full" href="{{ route('orders.index') }}">
                 <div class="flex justify-between px-2 py-3 border border-gray-200 bg-gray-200 hover:bg-gray-300">
                     <div class="flex items-center">
                         <x-svgs.orders class="w-7 h-7 pr-2" />
@@ -30,7 +30,7 @@
                 </div>
             </a>
 
-            <a class="w-full" href="{{ route('address') }}">
+            <a class="w-full" href="{{ route('address.index') }}">
                 <div class="flex justify-between px-2 py-3 border border-gray-200 hover:bg-gray-300">
                     <div class="flex items-center">
                         <x-svgs.address class="w-7 h-7 pr-2" />

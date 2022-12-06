@@ -2,7 +2,7 @@
 
      <x-slot name="header">
         <div class="wow zoomInDown overflow-hidden h-64 sm:h-96 relative">
-            <img src="{{ asset('images/dashboard/contact.jpg') }}" class="object-cover h-full w-full"
+            <img src="{{ asset('storage/dashboard/contact.jpg') }}" class="object-cover h-full w-full"
                 style="object-position: 13% 21%" alt="streetwearts prducts header background">
 
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -13,9 +13,9 @@
 
         <div class="wow zoomInRight w-full py-24 container mx-auto md:px-0 px-8">
 
-            <div class="flex flex-col justify-start items-center md:flex-row gap-8">
-                <div class="md:basis-1/2 basis-full">
-                    <span class="uppercase font-bold font-roboto text-7xl text-gray-800 pb-8" >Get in <span class="md:block">touch</span></span>
+            <div class="flex flex-col justify-start items-center md:flex-row gap-8 ">
+                <div class="md:basis-1/2 basis-full text-center">
+                    <span class="uppercase font-bold font-roboto text-7xl text-gray-800 pb-8 " >Get in <span class="md:block text-cyan-600 pl-36">touch</span></span>
                 </div>
 
                 <div class="md:basis-1/2 basis-full pt-8 w-full md:w-auto">

@@ -1,10 +1,14 @@
 <?php
 
 use App\Models\Product;
-
-
 use App\Http\Livewire\Cart;
+
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,38 +20,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.main');
-})->name('home');
+Route::get('/', [MainController::class,'index'])->name('home');
 
-Route::get('/products', function () {
-    $products = Product::all();
-    return view('pages.products.index',['products' => $products]);
-})->name('products.index');
 
-Route::get('/products/show', function () {
-    return view('pages.products.show');
+Route::controller(ProductController::class)->as('products.')->prefix('products')->group(function () {
+    
+    Route::get('/','index')->name('index');
+    Route::get('/show', 'show')->name('show');
+
 });
 
-Route::get('/contact', function () {
-    return view('pages.contact-us');
-})->name('contact');
+Route::view('/contact', 'pages.contact-us')->name('contact');
 
 Route::get('/products/cart',Cart::class)->name('cart');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/orders', function () {
-        return view('pages.customer.orders');
-    })->name('orders');
+    Route::controller(OrderController::class)->prefix('orders')->as('orders.')->group(function () {
+   
+        Route::get('/orders', 'index')->name('index');
+        Route::get('/single-order', 'show')->name('show');
+
+    });
     
-    Route::get('/single-order', function () {
-        return view('pages.customer.single-order');
-    })->name('single-order');
-    
-    Route::get('/address', function () {
-        return view('pages.customer.adress');
-    })->name('address');
+    Route::get('/address', [AddressController::class,'index'])->name('address.index');
     
 });
 
@@ -62,14 +58,3 @@ Route::get('redirects',function () {
     }
 
 });
-
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
