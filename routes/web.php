@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Product;
 use App\Http\Livewire\Cart;
 
 
