@@ -1,6 +1,6 @@
 {{-- filter section  --}}
 
-<div class="flex flex-col justify-center space-y-6 ">
+<div class="flex flex-col justify-center space-y-6 " wire:ignore>
 
     <!-- price  -->
     <div class="space-y-4 ">
@@ -11,11 +11,10 @@
         
         <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
             <div class="flex items-center pb-3">
-                    <input type="number" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" max="10000"  autocomplete="off" required>
+                    <input type="number" wire:model="firstPrice" wire:keyup.debounce.200ms="emitSearch" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
                 <span class="text-gray-500 text-2xl px-2">-</span>
-                    <input type="number" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" max="10000"  autocomplete="off"required>
+                    <input type="number" wire:model="secondPrice" wire:keyup.debounce.200ms="emitSearch" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
             </div>
-            <input id="small-range" type="range" value="50" min='0' max="10000" class="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700">
         </div>
     </div>
 
