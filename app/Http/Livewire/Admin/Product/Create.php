@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin\Product;
 
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\productSku;
 use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
@@ -29,6 +31,10 @@ class Create extends Component
     public $optionValue = [];
     public $optionValuesArray = [];
     public $optionMatrix;
+
+    public $optionPrices;
+    public $optionQuantities;
+    public $skus;
 
     // public $options = [];
 
@@ -120,19 +126,80 @@ class Create extends Component
 
 
     public function submit()
-    {   
+    {
+        //first validate the data
         $validatedData = $this->validate();
 
+        //find the right category 
         $category = Category::findOrFail($this->categoryId);
 
+        //store product
         $product = $category->products()->create($validatedData);
 
+        //store product images
         if(count($this->images)){
             foreach ($this->images as $image) {
                 $path = $image->store('products');
                 
                 $product->productImages()->create(['image' => $path]);
             }
+        }
+
+        if($this->variantsState && count($this->optionValuesArray)){
+
+            $options = [];
+            //store options name and values
+            foreach ($this->optionValuesArray as $key => $value) {
+                //create array of key='option name' value = 'array of this option values'
+                $options[$this->optionName[$key]] = $value; 
+            }
+
+            //iterate over each option and store the keys as options and every option array value as option values 
+            foreach ($options as $optionName => $optionValues) {
+                //options of product
+                $singleOption = $product->options()->create([
+                    'name' => $optionName
+                ]);
+
+                //values of this option
+                foreach ($optionValues as $optionValue) {
+                    $singleOptionValue = $singleOption->optionValues()->create([
+                        'name' =>$optionValue
+                    ]);
+                }
+            }
+
+            //store product sku and sku values 
+            foreach ($this->optionMatrix as $key => $singleMatrix) {
+                //store sku of single variant of our product
+                $productSku = $product->productSkus()->create([
+                    'sku'   => uniqid(),
+                    'price' => $this->optionPrices[$key],
+                    'quantity' => $this->optionQuantities[$key],
+                ]);
+
+                //store the combination of this single sku variant
+                foreach ($singleMatrix as $singleKey => $value) {
+                    //options of our product
+                    $opt = $product->options[$singleKey];
+                    //get the id of nth option
+                    $opt_id = $opt->id;
+                    //get all option values
+                    $opt_values = $opt->optionValues;
+                    //key of option values that retrieved from our option
+                    $keyOfValues = 0;
+                    
+                    //increment by 1 every cycle
+                    $opt_values->count() >= $keyOfValues ?: $keyOfValues++;
+
+                    $product->productSkusValues()->create([
+                        'product_sku_id' => $productSku->id,
+                        'option_id' => $opt_id,
+                        'option_value_id' => $opt_values[$keyOfValues]->id
+                    ]);
+                }
+            }
+
         }
 
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');

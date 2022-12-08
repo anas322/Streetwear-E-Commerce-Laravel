@@ -39,9 +39,17 @@ class Product extends Model
     }
 
 
-
+    //relationships "elequent has a relationship and i haven't :( 
     public function options(){
         return $this->hasMany(Option::class);
+    }
+
+    public function productSkus(){
+        return $this->hasMany(productSku::class);
+    }
+
+    public function productSkusValues(){
+        return $this->hasMany(SkuValue::class);
     }
 
     public function category(){

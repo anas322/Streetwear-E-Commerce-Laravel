@@ -9,5 +9,9 @@ class SkuValue extends Model
 {
     use HasFactory;
 
-    protected $guarded= [];
+    protected $fillable= [
+        'product_sku_id',
+        'option_id',
+        'option_value_id'
+    ];
 }
