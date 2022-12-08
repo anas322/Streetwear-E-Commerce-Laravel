@@ -76,5 +76,6 @@
         {{-- wow.js initilization  --}}
         <script>new WOW().init();</script>
         @vite(['resources/js/admin/sortable.js'])
+        @stack('scripts');
     </body>
 </html>

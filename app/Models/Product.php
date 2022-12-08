@@ -38,6 +38,12 @@ class Product extends Model
         );
     }
 
+
+
+    public function options(){
+        return $this->hasMany(Option::class);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
@@ -45,6 +51,9 @@ class Product extends Model
     public function productImages(){
         return $this->hasMany(ProductImage::class);
     }
+
+
+
 
      public static function boot() {
         parent::boot();
