@@ -16,6 +16,10 @@ class Products extends Component
     public $minPrice = 0;
     public $maxPrice ;
 
+    
+    public function dehydrate(){
+        $this->dispatchBrowserEvent('contentChanged');
+    }
 
     public function mount(){
         $this->products = Product::all();
@@ -32,9 +36,6 @@ class Products extends Component
         $this->productQV = false;
     }
 
-      public function dehydrate(){
-        $this->dispatchBrowserEvent('contentChanged');
-    }
 
     public function updateSearchInput(){
         $this->products = Product::where(function (Builder $query){
