@@ -15,7 +15,6 @@ class Create extends Component
     use WithFileUploads;
     
     public $categories;
-    public $load_colors;
 
     public $categoryId;
     public $name;
@@ -25,7 +24,7 @@ class Create extends Component
     public $quantity;
     public $status = "Active";
 
-    public $variantsState = true;
+    public $variantsState = false;
     public $optionsCount = [0];
     public $optionName = [];
     public $optionValue = [];
@@ -36,13 +35,17 @@ class Create extends Component
     public $optionQuantities;
     public $skus;
 
-    // public $options = [];
 
     public $images = [];
 
     public $meta_title;
     public $meta_keyword;
     public $meta_description;
+
+
+    public function booted(){
+        $this->dispatchBrowserEvent('contentChanged');
+    }
 
     public function mount(){
         $this->categories = Category::all();
@@ -64,9 +67,6 @@ class Create extends Component
         "meta_description" => ['nullable','string']
     ];
 
-    public function updatedOptionValuesArray($value){
-        dd($value);
-    }
 
     public function addAttr($i){  
         if(count($this->optionName) <= 0 || count($this->optionValue) <= 0) return;
@@ -81,7 +81,7 @@ class Create extends Component
                 $this->reset('optionValue');
             }
         }
-        $this->dispatchBrowserEvent('contentChanged');
+        
 
         // foreach ($this->optionValuesArray as $key => $value) {
         //     $this->options[$this->optionName[$key]] = $value; 
@@ -94,7 +94,7 @@ class Create extends Component
     public function DeleteOptionValue($valueIndex,$nameIndex){
         unset($this->optionValuesArray[$nameIndex][$valueIndex]);
         unset($this->optionValue[$nameIndex]);
-        $this->dispatchBrowserEvent('contentChanged');
+        
 
         $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
         
@@ -104,14 +104,14 @@ class Create extends Component
 
     public function addNewOption(){
         array_push($this->optionsCount,end($this->optionsCount) + 1);
-        $this->dispatchBrowserEvent('contentChanged');
+        
     }
     public function deleteOption($Index){
         unset($this->optionValuesArray[$Index]);
         unset($this->optionName[$Index]);
         unset($this->optionValue[$Index]);
         unset($this->optionsCount[$Index]);
-        $this->dispatchBrowserEvent('contentChanged');
+        
         // Log::debug('option values array',$this->optionValuesArray);
         // Log::debug('option values ...',...$this->optionValuesArray);
         // Log::debug('option values count',$this->optionsCount);

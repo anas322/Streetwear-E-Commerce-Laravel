@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
-use App\Models\Color;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
 
 class Edit extends Component
@@ -14,7 +14,6 @@ class Edit extends Component
     
     public $categories;
     public $product;
-    public $load_colors;
 
     public $categoryId;
     public $name;
@@ -23,8 +22,19 @@ class Edit extends Component
     public $price;
     public $quantity;
     public $status;
+
+    public $variantsState ;
+    public $optionsCount = [0];
+    public $optionName = [];
+    public $optionValue = [];
+    public $optionValuesArray = [];
+    public $optionMatrix;
+
+    public $optionPrices;
+    public $optionQuantities;
+    public $skus;
+
     public $images = [];
-    // public $colors = [];
 
     public $meta_title;
     public $meta_keyword;
@@ -32,9 +42,12 @@ class Edit extends Component
 
     public $error;
 
+    public function booted(){
+        $this->dispatchBrowserEvent('contentChanged');
+    }
+    
     public function mount(Product $product){
         $this->categories = Category::all();
-        $this->load_colors = Color::all();
         $this->product = $product;
 
         $this->categoryId = $product->category_id;
@@ -44,7 +57,16 @@ class Edit extends Component
         $this->price = $product->price;
         $this->quantity = $product->quantity;
         $this->status = $product->status == 1 ? 'Active' :'Draft';
-        // $this->colors = $this->product->colors->pluck('id')->toArray();
+
+        $this->variantsState = $product->options->count() > 0;
+        $this->optionsCount = range(0,$product->options->count() - 1);
+        $this->optionName = $product->options->pluck('name');
+        foreach ($product->options as $option) {
+            array_push($this->optionValuesArray,$option->optionValues->pluck('name'));
+        }
+        $this->optionPrices = $product->productSkus->pluck('price');
+        $this->optionQuantities = $product->productSkus->pluck('quantity');
+        $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
       
 
         foreach ($product->productImages as $productImage) {
@@ -73,12 +95,62 @@ class Edit extends Component
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
         "images.*"         => ['required'],
-        // "colors.*"         => ['required','integer'],
     
         "meta_title"       => ['nullable','string','max:255'],
         "meta_keyword"     => ['nullable','string'],
         "meta_description" => ['nullable','string']
     ];
+
+        public function addAttr($i){  
+        if(count($this->optionName) <= 0 || count($this->optionValue) <= 0) return;
+        if(isset($this->optionName[$i])){
+            if( trim($this->optionValue[$i]) == "" || trim($this->optionName[$i]) == "" ) return ;
+    
+            if(isset($this->optionValue[$i]) && isset($this->optionValuesArray[$i]) && is_array($this->optionValuesArray[$i]) ){
+                array_push($this->optionValuesArray[$i],trim($this->optionValue[$i]));
+                $this->reset('optionValue');
+            }else{
+                $this->optionValuesArray[$i] = [trim($this->optionValue[$i])];
+                $this->reset('optionValue');
+            }
+        }
+        $this->dispatchBrowserEvent('contentChanged');
+
+        // foreach ($this->optionValuesArray as $key => $value) {
+        //     $this->options[$this->optionName[$key]] = $value; 
+        // }
+        $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
+
+    }
+
+
+    public function DeleteOptionValue($valueIndex,$nameIndex){
+        unset($this->optionValuesArray[$nameIndex][$valueIndex]);
+        unset($this->optionValue[$nameIndex]);
+        $this->dispatchBrowserEvent('contentChanged');
+
+        $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
+        
+        
+    }
+
+    public function addNewOption(){
+        array_push($this->optionsCount,end($this->optionsCount) + 1);
+        $this->dispatchBrowserEvent('contentChanged');
+    }
+    public function deleteOption($Index){
+        unset($this->optionValuesArray[$Index]);
+        unset($this->optionName[$Index]);
+        unset($this->optionValue[$Index]);
+        unset($this->optionsCount[$Index]);
+        $this->dispatchBrowserEvent('contentChanged');
+        // Log::debug('option values array',$this->optionValuesArray);
+        // Log::debug('option values ...',...$this->optionValuesArray);
+        // Log::debug('option values count',$this->optionsCount);
+        // Log::debug('option values matrix',$this->optionMatrix);
+        $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
+    }
+
 
     
     public function updatedImages($value){
@@ -94,29 +166,88 @@ class Edit extends Component
     }
 
     
-    public function submit(){      
+    public function submit()
+    {
+        //first validate the data
         $validatedData = $this->validate();
-    
-        $this->product->update($validatedData);
 
+        //find the right category 
+        $category = Category::findOrFail($this->categoryId);
+
+        //store product
+        $product = $category->products()->create($validatedData);
+
+        //store product images
         if(count($this->images)){
-            foreach ($this->images as $image) { 
-                if(gettype($image) != 'string'){
-                    $path = $image->store('products');       
-                    $this->product->productImages()->create(['image' => $path]);
-                } else{
-
-                    $this->product->productImages()->create(['image' => $image]);
-                }
+            foreach ($this->images as $image) {
+                $path = $image->store('products');
+                
+                $product->productImages()->create(['image' => $path]);
             }
         }
 
-        // if(count($this->colors)){
-        //    $this->product->colors()->syncWithPivotValues($this->colors , ['quantity' => 10]);
-        // }
-        
-        return redirect()->route('admin.product.index')->with('success','The product has been edited successfully');
-    } 
+        // first delete the this product 
+        $this->product->delete();
+
+        if($this->variantsState && count($this->optionValuesArray)){
+
+            $options = [];
+            //store options name and values
+            foreach ($this->optionValuesArray as $key => $value) {
+                //create array of key='option name' value = 'array of this option values'
+                $options[$this->optionName[$key]] = $value; 
+            }
+
+            //iterate over each option and store the keys as options and every option array value as option values 
+            foreach ($options as $optionName => $optionValues) {
+                //options of product
+                $singleOption = $product->options()->create([
+                    'name' => $optionName
+                ]);
+
+                //values of this option
+                foreach ($optionValues as $optionValue) {
+                    $singleOptionValue = $singleOption->optionValues()->create([
+                        'name' =>$optionValue
+                    ]);
+                }
+            }
+
+            //store product sku and sku values 
+            foreach ($this->optionMatrix as $key => $singleMatrix) {
+                //store sku of single variant of our product
+                $productSku = $product->productSkus()->create([
+                    'sku'   => uniqid(),
+                    'price' => $this->optionPrices[$key],
+                    'quantity' => $this->optionQuantities[$key],
+                ]);
+
+                //store the combination of this single sku variant
+                foreach ($singleMatrix as $singleKey => $value) {
+                    //options of our product
+                    $opt = $product->options[$singleKey];
+                    //get the id of nth option
+                    $opt_id = $opt->id;
+                    //get all option values
+                    $opt_values = $opt->optionValues;
+                    //key of option values that retrieved from our option
+                    $keyOfValues = 0;
+                    
+                    //increment by 1 every cycle
+                    $opt_values->count() >= $keyOfValues ?: $keyOfValues++;
+
+                    $product->productSkusValues()->create([
+                        'product_sku_id' => $productSku->id,
+                        'option_id' => $opt_id,
+                        'option_value_id' => $opt_values[$keyOfValues]->id
+                    ]);
+                }
+            }
+
+        }
+
+        return redirect()->route('admin.product.index')->with('success','The product has been created successfully');
+    }
 
 
     public function render()

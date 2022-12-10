@@ -1,3 +1,19 @@
+@push('scripts')
+    <script>
+        function preventEnterKey(){
+            $('form input').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        }
+        preventEnterKey();
+        window.addEventListener("contentChanged", (event) => {
+            preventEnterKey();
+        });
+    </script>
+@endpush
 <div>
     <form wire:submit.prevent="submit" class="pb-24 ml-4">
 
@@ -113,42 +129,136 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="relative z-10 mb-6 w-full group">
+                    </div>
 
-                            <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
-                                class="flex items-center justify-between w-full py-2.5 px-0 text-sm font-medium text-center text-gray-500 border-0 border-b-2 border-gray-200 appearance-none   focus:ring-0 focus:outline-none   "
-                                type="button">Select Colors <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7"></path>
-                                </svg></button>
-
-                            <!-- Dropdown menu -->
-                            <div id="dropdownSearch" class="hidden z-10 w-60 bg-white rounded shadow dark:bg-gray-700">
-                                <ul class="overflow-y-auto  px-3 py-3 h-48 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownSearchButton">
-                                    @foreach ($load_colors as $color)
-                                        <li>
-                                            <div
-                                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                <input type="checkbox" wire:model.defer="colors"  id="checkbox-item-{{$color->id}}"  value="{{$color->id}}"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                <label for="checkbox-item-{{$color->id}}"
-                                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{$color->name}}</label>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
                     
-                            </div>
+                    <div class="relative z-0 mb-6 w-full group">
+                        
+                        <label class="inline-flex relative items-center cursor-pointer" wire:click="$toggle('variantsState')">
+                            <input type="checkbox" wire:model="variantsState" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Variants</span>
+                        </label>
 
+                        @if ($variantsState)
+                                <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                                            <tr>
+                                                <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800">
+                                                   Option Name
+                                                </th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    Option Values
+                                                </th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($optionsCount as $i)
+                                                <tr class="border-b border-gray-200 dark:border-gray-700" data-option-id="{{ $i }}">
+                                                    <td scope="row" class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                        <div class="">
+                                                            {{-- add option name  --}}
+                                                            <input type="text" wire:model="optionName.{{$i}}"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                            @error('optionName.*') <span class="error">{{ $message }}</span> @enderror
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-2 px-6">
+                                                        <div class="flex flex-wrap gap-3  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
+                                                            {{-- single option values  --}}
+                                                            {{-- @if (isset($optionName[$i])) --}}
+                                                                @if (isset($optionValuesArray[$i]))
+                                                                    @foreach ($optionValuesArray[$i] as $optionValue)
+                                                                        <div class="inline space-x-px px-2 py-1 rounded-md bg-slate-500 text-white whitespace-nowrap">
+                                                                            <span>{{ $optionValue }}</span>
+                                                                            <span class="hover:cursor-pointer" wire:click="DeleteOptionValue({{ $loop->index }},{{ $i }})" >X</span>
+                                                                        </div>
+                                                                    @endforeach 
+                                                                @endif
+                                                            {{-- @endif --}}
+                                                            
+                                                            <div>
+                                                                {{-- add option value  --}}
+                                                                <input type="text" wire:model="optionValue.{{$i}}" wire:keydown.enter="addAttr({{ $i }})" class="h-[22px] min-w-[4rem] inline bg-gray-50 w-full focus:border-0 border-0 focus-visible:outline-0 focus-visible:ring-0 ">
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-2 px-6">
+                                                        @php
+                                                            if(isset($optionName[$i])){
+                                                                $name = $optionName[$i];
+                                                            }
+                                                        @endphp
+                                                        <div wire:click="deleteOption({{ $i }})"  class="text-red-500 hover:bg-red-100 hover:cursor-pointer inline-block box-content px-2 py-2 rounded-full">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                                        <button type="button" wire:click="addNewOption" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">New Option</button>
+                                    </div>
+                                    
 
-                            @error('colors')
-                            <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,
-                                    snapp!</span> {{ $message }}.</p>
-                            @enderror
-                        </div> --}}
+                                    @if (isset(($optionMatrix)) && count($optionValuesArray)) 
+                                        <div class="overflow-x-auto relative">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <tr>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Option
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Price
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Quantity
+                                                        </th>
+                                                        <th scope="col" class="py-3 px-6">
+                                                            Sku
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($optionMatrix as $key => $options)    
+                                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    @foreach ($options as $option)
+                                                                    {{ $option }}
+
+                                                                    @if ( $loop->remaining > 0)
+                                                                        \
+                                                                    @endif
+                                                                    @endforeach 
+                                                                </th>
+                                                                <td class="py-4 px-6">
+                                                                    <div>
+                                                                        <input type="number" wire:model="optionPrices.{{ $key }}" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="py-4 px-6">
+                                                                    <input type="number" wire:model="optionQuantities.{{ $key }}" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                </td>
+                                                                <td class="py-4 px-6">
+                                                                    <input type="text" wire:model="skus.{{ $key }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                </td>
+                                                            </tr>
+
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endif
+
+                                </div>
+                        @endif
 
                     </div>
                 </div>
