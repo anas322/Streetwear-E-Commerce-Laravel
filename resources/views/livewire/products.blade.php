@@ -10,7 +10,6 @@
     <div class="flex items-start pt-28 px-10 relative">
        <!-- left filter products -->
        <div class="basis-72 sticky-side-bar sticky top-0 md:inline-block hidden">
-           {{-- <livewire:left-filter-products /> --}}
            <div class="flex flex-col justify-center space-y-6 " wire:ignore>
                 <!-- price  -->
                 <div class="space-y-4 ">
@@ -30,50 +29,31 @@
 
                 <hr class="!mt-0">
 
-                <!-- size  -->
-                <div class="space-y-4 ">
-                    <button id="size" class="filter flex items-center justify-between w-full">
-                        <span class="font-extralight text-base text-gray-500">Size</span>
-                        <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
-                    </button>
-                    
-                    <div data-filter-name="size" class="max-h-0 overflow-hidden transition-all duration-700">
-                        <div class="flex flex-row gap-3 flex-wrap">
-                            
-                            @for ($i = 0; $i < 10; $i++)
-                                <div class="flex items-center pl-4 rounded">
-                                <input id="bordered-checkbox-1" type="checkbox" class="w-4 h-4 text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0 ">
-                                    <label for="bordered-checkbox-1" class="py-2 ml-2 w-full text-sm  text-gray-500 ">M</label>
-                                </div>
-                            @endfor
+
+                @foreach ($options as $name => $optionValues)
+                    <!-- {{ $name }}  -->
+                    <div class="space-y-4 ">
+                        <button id="{{ $name }}" class="filter flex items-center justify-between w-full">
+                            <span class="font-extralight text-base text-gray-500 capitalize">{{ $name }}</span>
+                            <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
+                        </button>
                         
+                        <div data-filter-name="{{ $name }}" class="max-h-0 overflow-hidden transition-all duration-700">
+                            <div class="flex flex-row gap-3 flex-wrap">
+                                
+                                @foreach ($optionValues as $key => $optionValue)
+                                    <div class="flex items-center pl-4 rounded">
+                                    <input wire:model="{{ $name .'.'. $key }}" wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" id="bordered-checkbox-{{ $key }}" type="checkbox" class="w-4 h-4 text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0 ">
+                                        <label for="bordered-checkbox-{{ $key }}" class="py-2 ml-2 w-full text-sm  text-gray-500 ">{{ $optionValue }}</label>
+                                    </div>
+                                @endforeach
+                            
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr class="!mt-0">
-                    
-                
-                <!-- color  -->
-                <div class="space-y-4 ">
-                    <button id="color" class="filter flex items-center justify-between w-full">
-                        <span class="font-extralight text-base text-gray-500">Color</span>
-                        <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
-                    </button>
-                    
-                    <div data-filter-name="color" class="max-h-0 overflow-hidden transition-all duration-700">
-                        <div class="flex flex-row gap-3 flex-wrap">
+                    <hr class="!mt-0">
+                @endforeach
 
-                            @for ($i = 0; $i < 6; $i++)
-                                <div class="flex items-center mr-4 pl-4 py-1">
-                                    <input id="red-radio" type="radio"  name="colored-radio" class="w-4 h-4 text-red-600 bg-gray-100 border-0 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="red-radio" class="py-2 ml-2 w-full text-xs text-gray-500">Red</label>
-                                </div>
-                            @endfor
-
-                        </div>
-                    </div>
-                </div>
-                <hr class="!mt-0">
                     
                 <!-- sort by -->
                 <div class="space-y-4 ">
@@ -107,7 +87,6 @@
           <livewire:above-filter-products />
 
             {{-- products  --}}
-            {{-- <livewire:product-view :products="$products"/> --}}
             <div class="flex flex-wrap gap-y-8" >
                 @forelse ($products as $product)
                 <div class="wow fadeInUp xl:basis-1/3 basis-1/2 md:pl-4 p-2 md:p-0">

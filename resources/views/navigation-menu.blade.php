@@ -17,9 +17,22 @@
                         {{ __('Home') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ url('/products') }}" :active="request()->routeIs('products.index')" class="text-xl font-light font-roboto">
-                        {{ __('Shop') }}
-                    </x-jet-nav-link>
+                    <div id="mega-menu-icons" class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
+                        <ul class="flex flex-col mt-4 text-sm font-medium md:flex-row md:space-x-8 md:mt-0">
+                            <li>
+                                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="flex justify-between items-center text-xl font-light font-roboto w-full text-gray-700 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0  md:p-0 pl-3 pr-4 py-2 border-l-4 border-transparent hover:text-gray-800 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition">
+                                    Shop
+                                    <svg aria-hidden="true" class="ml-1 w-5 h-5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+
+                                <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow   dark:bg-gray-700">
+                                    <x-nav-menu.nav-menu-dropdown />
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 

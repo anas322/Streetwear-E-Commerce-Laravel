@@ -1,5 +1,5 @@
   <!-- Main modal -->
-  <div
+  <div wire:click.self="$emit('closeModal')"
       class="flex justify-center items-center bg-black/30 overflow-y-auto overflow-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-screen">
       <div class="relative w-full max-w-7xl md:h-5/6 h-auto" wire:ignore>
           <!-- Modal content -->
@@ -40,7 +40,7 @@
                           <div class="swiper-wrapper">
 
                               @foreach ($product->productImages as $productImage)
-                              <div class="swiper-slide flex justify-center items-center">
+                              <div class="swiper-slide flex justify-center items-center ho hover:cursor-pointer">
                                   <img src="{{ asset('/storage/'.$productImage->image) }}"
                                       class="object-contain block h-full w-full" />
                               </div>

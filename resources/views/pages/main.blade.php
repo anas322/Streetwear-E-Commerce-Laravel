@@ -150,61 +150,22 @@
             </header>
 
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
-                <div class="col-span-3 ">
-                    <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/035/medium/image.png?1666317293" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
-                    </div>
-
-                    <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
-                        <p class="font-semibold text-xl">TROUSERS</p>
-                        <button class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
-                        <span>EXPLORE</span>  
-                        <x-svgs.explore class="w-7 h-5 " />
-                        </button>
-                    </div>
-                </div>
                 
-                <div class="col-span-3 ">
-                    <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/036/medium/image.png?1666317388" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
-                    </div>
+                @foreach ($categories as $cat)
+                    <div class="col-span-3 ">
+                        <div class="overflow-hidden rounded-sm shadow-xl">
+                            <img src="{{ asset('/storage/' . $cat->image) }}" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                        </div>
 
-                    <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
-                        <p class="font-semibold text-xl">SHOES</p>
-                        <button class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
-                        <span>EXPLORE</span>  
-                        <x-svgs.explore class="w-7 h-5 " />
-                        </button>
+                        <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
+                            <p class="font-semibold text-xl uppercase">{{$cat->name}}</p>
+                            <a  href="{{ route('products.index',['cat' => $cat->name]) }}" class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
+                            <span>EXPLORE</span>  
+                            <x-svgs.explore class="w-7 h-5 " />
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-span-3 ">
-                    <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/033/medium/image.png?1666317206" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
-                    </div>
-
-                    <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
-                        <p class="font-semibold text-xl">HOODIES</p>
-                        <button class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
-                        <span>EXPLORE</span>  
-                        <x-svgs.explore class="w-7 h-5 " />
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-span-3 ">
-                    <div class="overflow-hidden rounded-sm shadow-xl">
-                        <img src="https://zammit.s3-eu-west-1.amazonaws.com/website_assets/images/000/061/032/medium/image.png?1666317169" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
-                    </div>
-
-                    <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
-                        <p class="font-semibold text-xl">JACKETS</p>
-                        <button class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
-                        <span>EXPLORE</span>  
-                        <x-svgs.explore class="w-7 h-5 " />
-                        </button>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
