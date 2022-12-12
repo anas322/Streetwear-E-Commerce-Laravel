@@ -39,7 +39,7 @@ class Product extends Model
     }
 
 
-    //relationships "elequent has a relationship and i haven't :( 
+    //"elequent" has a relationship and i haven't :( 
     public function options(){
         return $this->hasMany(Option::class);
     }

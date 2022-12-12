@@ -43,8 +43,8 @@
                                 
                                 @foreach ($optionValues as $key => $optionValue)
                                     <div class="flex items-center pl-4 rounded">
-                                    <input wire:model="{{ $name .'.'. $key }}" wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" id="bordered-checkbox-{{ $key }}" type="checkbox" class="w-4 h-4 text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0 ">
-                                        <label for="bordered-checkbox-{{ $key }}" class="py-2 ml-2 w-full text-sm  text-gray-500 ">{{ $optionValue }}</label>
+                                    <input wire:model='filterValues. {{ $name . $key }}' wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox" class="w-4 h-4 text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0 ">
+                                        <label for="bordered-checkbox-{{ $name . $key }}" class="py-2 ml-2 w-full text-sm  text-gray-500 ">{{ $optionValue }}</label>
                                     </div>
                                 @endforeach
                             
@@ -118,6 +118,12 @@
                         </div>
                         <div class="space-y-3 my-4 ">
                             <p class="font-normal">{{ $product->name }}</p>
+                            @foreach ($product->options as $option)
+                            @foreach ($option->optionValues as $value)
+                            {{ $value->name }}
+                                
+                            @endforeach
+                            @endforeach
                             <p class="font-semibold">LE {{ number_format($product->price,2,'.','') }}</p>
                         </div>
                     </div>

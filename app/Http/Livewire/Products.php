@@ -2,26 +2,33 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Category;
 use App\Models\option;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
 
 class Products extends Component
 {
     public $cat;
     protected $queryString = ['cat'];
-
+    public $categoryModel;
+    
     public $products;
     public $options = [];
     
     public $minPrice = 0;
     public $maxPrice ;
 
-    public $color;
+    public $filterValues ;
     
     public $productQV;
+
+    public function boot(){
+        $this->dispatchBrowserEvent('contentChanged');
+    }
 
     public function dehydrate(){
         $this->dispatchBrowserEvent('contentChanged');
@@ -29,14 +36,14 @@ class Products extends Component
 
     public function mount(){
         
-        $cat = Category::whereName($this->cat)->first();
+        $this->categoryModel = Category::whereName($this->cat)->first();
 
-        if($cat){
+        if($this->categoryModel){
             //get products by category
-            $this->products = $cat->products;
+            $this->products = $this->categoryModel->products;
     
             //get all options related to this product
-            $this->filters = option::whereIn('product_id' , $cat->products->pluck('id'))->get(); 
+            $this->filters = option::whereIn('product_id' , $this->categoryModel->products->pluck('id'))->get(); 
             //get all possible option values 
             foreach ($this->filters as  $key => $option) {
                 //key is the filter name and the value is the available options value
@@ -55,6 +62,9 @@ class Products extends Component
                 //key is the filter name and the value is the available options value
                 $this->options[$this->filters[$key]->name] = $option->optionValues->pluck('name');
             }
+
+            //get a the maximum product price
+            $this->maxPrice = $this->products->max('price');
         }
 
         }
@@ -70,11 +80,35 @@ class Products extends Component
     }
 
 
-    public function updateSearchInput($categoryName=''){
-        $this->products = Product::where(function (Builder $query){
-            $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
-            
-        } )->get();
+    public function updateSearchInput($optionName = ''){
+        if($this->categoryModel){
+            $this->products = $this->categoryModel->products()->where(function (Builder $query){
+                //get the products between min and max price
+                $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
+    
+                //set filter options
+                foreach($this->filterValues as $key => $singleFilterValue ){
+                    //if the property has a value
+                    if($singleFilterValue){
+                        $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                    }
+                }
+            } )->get();
+        }else{
+            Log::debug("data",$this->filterValues);
+            $this->products = Product::where(function (Builder $query){
+                //get the products between min and max price
+                $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
+    
+                //set filter options
+                foreach($this->filterValues as $key => $singleFilterValue ){
+                    //if the property has a value
+                    if($singleFilterValue){
+                        $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                    }
+                }
+            } )->get();
+        }
     }
 
     public function render()

@@ -13,7 +13,7 @@
     {{-- aside menu for smaller than medium screen  --}}
     <!-- drawer component -->
     <div id="drawer-navigation"
-        class="md:hidden block fixed z-40 min-h-screen p-4 overflow-y-auto w-80 dark:bg-gray-800" tabindex="-1"
+        class="md:hidden  block fixed z-40 min-h-screen p-4 bg-[#0E2238] overflow-y-auto w-80 dark:bg-gray-800" tabindex="-1"
         aria-labelledby="drawer-navigation-label">
         <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu
         </h5>

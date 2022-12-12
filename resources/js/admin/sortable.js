@@ -1,3 +1,4 @@
+import "flowbite";
 // draggable images
 $(function () {
     $("#sortable").sortable({

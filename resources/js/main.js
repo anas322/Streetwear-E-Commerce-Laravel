@@ -1,5 +1,6 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
+import "flowbite";
 // ===================Start latest arrival swiper=================//
 const swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
