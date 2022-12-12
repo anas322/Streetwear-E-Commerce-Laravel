@@ -9,20 +9,20 @@
     
     <div class="flex items-start pt-28 px-10 relative">
        <!-- left filter products -->
-       <div class="basis-72 sticky-side-bar sticky top-0 md:inline-block hidden">
+       <div class="basis-52 sticky-side-bar sticky top-0 md:inline-block hidden">
            <div class="flex flex-col justify-center space-y-6 " wire:ignore>
                 <!-- price  -->
                 <div class="space-y-4 ">
                     <button id="price" class="filter flex items-center justify-between w-full">
-                        <span class="font-extralight text-base text-gray-500">Price</span>
+                        <span class="font-extralight text-sm text-gray-500">Price</span>
                         <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
                     </button>
                     
                     <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
                         <div class="flex items-center pb-3">
-                                <input type="number" wire:model="minPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
+                                <input type="number" wire:model="minPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
                             <span class="text-gray-500 text-2xl px-2">-</span>
-                                <input type="number" wire:model="maxPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
+                                <input type="number" wire:model="maxPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -32,19 +32,19 @@
 
                 @foreach ($options as $name => $optionValues)
                     <!-- {{ $name }}  -->
-                    <div class="space-y-4 ">
+                    <div class="space-y-2 ">
                         <button id="{{ $name }}" class="filter flex items-center justify-between w-full">
-                            <span class="font-extralight text-base text-gray-500 capitalize">{{ $name }}</span>
+                            <span class="font-extralight text-sm text-gray-500 capitalize">{{ $name }}</span>
                             <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
                         </button>
                         
                         <div data-filter-name="{{ $name }}" class="max-h-0 overflow-hidden transition-all duration-700">
-                            <div class="flex flex-row gap-3 flex-wrap">
+                            <div class="flex flex-col pb-4 ">
                                 
                                 @foreach ($optionValues as $key => $optionValue)
-                                    <div class="flex items-center pl-4 rounded">
-                                    <input wire:model='filterValues. {{ $name . $key }}' wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox" class="w-4 h-4 text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0 ">
-                                        <label for="bordered-checkbox-{{ $name . $key }}" class="py-2 ml-2 w-full text-sm  text-gray-500 ">{{ $optionValue }}</label>
+                                    <div class="flex items-center  rounded">
+                                    <input wire:model='filterValues. {{ $name . $key }}' wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox" class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
+                                        <label for="bordered-checkbox-{{ $name . $key }}" class="py-1 ml-2 w-full text-sm uppercase tracking-wide text-gray-500 ">{{ $optionValue }}</label>
                                     </div>
                                 @endforeach
                             
@@ -56,19 +56,19 @@
 
                     
                 <!-- sort by -->
-                <div class="space-y-4 ">
+                <div class="space-y-2 ">
                     <button id="sort" class="filter flex items-center justify-between w-full">
-                        <span class="font-extralight text-base text-gray-500">Sort by</span>
+                        <span class="font-extralight text-sm text-gray-500">Sort by</span>
                         <span id="sign" class="font-normal text-2xl text-gray-500">+</span>
                     </button>
                     
                     <div data-filter-name="sort" class="max-h-0 overflow-hidden transition-all duration-700">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col pb-4">
 
                             @for ($i = 0; $i < 6; $i++)
-                                <div class="flex items-center mb-2 pl-2">
-                                    <input id="default-radio-1" type="radio" name="default-radio" class="text-gray-300 bg-gray-100 rounded-full border-0 focus:ring-0">
-                                    <label for="default-radio-1" class="py-2 ml-2 w-full text-sm text-gray-600 dark:text-gray-600">Price, high to low</label>
+                                <div class="flex items-center mb-2">
+                                    <input id="default-radio-1" type="radio" name="default-radio" class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
+                                    <label for="default-radio-1" class="py-1 ml-2 w-full text-sm uppercase tracking-wide text-gray-500">Price, high to low</label>
                                 </div>
                             @endfor
 
@@ -82,7 +82,7 @@
         </div>
         
         {{-- products section  --}}
-        <div class="md:ml-10 flex-grow relative overflow-hidden">
+        <div class="md:ml-5 flex-grow relative overflow-hidden">
             {{-- filter above products--}}
           <livewire:above-filter-products />
 
@@ -94,9 +94,9 @@
                         <div class="inner-image-wrapper relative">
                             <a href="#" class="block relative overflow-hidden">
                                 <div class="relative pt-[150%]">
-                                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700"
+                                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 hover:scale-105"
                                         src="{{asset('/storage/'.$product->productImages[0]->image)}}" />
-                                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-opacity duration-700 opacity-0 hover:opacity-100"
+                                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 opacity-0 hover:opacity-100 hover:scale-105"
                                         src="{{asset('/storage/'.$product->productImages[1]->image)}}" />
                                 </div>
                             </a>
