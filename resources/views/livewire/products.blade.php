@@ -43,7 +43,7 @@
                                 
                                 @foreach ($optionValues as $key => $optionValue)
                                     <div class="flex items-center  rounded">
-                                    <input wire:model='filterValues. {{ $name . $key }}' wire:keyup.debounce.200ms="updateSearchInput('{{$name}}')" value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox" class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
+                                    <input wire:model='filterValues. {{ $name . $key }}' wire:click="updateSearchInput" value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox" class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
                                         <label for="bordered-checkbox-{{ $name . $key }}" class="py-1 ml-2 w-full text-sm uppercase tracking-wide text-gray-500 ">{{ $optionValue }}</label>
                                     </div>
                                 @endforeach
@@ -65,12 +65,20 @@
                     <div data-filter-name="sort" class="max-h-0 overflow-hidden transition-all duration-700">
                         <div class="flex flex-col pb-4">
 
-                            @for ($i = 0; $i < 6; $i++)
                                 <div class="flex items-center mb-2">
-                                    <input id="default-radio-1" type="radio" name="default-radio" class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
-                                    <label for="default-radio-1" class="py-1 ml-2 w-full text-sm uppercase tracking-wide text-gray-500">Price, high to low</label>
+                                    <input id="default-radio-1" type="radio" wire:model="sortByValue" value="latest" wire:click="sortBy" class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
+                                    <label for="default-radio-1" class="py-1 ml-2 w-full text-sm capitalize tracking-wide text-gray-500">latest arrival</label>
                                 </div>
-                            @endfor
+
+                                <div class="flex items-center mb-2">
+                                    <input id="default-radio-2" type="radio" wire:model="sortByValue" value="priceLowToHigh" wire:click="sortBy" class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
+                                    <label for="default-radio-2" class="py-1 ml-2 w-full text-sm capitalize tracking-wide text-gray-500">Price, Low to High</label>
+                                </div>
+
+                                <div class="flex items-center mb-2">
+                                    <input id="default-radio-3" type="radio" wire:model="sortByValue" value="priceHighToLow" wire:click="sortBy" class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
+                                    <label for="default-radio-3" class="py-1 ml-2 w-full text-sm capitalize tracking-wide text-gray-500">Price, high to Low</label>
+                                </div>
 
                         </div>
                     </div>

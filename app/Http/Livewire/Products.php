@@ -6,7 +6,6 @@ use App\Models\option;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -23,6 +22,7 @@ class Products extends Component
     public $maxPrice ;
 
     public $filterValues ;
+    public $sortByValue ;
     
     public $productQV;
 
@@ -80,34 +80,53 @@ class Products extends Component
     }
 
 
-    public function updateSearchInput($optionName = ''){
+    public function updateSearchInput(){
         if($this->categoryModel){
             $this->products = $this->categoryModel->products()->where(function (Builder $query){
                 //get the products between min and max price
                 $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
     
                 //set filter options
-                foreach($this->filterValues as $key => $singleFilterValue ){
-                    //if the property has a value
-                    if($singleFilterValue){
-                        $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                if($this->filterValues){
+                    foreach($this->filterValues as $key => $singleFilterValue ){
+                        //if the property has a value
+                        if($singleFilterValue){
+                            $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                        }
                     }
                 }
             } )->get();
         }else{
-            Log::debug("data",$this->filterValues);
             $this->products = Product::where(function (Builder $query){
                 //get the products between min and max price
                 $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
     
                 //set filter options
-                foreach($this->filterValues as $key => $singleFilterValue ){
-                    //if the property has a value
-                    if($singleFilterValue){
-                        $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                if($this->filterValues){
+                    foreach($this->filterValues as $key => $singleFilterValue ){
+                        //if the property has a value
+                        if($singleFilterValue){
+                            $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                        }
                     }
                 }
             } )->get();
+        }
+    }
+
+    public function sortBy(){
+        switch($this->sortByValue){
+            case 'latest':
+                $this->products = $this->products->sortByDesc('created_at');
+                break;
+            case 'priceLowToHigh':
+                $this->products = $this->products->sortBy('price');
+                break;
+
+            case 'priceHighToLow':
+                $this->products = $this->products->sortByDesc('price');
+                break;
+
         }
     }
 
