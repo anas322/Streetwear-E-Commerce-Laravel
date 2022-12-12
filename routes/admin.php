@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -27,7 +26,6 @@ Route::middleware(['auth','isAdmin'])->prefix('admin')->as('admin.')->group(func
 
     });
     
-    Route::get('colors',[ColorController::class,'index'])->name('color.index');
 
 
     Route::get('customers',[CustomerController::class,'index'])->name('customer.index');

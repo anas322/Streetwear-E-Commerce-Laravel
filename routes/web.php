@@ -57,3 +57,7 @@ Route::get('redirects',function () {
     }
 
 });
+
+Route::fallback(function () {
+    abort(404);
+});
