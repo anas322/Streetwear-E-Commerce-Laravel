@@ -82,7 +82,7 @@
     <div class="container mx-auto">
         {{-- latest arrivals section  --}}
         <div class="min-h-screen pb-8 z-10">
-            <header class="wow fadeInDown pt-12 font-semibold max-w-3xl mx-auto h-[30vh]"> 
+            <header class="wow bounceInLeft pt-12 font-semibold max-w-3xl mx-auto h-[30vh]" data-wow-delay=".3s"> 
                 <h1 class="md:text-6xl text-4xl text-center font-roboto pb-7"> LATEST ARRIVALS </h1>
                 <p class="text-gray-400 text-center font-normal px-4">Fashion is part of the daily air and it changes all the
                     time, with all the events. You can even see the approaching of a revolution in clothes. You can see and
@@ -91,10 +91,10 @@
 
             <div class="swiper mySwiper !mr-4 !pt-8 " >
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide pl-4 ">
+                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('storage/products/image1.webp') }}"
-                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -103,10 +103,10 @@
                         </div>
                     </div>
 
-                    <div class="swiper-slide pl-4">
+                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('storage/products/image2.webp') }}"
-                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -115,10 +115,10 @@
                         </div>
                     </div>
 
-                    <div class="swiper-slide pl-4">
+                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('storage/products/image3.webp') }}"
-                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -127,10 +127,10 @@
                         </div>
                     </div>
 
-                    <div class="swiper-slide pl-4">
+                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
                             <img src="{{ asset('storage/products/image4.webp') }}"
-                                class="wow slideInUp w-full h-full object-cover scale-105 hover:scale-100 transition rounded-lg">
+                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
                         </div>
                         <div class="pt-3 space-y-2">
                             <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
@@ -145,16 +145,16 @@
 
         {{-- categories section  --}}
         <div class="mb-8 ">
-            <header class="wow fadeInDown lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]">
+            <header class="wow fadeInDown lg:pt-16 pt-8 font-semibold max-w-3xl mx-auto h-[10vh]" data-wow-delay=".3s">
                 <h1 class="md:text-6xl text-5xl text-center font-roboto"> SHOP CATEGORIES </h1>
             </header>
 
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
                 
                 @foreach ($categories as $cat)
-                    <div class="col-span-3 ">
+                    <div class="wow fadeIn col-span-3 " data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-sm shadow-xl">
-                            <img src="{{ asset('/storage/' . $cat->image) }}" class="wow slideInUp object-cover w-full h-full scale-105 hover:scale-100 transition rounded-sm">
+                            <img src="{{ asset('/storage/' . $cat->image) }}" class="object-cover w-full h-full hover:scale-105 transition duration-700 rounded-sm">
                         </div>
 
                         <div class="flex flex-col justify-center items-center pt-8 gap-y-4">

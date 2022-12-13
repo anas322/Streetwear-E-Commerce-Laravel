@@ -96,8 +96,8 @@
 
             {{-- products  --}}
             <div class="flex flex-wrap gap-y-8" >
-                @forelse ($products as $product)
-                <div class="wow fadeInUp xl:basis-1/3 basis-1/2 md:pl-4 p-2 md:p-0">
+                @forelse ($products as $key => $product)
+                <div class="wow fadeInUp xl:basis-1/3 basis-1/2 md:pl-4 p-2 md:p-0" data-wow-delay="{{ ($key + 3 ) / 10 . 's'}}">
                     <div class="image-wrapper relative ">
                         <div class="inner-image-wrapper relative">
                             <a href="#" class="block relative overflow-hidden">
@@ -125,14 +125,14 @@
                             </span>
                         </div>
                         <div class="space-y-3 my-4 ">
-                            <p class="font-normal">{{ $product->name }}</p>
+                            <p class="font-roboto uppercase text-base font-light text-gray-700">{{ $product->name }}</p>
                             @foreach ($product->options as $option)
                             @foreach ($option->optionValues as $value)
                             {{ $value->name }}
                                 
                             @endforeach
                             @endforeach
-                            <p class="font-semibold">LE {{ number_format($product->price,2,'.','') }}</p>
+                            <p class="font-roboto uppercase text-base font-light text-gray-700">LE {{ number_format($product->price,2,'.','') }}</p>
                         </div>
                     </div>
                 </div>
