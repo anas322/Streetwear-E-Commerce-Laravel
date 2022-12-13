@@ -50,26 +50,26 @@
                       </div>
                   </div>
                   <div class="p-6  md:w-1/2 w-full h-full md:float-right">
-                      <div class="flex flex-col justify-start gap-y-12">
+                      <div class="flex flex-col justify-start gap-y-8">
                           <h1 class="text-3xl font-bold ">{{ $product->name }}</h1>
                           <span class="block text-2xl font-medium">LE
                               {{ number_format($product->price,2,'.','') }}</span>
+                          
+                          @foreach ($product->options as $key => $option)    
+                            <div>
+                                <label for="{{ $option->name }}"
+                                    class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
+                                <select id="{{ $option->name }}" wire:model = "userOptions.{{ $option->name}}"
+                                    class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                    <option selected >Choose a size</option>
+                                    @foreach ($option->optionValues as $value)
+                                        <option value="{{ $value->name }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                          @endforeach    
 
-                          <div>
-                              <label for="large"
-                                  class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">size</label>
-                              <select id="large"
-                                  class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                  <option selected disabled>Choose a size</option>
-                                  <option value="M">M</option>
-                                  <option value="LG">LG</option>
-                                  <option value="XL">XL</option>
-                                  <option value="XXL">XXL</option>
-                              </select>
-                          </div>
-
-                          <div>
-
+                          {{-- <div>
                               <div class="flex flex-wrap gap-4">
                                   <label for="large"
                                       class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase basis-full">Color</label>
@@ -110,8 +110,7 @@
                                           class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Orange</label>
                                   </div>
                               </div>
-
-                          </div>
+                          </div> --}}
 
                           <div>
                               <span class="block text-xl font-bold pb-4"> Quantity </span>
@@ -120,7 +119,7 @@
                                   <input type="number" id="phone" autocomplete="off" min="1" value="1"
                                       class=" basis-1/5 px-3 h-12 focus:ring-0 focus:border-gray-300 border-gray-300 text-gray-900 text-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                                       required>
-                                  <button type="button"
+                                  <button type="submit" wire:click="addToCart"
                                       class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
                                       <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor"
                                           viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +131,7 @@
                                   </button>
                               </div>
 
-                              <button type="button"
+                              <button type="submit" wire:click="buyNow"
                                   class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 transition">
                                   <span class="md:text-lg text-base font-medium uppercase">buy now</span>
                               </button>

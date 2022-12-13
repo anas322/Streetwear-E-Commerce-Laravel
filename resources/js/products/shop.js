@@ -1,6 +1,6 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-import "flowbite";
+// import "flowbite";
 
 // ===================Start quick product view =================//
 const swiperFunction = () => {
@@ -23,10 +23,9 @@ const swiperFunction = () => {
         },
     });
 };
-
+console.log("hey");
 swiperFunction();
 window.addEventListener("contentChanged", (event) => {
-    console.log("changed");
     swiperFunction();
 });
 // ===================End quick product view =================//

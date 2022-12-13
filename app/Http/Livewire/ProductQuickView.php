@@ -9,9 +9,20 @@ class ProductQuickView extends Component
 {
     public $productId;
 
+    public $userOptions = [];
     
     public function dehydrate(){
         $this->dispatchBrowserEvent('contentChanged');
+    }
+
+    public function addToCart(){
+        //key is the option name and the value is the option value 
+
+
+    }
+
+    public function buyNow(){
+        dd($this->userOptions);
     }
 
     public function render()
