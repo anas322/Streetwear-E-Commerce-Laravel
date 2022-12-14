@@ -2,8 +2,8 @@ import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 // import "flowbite";
 
-// ===================Start quick product view =================//
-const swiperFunction = () => {
+const app = () => {
+    // ===================Start quick product view =================//
     const swiper2 = new Swiper(".product-view", {
         loop: true,
         spaceBetween: 1,
@@ -23,9 +23,7 @@ const swiperFunction = () => {
         },
     });
 };
-console.log("hey");
-swiperFunction();
+app();
 window.addEventListener("contentChanged", (event) => {
-    swiperFunction();
+    app();
 });
-// ===================End quick product view =================//
