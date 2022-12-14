@@ -1,6 +1,5 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-// import "flowbite";
 
 const app = () => {
     // ===================Start quick product view =================//
