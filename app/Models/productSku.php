@@ -14,4 +14,8 @@ class productSku extends Model
         'price',
         'quantity'
     ];
+
+    public function productSkuValues(){
+        return $this->hasMany(SkuValue::class);
+    }
 }

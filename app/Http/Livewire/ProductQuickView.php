@@ -4,25 +4,79 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Illuminate\Support\Arr;
 
 class ProductQuickView extends Component
 {
     public $productId;
 
-    public $userOptions = [];
+    public $userOptions;
+
+    public $optionValuesArray = [];
+    public $optionMatrix = [];
+    public $quantity ;
+    public $price ;
     
     public function dehydrate(){
         $this->dispatchBrowserEvent('contentChanged');
     }
 
-    public function addToCart(){
-        //key is the option name and the value is the option value 
-
+    public function mount(){
+        $product = Product::findOrFail($this->productId);
+        if($product->options && $product->options->count()){
+            foreach ($product->options as $option ) {
+                $this->userOptions[$option->name] = $option->optionValues[0]->id;
+            }   
+            
+            foreach ($product->options as $option) {
+                array_push($this->optionValuesArray,$option->optionValues->pluck('id')->toArray());
+            }
+            
+            $this->optionMatrix = Arr::crossJoin(...$this->optionValuesArray);
+            
+            //the idea here is that i want to get the sku_id of the the use selected option
+            //get all product sku values grouped by the sku_id
+            $productAllSkus = $product->productSkusValues->groupBy('product_sku_id');
+            
+            //get the right columns that has the same sku_id and then get it's sku 
+            $productSku = $productAllSkus->first(function ($values, $keys){
+                $res = $values->whereIn('option_value_id',$this->optionMatrix[0]);
+                return $res->count() ===  $values->count();
+            })->first()->productSku;
+        }
+            
+        $this->quantity = $product->productSkus->count() > 0 ? $productSku->quantity : $product->quantity;
+         
+        $this->price = $product->productSkus->count() > 0 ? number_format($productSku->price,2,'.','') : number_format($product->price,2,'.','');
 
     }
 
+    public function updatedUserOptions(){
+        $product = Product::findOrFail($this->productId);
+        [$key,$option_value_ids] = Arr::divide($this->userOptions);
+            
+        //the idea here is that i want to get the sku_id of the the use selected option
+        //get all product sku values grouped by the sku_id
+        $productAllSkus = $product->productSkusValues->groupBy('product_sku_id');
+        dd($productAllSkus,$option_value_ids);
+        
+        //get the right columns that has the same sku_id and then get it's sku 
+        $productSku = $productAllSkus->first(function ($values, $keys) use($option_value_ids){
+            $res = $values->whereIn('option_value_id',$option_value_ids);
+            return $res->count() ===  $values->count();
+        })->first()->productSku;
+
+        $this->quantity = $product->productSkus->count() > 0 ? $productSku->quantity : $product->quantity;
+        $this->price = $product->productSkus->count() > 0 ? number_format($productSku->price,2,'.','') : number_format($product->price,2,'.','');
+
+    }
+
+    public function addToCart(){
+        //key is the option name and the value is the option value 
+    }
+
     public function buyNow(){
-        dd($this->userOptions);
+        dd($this->userOptions,$this->quantity);
     }
 
     public function render()

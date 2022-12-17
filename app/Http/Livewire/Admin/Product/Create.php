@@ -29,7 +29,9 @@ class Create extends Component
     public $optionName = [];
     public $optionValue = [];
     public $optionValuesArray = [];
+    public $optionValuesArrayId = [];
     public $optionMatrix;
+    public $optionMatrixId;
 
     public $optionPrices;
     public $optionQuantities;
@@ -169,8 +171,17 @@ class Create extends Component
                 }
             }
 
+            //create array of option values ids
+            foreach ($product->options as $option) {
+                array_push($this->optionValuesArrayId,$option->optionValues->pluck('id'));
+            }
+
+            //create the matrix of every possible array of options
+            $this->optionMatrixId = Arr::crossJoin(...$this->optionValuesArrayId);
+
+
             //store product sku and sku values 
-            foreach ($this->optionMatrix as $key => $singleMatrix) {
+            foreach ($this->optionMatrixId as $key => $singleMatrixIds) {
                 //store sku of single variant of our product
                 $productSku = $product->productSkus()->create([
                     'sku'   => uniqid(),
@@ -178,24 +189,18 @@ class Create extends Component
                     'quantity' => $this->optionQuantities[$key],
                 ]);
 
+
                 //store the combination of this single sku variant
-                foreach ($singleMatrix as $singleKey => $value) {
+                foreach ($singleMatrixIds as $singleKey => $id) {
                     //options of our product
                     $opt = $product->options[$singleKey];
                     //get the id of nth option
-                    $opt_id = $opt->id;
-                    //get all option values
-                    $opt_values = $opt->optionValues;
-                    //key of option values that retrieved from our option
-                    $keyOfValues = 0;
-                    
-                    //increment by 1 every cycle
-                    $opt_values->count() >= $keyOfValues ?: $keyOfValues++;
+                    $opt_id = $opt->id;         
 
                     $product->productSkusValues()->create([
                         'product_sku_id' => $productSku->id,
                         'option_id' => $opt_id,
-                        'option_value_id' => $opt_values[$keyOfValues]->id
+                        'option_value_id' => $id
                     ]);
                 }
             }

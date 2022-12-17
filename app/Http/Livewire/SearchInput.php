@@ -11,11 +11,6 @@ class SearchInput extends Component
 
     public $modal = false;
 
-    // public function updatedSearch($value){
-    //     dd(Product::where('name','like','%'.$this->search.'%')->limit(8)->get());
-    // }
-    
-
     public function render()
     {
         return view('livewire.search-input',[

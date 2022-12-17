@@ -34,6 +34,10 @@ class Products extends Component
         $this->dispatchBrowserEvent('contentChanged');
     }
 
+    // public function update(){
+    //     $this->dispatchBrowserEvent('contentChanged');
+    // }
+
     public function mount(){
         
         $this->categoryModel = Category::whereName($this->cat)->first();

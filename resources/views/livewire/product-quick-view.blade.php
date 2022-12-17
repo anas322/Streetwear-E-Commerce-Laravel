@@ -1,10 +1,7 @@
-  <!-- Main modal -->
   <div wire:click.self="$emit('closeModal')"
       class="flex justify-center items-center bg-black/30 overflow-y-auto overflow-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-screen">
-      <div class="relative w-full max-w-7xl md:h-5/6 h-auto" wire:ignore>
-          <!-- Modal content -->
+      <div class="relative w-full max-w-7xl md:h-5/6 h-auto" >
           <div class="mt-[31rem] md:mt-0 relative bg-white rounded-sm shadow dark:bg-gray-700 h-full">
-              <!-- Modal header -->
               <div class="absolute top-4 right-4">
                   <button type="button" wire:click="$emit('closeModal')"
                       class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
@@ -17,7 +14,6 @@
                       <span class="sr-only">Close modal</span>
                   </button>
               </div>
-              <!-- Modal body -->
               <div class="h-full md:block flex flex-col">
 
                   <div class="p-6  md:w-1/2 w-full md:h-full h-[49rem] md:float-left">
@@ -53,21 +49,23 @@
                       <div class="flex flex-col justify-start gap-y-8">
                           <h1 class="text-3xl font-bold ">{{ $product->name }}</h1>
                           <span class="block text-2xl font-medium">LE
-                              {{ number_format($product->price,2,'.','') }}</span>
-                          
-                          @foreach ($product->options as $key => $option)    
-                            <div>
-                                <label for="{{ $option->name }}"
-                                    class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
-                                <select id="{{ $option->name }}" wire:model = "userOptions.{{ $option->name}}"
-                                    class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                    <option selected >Choose a size</option>
-                                    @foreach ($option->optionValues as $value)
-                                        <option value="{{ $value->name }}">{{ $value->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                          @endforeach    
+                              {{ $price }}</span>
+
+                          @if ($product->options && $product->options->count())
+                            @foreach ($product->options as $key => $option)    
+                                <div>
+                                    <label for="{{ $option->name }}"
+                                        class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
+                                    <select id="{{ $option->name }}" wire:model = "userOptions.{{ $option->name}}"
+                                        class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                        <option disabled>Choose a size</option>
+                                        @foreach ($option->optionValues as $value)
+                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endforeach    
+                          @endif
 
                           {{-- <div>
                               <div class="flex flex-wrap gap-4">
@@ -116,9 +114,9 @@
                               <span class="block text-xl font-bold pb-4"> Quantity </span>
 
                               <div class="flex">
-                                  <input type="number" id="phone" autocomplete="off" min="1" value="1"
+                                  <input type="number" id="phone" autocomplete="off" min="1" value="1" wire:model="quantity"
                                       class=" basis-1/5 px-3 h-12 focus:ring-0 focus:border-gray-300 border-gray-300 text-gray-900 text-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                      required>
+                                      >
                                   <button type="submit" wire:click="addToCart"
                                       class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
                                       <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor"
