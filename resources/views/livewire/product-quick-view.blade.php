@@ -114,9 +114,13 @@
                               <span class="block text-xl font-bold pb-4"> Quantity </span>
 
                               <div class="flex">
-                                  <input type="number" id="phone" autocomplete="off" min="1" value="1" wire:model="quantity"
-                                      class=" basis-1/5 px-3 h-12 focus:ring-0 focus:border-gray-300 border-gray-300 text-gray-900 text-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                      >
+                                    <select wire:model = "quantity"
+                                    class="basis-1/5 px-3 h-12 focus:ring-0 focus:border-gray-300 border-gray-300 text-gray-900 text-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                    @while ($quantity > 0)
+                                        <option value="{{ $quantity }}">{{ $quantity }}</option>
+                                        {{ $quantity-- }}
+                                    @endwhile
+                                    </select>
                                   <button type="submit" wire:click="addToCart"
                                       class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
                                       <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor"
