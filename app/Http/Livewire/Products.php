@@ -11,9 +11,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Products extends Component
 {
-    public $cat;
+    protected $listeners = ['closeModal'];
     protected $queryString = ['cat'];
+
+    public $cat;
     public $categoryModel;
+    public $filters;
     
     public $products;
     public $options = [];
@@ -48,32 +51,32 @@ class Products extends Component
     
             //get all options related to this product
             $this->filters = option::whereIn('product_id' , $this->categoryModel->products->pluck('id'))->get(); 
-            //get all possible option values 
-            foreach ($this->filters as  $key => $option) {
-                //key is the filter name and the value is the available options value
-                $this->options[$this->filters[$key]->name] = $option->optionValues->pluck('name');
-            }
-    
-            //get a the maximum product price
-            $this->maxPrice = $this->products->max('price');
-        }else{
-            $this->products = Product::all();
+            
+            $this->getOptions();
 
+        }else{
+
+            $this->products = Product::all();
+            
             //get all options 
             $this->filters = option::all(); 
-            //get all possible option values 
-            foreach ($this->filters as  $key => $option) {
-                //key is the filter name and the value is the available options value
-                $this->options[$this->filters[$key]->name] = $option->optionValues->pluck('name');
-            }
-
-            //get a the maximum product price
-            $this->maxPrice = $this->products->max('price');
+            
+            $this->getOptions();
         }
 
-        }
+    }
 
-    protected $listeners = ['closeModal'];
+    private function getOptions(){
+        //get all possible option values 
+        foreach ($this->filters as  $key => $option) {
+            //key is the filter name and the value is the available options value
+            $this->options[$this->filters[$key]->name] = $option->optionValues->pluck('name');
+        }
+        
+        //get a the maximum product price
+        $this->maxPrice = $this->products->max('price');
+    }
+
 
     public function showModal($id){
         $this->productQV = $id;
@@ -87,34 +90,31 @@ class Products extends Component
     public function updateSearchInput(){
         if($this->categoryModel){
             $this->products = $this->categoryModel->products()->where(function (Builder $query){
-                //get the products between min and max price
-                $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
-    
-                //set filter options
-                if($this->filterValues){
-                    foreach($this->filterValues as $key => $singleFilterValue ){
-                        //if the property has a value
-                        if($singleFilterValue){
-                            $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
-                        }
-                    }
-                }
+
+                $this->makeQuery($query);
+
             } )->get();
         }else{
             $this->products = Product::where(function (Builder $query){
-                //get the products between min and max price
-                $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
-    
-                //set filter options
-                if($this->filterValues){
-                    foreach($this->filterValues as $key => $singleFilterValue ){
-                        //if the property has a value
-                        if($singleFilterValue){
-                            $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
-                        }
-                    }
-                }
+
+                $this->makeQuery($query);
+
             } )->get();
+        }
+    }
+
+    private function makeQuery($query){
+    //get the products between min and max price
+        $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
+
+        //set filter options
+        if($this->filterValues){
+            foreach($this->filterValues as $key => $singleFilterValue ){
+                //if the property has a value
+                if($singleFilterValue){
+                    $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                }
+            }
         }
     }
 

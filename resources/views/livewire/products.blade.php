@@ -20,9 +20,11 @@
                     
                     <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
                         <div class="flex items-center pb-3">
-                                <input type="number" wire:model="minPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
+                                <input type="number" wire:model="minPrice" wire:change.debounce.200ms="updateSearchInput"
+                                wire:keyup="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
                             <span class="text-gray-500 text-2xl px-2">-</span>
-                                <input type="number" wire:model="maxPrice" wire:keyup.debounce.200ms="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
+                                <input type="number" wire:model="maxPrice" wire:change.debounce.200ms="updateSearchInput"
+                                wire:keyup="updateSearchInput" id="phone" class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="LE: " min="0" autocomplete="off">
                         </div>
                     </div>
                 </div>

@@ -28,12 +28,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #fdfdfd;
+    background: rgba(100, 100, 100, 0.49);
+    border-radius: 12px;
+    border: 2px solid #fdfdfd;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.384);
 }
 
 ::-webkit-scrollbar-track {
-    /* From https://css.glass */
-    background: rgba(204, 204, 204, 0.49);
+    background: #fdfdfd;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10.7px);
