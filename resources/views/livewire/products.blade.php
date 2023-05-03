@@ -103,12 +103,19 @@
                     <div class="image-wrapper relative ">
                         <div class="inner-image-wrapper relative">
                             <a href="#" class="block relative overflow-hidden">
+                                @if($product->productImages && $product->productImages->count() > 1)
                                 <div class="relative pt-[150%]">
                                     <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 hover:scale-105"
                                         src="{{asset('/storage/'.$product->productImages[0]->image)}}" />
                                     <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 opacity-0 hover:opacity-100 hover:scale-105"
                                         src="{{asset('/storage/'.$product->productImages[1]->image)}}" />
                                 </div>
+                                @elseif($product->productImages && $product->productImages->count() === 1)
+                                <div class="relative pt-[150%]">
+                                    <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 hover:scale-105"
+                                        src="{{asset('/storage/'.$product->productImages[0]->image)}}" />
+                                </div>
+                                @endif
                             </a>
                             <span
                                 class="absolute top-4 left-4 uppercase py-1 px-3.5 font-roboto bg-red-400 text-white text-sm">HOT</span>

@@ -53,6 +53,7 @@ class ProductQuickView extends Component
 
     }
 
+    //trigger when the userOptions is updated
     public function updatedUserOptions(){
         $product = Product::findOrFail($this->productId);
         [$key,$option_value_ids] = Arr::divide($this->userOptions);

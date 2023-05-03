@@ -27,6 +27,7 @@ class Product extends Model
     protected function status(): Attribute
     {
         return Attribute::make(
+            get: fn ($value) => $value == 1 ? 'Active' : 'Draft',
             set: fn ($value) => $value == 'Active' ? 1 : 0,
         );
     }

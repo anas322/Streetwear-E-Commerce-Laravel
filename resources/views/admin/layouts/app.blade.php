@@ -26,7 +26,7 @@
         {{-- <livewire:search-input />  --}}
         <x-jet-banner />
 
-        <div class="font-sans antialiased bg-white">
+        <div class="font-sans antialiased bg-white h-0">
             <div class="min-h-screen relative">
                 <div class="flex items-stretch bg-slate-50">
                     @livewire('admin.sidebar')

@@ -120,9 +120,9 @@
                     </td> --}}
                     <td class="py-4 px-6 ">
                         <span @class(['border-2 font-bold py-2 px-3 rounded-lg
-                            text-xs', 'border-green-600 text-green-700'=> $pro->status == 1 ,'border-red-600
-                            text-red-700' => $pro->status == 0])>
-                            {{ $pro->status == 1 ? "Active" : "Draft" }}
+                            text-xs', 'border-green-600 text-green-700'=> $pro->status == 'Active' ,'border-red-600
+                            text-red-700' => $pro->status == 'Draft'])>
+                            {{ $pro->status }}
                         </span>
                     </td>
                     <td class="py-4 px-6 space-x-2 flex flex-nowrap">

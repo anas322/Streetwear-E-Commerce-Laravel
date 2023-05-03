@@ -58,7 +58,7 @@ class Edit extends Component
         $this->description = $product->description;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
-        $this->status = $product->status == 1 ? 'Active' :'Draft';
+        $this->status = $product->status;
 
         $this->variantsState = $product->options->count() > 0;
         $this->optionsCount = range(0,$product->options->count() - 1);
@@ -179,14 +179,17 @@ class Edit extends Component
         //store product
         $product = $category->products()->create($validatedData);
 
-        //store product images
-        // if(count($this->images)){
-        //     foreach ($this->images as $image) {
-        //         $path = $image->store('products');
-                
-        //         $product->productImages()->create(['image' => $path]);
-        //     }
-        // }
+        //store new images
+        if(count($this->images)){
+            foreach ($this->images as $image) {
+                if(is_string($image)){
+                    $product->productImages()->create(['image' => $image]);
+                    continue;
+                }
+                $path = $image->store('products');
+                $product->productImages()->create(['image' => $path]);
+            }
+        }
 
         // first delete the this product 
         $this->product->delete();
