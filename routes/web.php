@@ -31,10 +31,10 @@ Route::controller(ProductController::class)->as('products.')->prefix('products')
 
 Route::view('/contact', 'pages.contact-us')->name('contact');
 
-Route::get('/products/cart',Cart::class)->name('cart');
 
 Route::middleware('auth')->group(function () {
-
+    Route::get('/products/cart',Cart::class)->name('cart');
+    
     Route::controller(OrderController::class)->prefix('orders')->as('orders.')->group(function () {
    
         Route::get('/orders', 'index')->name('index');

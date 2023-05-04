@@ -74,7 +74,25 @@ class ProductQuickView extends Component
     }
 
     public function addToCart(){
-        //key is the option name and the value is the option value 
+        //key is the option name and the value is the option value
+        if(auth()->id()){
+            if($this->productSku->quantity >= $this->quantity && $this->productSku->quantity != 0){
+                $product = Product::findOrFail($this->productId);
+                $product->carts()->create([
+                    'user_id' => auth()->user()->id,
+                    'product_sku_id' => $this->productSku->id,
+                    'quantity' => $this->productSku->quantity,
+                    'price' => $this->productSku->price,
+                ]);
+    
+                $this->productSku->decrement('quantity',$this->quantity);
+        
+                session()->flash('success','Product added to cart successfully');
+            }
+
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     public function buyNow(){
