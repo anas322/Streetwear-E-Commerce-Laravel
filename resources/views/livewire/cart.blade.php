@@ -83,7 +83,7 @@
     <div class="empty-cart flex justify-center items-center flex-col space-y-4">
                <x-svgs.empty-cart class="w-40 h-40" />
                <span class="font-medium text-lg text-gray-500">Your cart is currently empty.</span>
-               <a href="#" class="underline text-gray-600">Continue shopping</a>
+               <a href="{{ route('products.index') }}" class="underline text-gray-600">Continue shopping</a>
             </div>
             @endif
 </div>

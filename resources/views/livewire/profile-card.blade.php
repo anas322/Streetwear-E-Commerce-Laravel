@@ -16,7 +16,7 @@
                         <span class="text-gray-800 font-semibold">Orders</span>
                     </div>
 
-                    <span class="px-3 py-1 rounded-full bg-gray-100 font-semibold">5</span>
+                    <span class="px-3 py-1 rounded-full bg-gray-100 font-semibold">{{ auth()->user()->orders->count()  }}</span>
                 </div>
             </a>
             <a class="w-full" href="{{ route('profile.show') }}">

@@ -19,6 +19,10 @@ class OrderController extends Controller
      * @return a redirect to the 'orders.index' route with a success message.
      */
     public function store(){
+
+        if(auth()->user()->address == null)
+            return to_route('address.index')->with('error','Please Add Your Address First');
+
         //get the user's cart items
         $carts = auth()->user()->carts;
 

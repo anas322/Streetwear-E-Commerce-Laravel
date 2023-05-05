@@ -43,7 +43,12 @@ Route::middleware('auth')->group(function () {
 
     });
     
-    Route::get('/address', [AddressController::class,'index'])->name('address.index');
+    Route::controller(AddressController::class)->prefix('address')->as('address.')->group(function () {
+   
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+
+    });
     
 });
 
