@@ -25,7 +25,7 @@ Route::get('/', [MainController::class,'index'])->name('home');
 Route::controller(ProductController::class)->as('products.')->prefix('products')->group(function () {
     
     Route::get('/','index')->name('index');
-    Route::get('/show', 'show')->name('show');
+    Route::get('/{product}', 'show')->name('show');
 
 });
 
@@ -33,7 +33,7 @@ Route::view('/contact', 'pages.contact-us')->name('contact');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/products/cart',Cart::class)->name('cart');
+    Route::get('/cart',Cart::class)->name('cart');
     
     Route::controller(OrderController::class)->prefix('orders')->as('orders.')->group(function () {
    

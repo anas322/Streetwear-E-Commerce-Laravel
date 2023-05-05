@@ -102,7 +102,7 @@
                 <div class="wow fadeInUp xl:basis-1/3 basis-1/2 md:pl-4 p-2 md:p-0" data-wow-delay="{{ ($key + 3 ) / 10 . 's'}}">
                     <div class="image-wrapper relative ">
                         <div class="inner-image-wrapper relative">
-                            <a href="#" class="block relative overflow-hidden">
+                            <a href="{{ route('products.show',$product) }}" class="block relative overflow-hidden">
                                 @if($product->productImages && $product->productImages->count() > 1)
                                 <div class="relative pt-[150%]">
                                     <img class="inline-block object-cover object-center absolute top-0 left-0 h-full w-full transition-all duration-700 hover:scale-105"
