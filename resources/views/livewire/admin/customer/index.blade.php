@@ -89,10 +89,10 @@
                         {{$cus->email}}
                     </td>
                     <td class="py-4 px-6">
-                        4
+                        {{ $cus->orders->count()  }}
                     </td>
                     <td class="py-4 px-6">
-                        EGP 168
+                        EGP {{ $cus->orders->sum('total_price')   }}
                     </td>
                 </tr>
                 @endforeach

@@ -8,7 +8,7 @@
                 <div class="card-header flex justify-between items-start">
                     <div class="space-y-4">
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">CLIENTS</h2>
-                        <span class="block font-bold text-lg">6,328</span>
+                        <span class="block font-bold text-lg">{{ $clients }}</span>
                     </div>
 
                     <div>
@@ -26,12 +26,12 @@
                 <div class="card-footer flex justify-between">
                     <div>
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">TODAY CLIENTS</h2>
-                        <span class="block font-bold text-lg">57</span>
+                        <span class="block font-bold text-lg">{{ $today_clients }}</span>
                     </div>
 
                     <div>
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">MONTHLY CLIENTS</h2>
-                        <span class="block font-bold text-lg">681</span>
+                        <span class="block font-bold text-lg">{{$monthly_clients}}</span>
                     </div>
                 </div>
         </div>
