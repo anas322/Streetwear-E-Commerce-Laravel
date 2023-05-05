@@ -148,7 +148,10 @@
 
                 
                 @empty
-                <p class="font-roboto text-xl text-center">No Products Available :(</p>
+                <div class="p-4 mb-4 text-sm rounded-lg flex flex-col space-y-4 mx-auto " >
+                    <x-svgs.out-of-stock class="w-60 h-auto inline-block" />
+                    <span class="font-roboto text-lg text-center">No Products Available :(</span>
+                </div>
                 @endforelse
                 @if ($productQV)
                     <livewire:product-quick-view :productId="$productQV" />

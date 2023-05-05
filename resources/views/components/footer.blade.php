@@ -1,3 +1,6 @@
+@props(['categories'])
+{{-- footer section  --}}
+
 {{-- footer section  --}}
 <footer class="px-4 sm:px-6 dark:bg-gray-900 bg-gray-800 relative z-[1] overflow-x-hidden">
     <x-svgs.footer-background class="absolute right-0 bottom-0 top-0 z-[-1] w-full h-full" />
@@ -24,17 +27,15 @@
                 <h2 class="mb-6 text-lg font-semibold uppercase text-white">Shop</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-3">
-                        <a href="#" class="hover:underline text-gray-500 hover:text-gray-600 ">SHOES</a>
+                        <a href="{{ route('products.index') }}" class="hover:underline text-gray-500 hover:text-gray-600 uppercase">Shop All </a>
                     </li>
+                    @if($categories)
+                    @foreach ($categories as $cat)
                     <li class="mb-3">
-                        <a href="#" class="hover:underline text-gray-500 hover:text-gray-600">TROUSERS</a>
+                        <a href="{{ route('products.index',['cat' => $cat->name]) }}" class="hover:underline text-gray-500 hover:text-gray-600 uppercase"> {{ $cat->name }}</a>
                     </li>
-                    <li class="mb-3">
-                        <a href="#" class="hover:underline text-gray-500 hover:text-gray-600">JACKETS</a>
-                    </li>
-                    <li class="mb-3">
-                        <a href="#" class="hover:underline text-gray-500 hover:text-gray-600">HOODIES</a>
-                    </li>
+                    @endforeach
+                    @endif
                 </ul>
             </div>
 

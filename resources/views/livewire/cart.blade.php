@@ -1,5 +1,4 @@
 <div class="container mx-auto pb-8 px-4">
-
     <header class="py-24">
         <h1 class="font-bold text-7xl block font-roboto pb-8 text-gray-800">shpping cart</h1>
         <span class="text-gray-500 font-medium text-lg">You have {{ $this->cartItems->count() }} items in your cart.</span>

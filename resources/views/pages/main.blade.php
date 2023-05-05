@@ -3,7 +3,7 @@
     {{-- header slider  --}}
     <x-slot name="header">
         {{-- carousel header  --}}
-        <div id="indicators-carousel" class="wow fadeIn relative sm:h-screen h-[50vh] pt-16" data-carousel="static">
+        <div id="indicators-carousel" class="wow fadeIn select-none pointer-events-none relative sm:h-screen h-[50vh] pt-16" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative overflow-hidden h-full">
                 <!-- Item 1 -->
@@ -91,53 +91,22 @@
 
             <div class="swiper mySwiper !mr-4 !pt-8 " >
                 <div class="swiper-wrapper">
-                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('storage/products/image1.webp') }}"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
-                        </div>
-                        <div class="pt-3 space-y-2">
-                            <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
-                            <p class="uppercase font-medium"> white tee </p>
-                            <p class="text-gray-400 font-medium"> $32.00 </p>
-                        </div>
-                    </div>
 
+                    @foreach ($latestArrivals as $product)
                     <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('storage/products/image2.webp') }}"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
-                        </div>
-                        <div class="pt-3 space-y-2">
-                            <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
-                            <p class="uppercase font-medium"> white tee </p>
-                            <p class="text-gray-400 font-medium"> $32.00 </p>
-                        </div>
+                        <a href="{{ route('products.show',$product) }}">
+                            <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
+                                <img src="{{ '/storage/' . $product->productImages->first()->image }}" alt="{{ $product->name }}"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
+                            </div>
+                            <div class="pt-3 space-y-2">
+                                <p class="text-gray-400 text-medium capitalize font-medium "> {{ $product->category->name }} </p>
+                                {{-- <p class="uppercase font-medium"> white tee </p> --}}
+                                <p class="text-gray-400 font-medium"> ${{ number_format($product->price,2) }} </p>
+                            </div>
+                        </a>
                     </div>
-
-                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('storage/products/image3.webp') }}"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
-                        </div>
-                        <div class="pt-3 space-y-2">
-                            <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
-                            <p class="uppercase font-medium"> white tee </p>
-                            <p class="text-gray-400 font-medium"> $32.00 </p>
-                        </div>
-                    </div>
-
-                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
-                        <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                            <img src="{{ asset('storage/products/image4.webp') }}"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
-                        </div>
-                        <div class="pt-3 space-y-2">
-                            <p class="text-gray-400 text-medium capitalize font-medium"> jackets </p>
-                            <p class="uppercase font-medium"> white tee </p>
-                            <p class="text-gray-400 font-medium"> $32.00 </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="swiper-pagination !static pt-3"></div>

@@ -2,9 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Cart as CartModel;
-use App\Models\productSku;
 use Livewire\Component;
+use App\Models\Cart as CartModel;
 
 class Cart extends Component
 {

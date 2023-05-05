@@ -44,8 +44,7 @@
                     {{ $slot }}
                 </main>
             </div>
-
-            <x-footer />
+            <x-footer :$categories/>
         </div>
 
         @stack('modals')
