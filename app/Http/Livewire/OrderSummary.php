@@ -12,8 +12,15 @@ class OrderSummary extends Component
     public $subTotal;
     public $tax ;
     public $totalPrice;
+    public $order;
 
     public function mount(){
+        if($this->order){
+            $this->subTotal = $this->order->total_price - number_format(($this->order->total_price/100) * 5,2);
+            $this->tax = number_format(($this->order->total_price/100) * 5,2);
+            $this->totalPrice = $this->order->total_price;
+            return;
+        }
          $total = 0;
         foreach($this->cart as $item){
             $productSku = productSku::where('id',$item->product_sku_id)->first();

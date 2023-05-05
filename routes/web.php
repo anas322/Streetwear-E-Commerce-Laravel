@@ -37,8 +37,9 @@ Route::middleware('auth')->group(function () {
     
     Route::controller(OrderController::class)->prefix('orders')->as('orders.')->group(function () {
    
-        Route::get('/orders', 'index')->name('index');
-        Route::get('/single-order', 'show')->name('show');
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{order}', 'show')->name('show');
 
     });
     

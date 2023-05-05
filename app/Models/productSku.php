@@ -18,4 +18,8 @@ class productSku extends Model
     public function productSkuValues(){
         return $this->hasMany(SkuValue::class);
     }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class,'order_product_skus')->withPivot('quantity')->withTimestamps();
+    }
 }

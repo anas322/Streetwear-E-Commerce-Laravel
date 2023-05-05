@@ -29,6 +29,10 @@
     </div>
 </div>
 
-<a href="">
-    <span class="py-4 block uppercase text-base text-center bg-slate-800 text-white"> check out</span>
-</a>
+@if (!$order)
+<form action="{{ route('orders.store') }}" method="POST">
+    @csrf
+    <button class="w-full py-4 block uppercase text-base text-center bg-slate-800 text-white"> check out</button>
+</form>
+@endif
+

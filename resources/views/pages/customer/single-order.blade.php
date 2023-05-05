@@ -2,10 +2,10 @@
     <div class="container mx-auto px-4">
 
         <header class="py-24">
-            <h1 class="font-bold text-7xl block font-roboto pb-8 text-gray-800">Order #1735 </h1>
-            <span class="text-gray-500 font-medium text-lg pb-8 block">Order #1735 was placed on <span class="font-bold">22/06/2013</span>  and is currently <span class="font-bold">Being prepared</span>.</span>
+            <h1 class="font-bold text-7xl block font-roboto pb-8 text-gray-800">Order #{{$order->id}} </h1>
+            <span class="text-gray-500 font-medium text-xl pb-8 block">Order #{{$order->id}} was placed on <span class="font-bold">{{ $order->created_at->calendar() }}</span>  and is currently <span class="font-bold">{{ $order->status }}</span>.</span>
 
-            <span class="text-gray-500 font-medium text-lg block">If you have any questions, please feel free to <a class="underline" href="">contact us</a>, our customer service center is working for you 24/7.</span>
+            <span class="text-gray-500 font-medium text-lg block">If you have any questions, please feel free to <a class="underline" href="{{ route('contact') }}">contact us</a>, our customer service center is working for you 24/7.</span>
         </header>
     
         
@@ -14,7 +14,7 @@
                 
                 <div class=" w-full">
                     <div class="lg:max-w-sm lg:mx-auto w-full shadow-lg rounded-lg">
-                        <livewire:order-summary :active="false"/>
+                        <livewire:order-summary :order="$order"/>
                     </div>
                 </div>
 
