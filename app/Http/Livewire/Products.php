@@ -6,7 +6,6 @@ use App\Models\option;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
 
 class Products extends Component
@@ -26,6 +25,7 @@ class Products extends Component
 
     public $filterValues ;
     public $sortByValue ;
+    public $aboveFilterToggle = false;
     
     public $productQV;
 
@@ -36,10 +36,6 @@ class Products extends Component
     public function dehydrate(){
         $this->dispatchBrowserEvent('contentChanged');
     }
-
-    // public function update(){
-    //     $this->dispatchBrowserEvent('contentChanged');
-    // }
 
     public function mount(){
         

@@ -113,7 +113,80 @@
         {{-- products section  --}}
         <div class="md:ml-5 flex-grow relative overflow-hidden">
             {{-- filter above products--}}
-            <livewire:above-filter-products />
+            {{-- <livewire:above-filter-products /> --}}
+
+            <div class="md:hidden block">
+
+                <div>
+                    <div class="flex justify-between items-start pb-4">
+                        <button wire:click="$toggle('aboveFilterToggle')"
+                            class="flex items-center gap-2 border border-gray-300 text-gray-900 text-sm rounded-sm py-2.5 px-3">
+                            <span class="font-medium">Filter</span>
+                            <x-svgs.expand-filter class="w-4 h-4" />
+                        </button>
+
+                        <div class="w-48">
+                            <select id="sort" wire:model="sortByValue" wire:change="sortBy"
+                                class="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-0 focus:border-gray-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected value="latest">LATEST</option>
+                                <option value="priceLowToHigh">Price Low To High</option>
+                                <option value="priceHighToLow">Price High To Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    @if($aboveFilterToggle)
+                    <div  class="max-h-auto overflow-hidden transition-all duration-700">
+                        <div class="flex flex-wrap justify-start max-h-80 gap-6 py-4">
+
+                            {{-- price  --}}
+                            <div class="flex flex-col justify-start items-center gap-y-4">
+                                <span class="font-extralight text-base text-gray-500 w-full">Price</span>
+                                <div class="flex pb-3">
+                                    <input type="number" id="phone" wire:model="minPrice" wire:change="updateSearchInput"
+                                        class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                                        placeholder="LE: " min="0" max="10000" autocomplete="off" required>
+                                    <span class="text-gray-500 text-2xl px-2">-</span>
+                                    <input type="number" id="phone" wire:model="maxPrice" wire:change="updateSearchInput"
+                                        class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                                        placeholder="LE: " min="0" max="10000" autocomplete="off" required>
+                                </div>
+                            </div>
+
+                            {{-- options  --}}
+                            <div class="flex flex-wrap justify-start items-start gap-y-4 gap-x-12">
+                                
+                                @foreach ($options as $name => $optionValues)
+                                    <div class="space-y-2 ">
+                                        <span class="font-extralight text-base text-gray-500">{{$name}}</span>
+
+                                        <div class="flex flex-col">
+                                                <div class="flex flex-col pb-4 ">
+
+                                                    @foreach ($optionValues as $key => $optionValue)
+                                                    <div class="flex items-center  rounded">
+                                                        <input wire:model='filterValues. {{ $name . $key }}' wire:click="updateSearchInput"
+                                                            value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox"
+                                                            class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
+                                                        <label for="bordered-checkbox-{{ $name . $key }}"
+                                                            class="py-1 ml-2 w-full text-sm uppercase tracking-wide text-gray-500 ">{{ $optionValue }}</label>
+                                                    </div>
+                                                    @endforeach
+
+                                                </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                    @endif
+                </div>
+
+            </div>
 
             {{-- products  --}}
             <div class="flex flex-wrap gap-y-8">
