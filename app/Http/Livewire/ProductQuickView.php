@@ -52,9 +52,9 @@ class ProductQuickView extends Component
         }else{
             $this->quantity =  $product->productSkus->first()->quantity ; 
             $this->price =  number_format($product->productSkus->first()->price,2,'.','');
+            $this->productSku = $product->productSkus->first();
         }
             
-
     }
 
     //trigger when the userOptions is updated

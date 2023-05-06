@@ -52,6 +52,7 @@ class ProductShow extends Component
 
             $this->quantity =  $product->productSkus->first()->quantity ; 
             $this->price =  number_format($product->productSkus->first()->price,2,'.','');
+            $this->productSku = $product->productSkus->first();
         }
            
     }
