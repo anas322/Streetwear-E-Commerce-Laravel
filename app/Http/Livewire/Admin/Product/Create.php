@@ -4,8 +4,6 @@ namespace App\Http\Livewire\Admin\Product;
 
 use Livewire\Component;
 use App\Models\Category;
-use App\Models\Product;
-use App\Models\productSku;
 use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
@@ -23,6 +21,7 @@ class Create extends Component
     public $price;
     public $quantity;
     public $status = "Active";
+    public $is_hot = false;
 
     public $variantsState = false;
     public $optionsCount = [0];
@@ -61,6 +60,7 @@ class Create extends Component
         "price"            => ['required','integer','min:0'],
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
+        "is_hot"            => ['nullable','boolean'],
         "images.*"         => ['required','image','mimes:jpg,jpeg,png,webp','max:2048'],
         "optionName.*"     => ['string'],
     

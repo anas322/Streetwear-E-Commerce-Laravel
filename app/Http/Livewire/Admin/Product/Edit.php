@@ -22,6 +22,7 @@ class Edit extends Component
     public $price;
     public $quantity;
     public $status;
+    public $is_hot;
 
     public $variantsState ;
     public $optionsCount = [0];
@@ -59,6 +60,7 @@ class Edit extends Component
         $this->price = $product->price;
         $this->quantity = $product->quantity;
         $this->status = $product->status;
+        $this->is_hot = $product->is_hot == 'Hot' ? true : false;
 
         $this->variantsState = $product->options->count() > 0;
         $this->optionsCount = range(0,$product->options->count() - 1);
@@ -96,6 +98,7 @@ class Edit extends Component
         "price"            => ['required','integer','min:0'],
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
+        "is_hot"           => ['nullable','boolean'],
         "images.*"         => ['required'],
     
         "meta_title"       => ['nullable','string','max:255'],

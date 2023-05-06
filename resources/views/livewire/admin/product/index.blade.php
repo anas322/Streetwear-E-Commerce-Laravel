@@ -66,9 +66,9 @@
                     <th scope="col" class="py-3 px-6">
                         Category
                     </th>
-                    {{-- <th scope="col" class="py-3 px-6">
-                        Slug
-                    </th> --}}
+                    <th scope="col" class="py-3 px-6">
+                        Hot
+                    </th>
                     <th scope="col" class="py-3 px-6">
                         Description
                     </th>
@@ -96,11 +96,15 @@
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pro->name}}
                     </th>
-                    {{-- <td class="py-4 px-6">
-                        {{$pro->slug}}
-                    </td> --}}
                     <td class="py-4 px-6">
                         {{$pro->category->name}}
+                    </td>
+                    <td class="py-4 px-6">
+                        <span @class(['border-2 font-bold py-2 px-3 rounded-lg
+                            text-xs', 'border-green-600 text-green-700'=> $pro->is_hot == 'Hot' ,'border-gray-400
+                            text-gray-400' => $pro->is_hot == 'Not Hot'])>
+                        {{$pro->is_hot}}    
+                        </span>
                     </td>
                     <td class="py-4 px-6">
                         {{$pro->description}}

@@ -17,18 +17,29 @@ class Product extends Model
         'description',
         'price',
         'quantity',
+        'is_hot',
         'status',
         'meta_title',
         'meta_keyword',
         'meta_description'
     ];
 
+    protected $casts = [
+        'is_hot' => 'boolean',
+    ];
     
     protected function status(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => $value == 1 ? 'Active' : 'Draft',
             set: fn ($value) => $value == 'Active' ? 1 : 0,
+        );
+    }
+
+    protected function ishot(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value == 1 ? 'Hot' : 'Not Hot',
         );
     }
 
