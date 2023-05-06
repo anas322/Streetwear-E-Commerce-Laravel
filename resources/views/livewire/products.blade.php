@@ -238,7 +238,7 @@
                             @endforeach
                             @endforeach
                             <p class="font-roboto uppercase text-base font-light text-gray-700">LE
-                                {{ number_format($product->price,2,'.','') }}</p>
+                                {{ number_format($product->productSkus->first()->price,2,'.','') }}</p>
                         </div>
                     </div>
                 </div>

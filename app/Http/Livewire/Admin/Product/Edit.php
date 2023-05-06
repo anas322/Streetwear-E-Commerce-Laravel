@@ -6,6 +6,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class Edit extends Component
@@ -228,7 +229,7 @@ class Edit extends Component
             foreach ($options as $optionName => $optionValues) {
                 //options of product
                 $singleOption = $product->options()->create([
-                    'name' => $optionName
+                    'name' => Str::of($optionName)->snake()
                 ]);
 
                 //values of this option

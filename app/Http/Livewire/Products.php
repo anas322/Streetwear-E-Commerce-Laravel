@@ -6,6 +6,7 @@ use App\Models\option;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\productSku;
 use Illuminate\Database\Eloquent\Builder;
 
 class Products extends Component
@@ -50,6 +51,7 @@ class Products extends Component
             
             $this->getOptions();
 
+            $this->maxPrice = productSku::whereIn('product_id', $this->products->pluck('id'))->max('price');
         }else{
 
             $this->products = Product::all();
@@ -58,6 +60,8 @@ class Products extends Component
             $this->filters = option::all(); 
             
             $this->getOptions();
+
+            $this->maxPrice = productSku::max('price');
         }
 
     }
@@ -66,9 +70,8 @@ class Products extends Component
         //get all possible option values 
         foreach ($this->filters as  $key => $option) {
             //key is the filter name and the value is the available options value
-            $this->options[$this->filters[$key]->name] = $option->optionValues->pluck('name');
+            $this->options[$this->filters[$key]->name] = array_merge($this->options[$this->filters[$key]->name] ?? [], $option->optionValues->pluck('name')->toArray());
         }
-        
         //get a the maximum product price
         $this->maxPrice = $this->products->max('price');
     }
@@ -100,8 +103,10 @@ class Products extends Component
     }
 
     private function makeQuery($query){
-    //get the products between min and max price
-        $query->whereBetween('price',[$this->minPrice,$this->maxPrice]);
+      
+        $query->whereRelation('productSkus', function (Builder $query) {
+            $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
+        });
 
         //set filter options
         if($this->filterValues){

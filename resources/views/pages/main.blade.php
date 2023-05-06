@@ -102,7 +102,7 @@
                             <div class="pt-3 space-y-2">
                                 <p class="text-gray-400 text-medium capitalize font-medium "> {{ $product->category->name }} </p>
                                 {{-- <p class="uppercase font-medium"> white tee </p> --}}
-                                <p class="text-gray-400 font-medium"> ${{ number_format($product->price,2) }} </p>
+                                <p class="text-gray-400 font-medium"> ${{ number_format($product->productSkus->first()->price,2) }} </p>
                             </div>
                         </a>
                     </div>
