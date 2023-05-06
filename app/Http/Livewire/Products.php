@@ -25,7 +25,7 @@ class Products extends Component
     public $maxPrice ;
 
     public $filterValues ;
-    public $sortByValue ;
+    public $sortByValue = 'latest';
     public $aboveFilterToggle = false;
     
     public $productQV;
@@ -64,6 +64,7 @@ class Products extends Component
             $this->maxPrice = productSku::max('price');
         }
 
+        $this->sortBy();
     }
 
     private function getOptions(){
