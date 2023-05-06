@@ -25,6 +25,7 @@ class ProductQuickView extends Component
 
     public function mount(){
         $product = Product::findOrFail($this->productId);
+        
         if($product->options && $product->options->count()){
             foreach ($product->options as $option ) {
                 $this->userOptions[$option->name] = $option->optionValues[0]->id;
@@ -45,11 +46,14 @@ class ProductQuickView extends Component
                 $res = $values->whereIn('option_value_id',$this->optionMatrix[0]);
                 return $res->count() ===  $values->count();
             })->first()->productSku;
+
+            $this->quantity =  $this->productSku->quantity ; 
+            $this->price =  number_format($this->productSku->price,2,'.','');
+        }else{
+            $this->quantity =  $product->productSkus->first()->quantity ; 
+            $this->price =  number_format($product->productSkus->first()->price,2,'.','');
         }
             
-        $this->quantity = $product->productSkus->count() > 0 ? $this->productSku->quantity : $product->quantity;
-         
-        $this->price = $product->productSkus->count() > 0 ? number_format($this->productSku->price,2,'.','') : number_format($product->price,2,'.','');
 
     }
 

@@ -57,13 +57,22 @@ class Edit extends Component
         $this->name = $product->name;
         // $this->slug = $product->slug;
         $this->description = $product->description;
-        $this->price = $product->price;
-        $this->quantity = $product->quantity;
+        
+        if($product->options->count() === 0){
+            $this->quantity = $product->productSkus->first()->quantity;
+            $this->price = $product->productSkus->first()->price;
+        }else{
+            $this->quantity = 0;
+            $this->price = 0;
+        }
         $this->status = $product->status;
         $this->is_hot = $product->is_hot == 'Hot' ? true : false;
 
         $this->variantsState = $product->options->count() > 0;
-        $this->optionsCount = range(0,$product->options->count() - 1);
+
+        //calculate optionsCount only if product at least has one option otherwise set it to 0 
+        $this->optionsCount = $product->options->count() >= 1 ? range(0,$product->options->count() - 1) : [0];
+
         $this->optionName = $product->options->pluck('name');
         foreach ($product->options as $option) {
             array_push($this->optionValuesArray,$option->optionValues->pluck('name'));
@@ -174,13 +183,22 @@ class Edit extends Component
     public function submit()
     {
         //first validate the data
-        $validatedData = $this->validate();
+        $this->validate();
 
         //find the right category 
         $category = Category::findOrFail($this->categoryId);
 
         //store product
-        $product = $category->products()->create($validatedData);
+        $product = $category->products()->create([
+            'name'             => $this->name,
+            'slug'             => $this->name,
+            'description'      => $this->description,
+            'status'           => $this->status,
+            'is_hot'           => $this->is_hot,
+            'meta_title'       => $this->meta_title,
+            'meta_keyword'     => $this->meta_keyword,
+            'meta_description' => $this->meta_description
+        ]);
 
         //store new images
         if(count($this->images)){
@@ -253,6 +271,12 @@ class Edit extends Component
                 }
             }
 
+        }else{
+            $productSku = $product->productSkus()->create([
+                'sku'   => uniqid(),
+                'price' => $this->price,
+                'quantity' => $this->quantity,
+            ]);
         }
 
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');

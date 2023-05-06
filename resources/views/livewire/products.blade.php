@@ -113,8 +113,6 @@
         {{-- products section  --}}
         <div class="md:ml-5 flex-grow relative overflow-hidden">
             {{-- filter above products--}}
-            {{-- <livewire:above-filter-products /> --}}
-
             <div class="md:hidden block">
 
                 <div>
@@ -210,7 +208,7 @@
                                 </div>
                                 @endif
                             </a>
-                            @if($product->productSkus->sum('quantity') )
+                            @if($product->productSkus->sum('quantity') <= 0)
                             <span
                                 class="absolute top-4 left-4 uppercase py-1 px-3.5 font-roboto bg-gray-400 text-white text-sm">Sold Out</span>
                             @elseif($product->is_hot == 'Hot')

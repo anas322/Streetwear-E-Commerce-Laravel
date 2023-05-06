@@ -130,13 +130,22 @@ class Create extends Component
     public function submit()
     {
         //first validate the data
-        $validatedData = $this->validate();
+        $this->validate();
 
         //find the right category 
         $category = Category::findOrFail($this->categoryId);
 
         //store product
-        $product = $category->products()->create($validatedData);
+        $product = $category->products()->create([
+            'name'             => $this->name,
+            'slug'             => $this->name,
+            'description'      => $this->description,
+            'status'           => $this->status,
+            'is_hot'           => $this->is_hot,
+            'meta_title'       => $this->meta_title,
+            'meta_keyword'     => $this->meta_keyword,
+            'meta_description' => $this->meta_description
+        ]);
 
         //store product images
         if(count($this->images)){
@@ -205,6 +214,12 @@ class Create extends Component
                 }
             }
 
+        }else{
+            $productSku = $product->productSkus()->create([
+                'sku'   => uniqid(),
+                'price' => $this->price,
+                'quantity' => $this->quantity,
+            ]);
         }
 
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');

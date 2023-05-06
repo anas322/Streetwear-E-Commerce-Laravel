@@ -51,59 +51,50 @@
             @endif
 
             {{-- <div>
-                              <div class="flex flex-wrap gap-4">
-                                  <label for="large"
-                                      class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase basis-full">Color</label>
-                                  <div class="flex items-center mr-4">
-                                      <input id="red-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="red-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
-                                  </div>
-                                  <div class="flex items-center mr-4">
-                                      <input id="green-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="green-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
-                                  </div>
-                                  <div class="flex items-center mr-4">
-                                      <input checked id="purple-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="purple-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Purple</label>
-                                  </div>
-                                  <div class="flex items-center mr-4">
-                                      <input id="teal-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="teal-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teal</label>
-                                  </div>
-                                  <div class="flex items-center mr-4">
-                                      <input id="yellow-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-yellow-400 bg-gray-100 border-gray-300 focus:ring-yellow-500 dark:focus:ring-yellow-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="yellow-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yellow</label>
-                                  </div>
-                                  <div class="flex items-center mr-4">
-                                      <input id="orange-radio" type="radio" value="" name="colored-radio"
-                                          class="w-8 h-8 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                      <label for="orange-radio"
-                                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Orange</label>
-                                  </div>
-                              </div>
-                </div> --}}
+                    <div class="flex flex-wrap gap-4">
+                        <label for="large"
+                            class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase basis-full">Color</label>
+                        <div class="flex items-center mr-4">
+                            <input id="red-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="red-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Red</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input id="green-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="green-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Green</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input checked id="purple-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="purple-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Purple</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input id="teal-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teal</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input id="yellow-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-yellow-400 bg-gray-100 border-gray-300 focus:ring-yellow-500 dark:focus:ring-yellow-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="yellow-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yellow</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input id="orange-radio" type="radio" value="" name="colored-radio"
+                                class="w-8 h-8 text-orange-500 bg-gray-100 border-gray-300 focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="orange-radio"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Orange</label>
+                        </div>
+                    </div>
+            </div> --}}
 
             <div>
-                <span class="block text-xl font-bold pb-4"> Quantity </span>
-
                 <div class="flex">
-                    <select wire:model="quantity"
-                        class="basis-1/5 px-3 h-12 focus:ring-0 focus:border-gray-300 border-gray-300 text-gray-900 text-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                        @while ($quantity > 0)
-                        <option value="{{ $quantity }}">{{ $quantity }}</option>
-                        {{ $quantity-- }}
-                        @endwhile
-                    </select>
                     <button type="submit" wire:click="addToCart"
                         class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
                         <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -121,7 +112,6 @@
                     <span class="md:text-lg text-base font-medium uppercase">buy now</span>
                 </button>
             </div>
-
 
         </div>
     </div>

@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('description')->nullable();
-            $table->integer('price');
-            $table->integer('quantity');
             $table->tinyInteger('status')->default(1)->comment('1=Active,0=Draft');
 
             $table->string('meta_title')->nullable();
