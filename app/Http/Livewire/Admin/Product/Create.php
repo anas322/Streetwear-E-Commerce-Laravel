@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Product;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
 
@@ -169,7 +170,7 @@ class Create extends Component
             foreach ($options as $optionName => $optionValues) {
                 //options of product
                 $singleOption = $product->options()->create([
-                    'name' => $optionName
+                    'name' => Str::of($optionName)->snake()
                 ]);
 
                 //values of this option

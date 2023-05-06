@@ -9,7 +9,7 @@
 
     <div class="flex items-start pt-28 px-10 relative">
         <!-- left filter products -->
-        <div class="basis-52 sticky-side-bar sticky top-0 md:inline-block hidden">
+        <div class="basis-52 overflow-y-auto min-w-[14rem] max-h-screen pr-4 pb-6 sticky-side-bar sticky top-0 md:inline-block hidden">
             <div class="flex flex-col justify-center space-y-6 ">
                 <!-- price  -->
                 <div class="space-y-4 ">
