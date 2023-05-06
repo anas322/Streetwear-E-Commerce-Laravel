@@ -11,7 +11,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <input wire:model="search" type="search" id="table-search"
+                <input wire:model.trim="search" type="search" id="table-search"
                     class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-white rounded-lg focus:ring-0 border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white placeholder:text-xs"
                     placeholder="Search by product name..">
             </div>
@@ -142,9 +142,9 @@
                     <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Cateogry</h3>
 
                     <form wire:submit.prevent="submit">
-                        <input type="hidden" wire:model="categoryId">
+                        <input type="hidden" wire:model.trim="categoryId">
                         <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model="name" id="name"
+                            <input type="text" wire:model.trim="name" id="name"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " />
                             @error('name')
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model="description" id="description"
+                            <input type="text" wire:model.trim="description" id="description"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " />
                             @error('description')
@@ -170,7 +170,7 @@
 
                         <div class="relative z-0 mb-6 w-full group">
                             <label for="status" class="sr-only">select</label>
-                            <select id="status" wire:model="status"
+                            <select id="status" wire:model.trim="status"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
                                 <option selected>Choose Status</option>
@@ -186,7 +186,7 @@
 
                         {{-- <div class="grid md:grid-cols-2 md:gap-6">
                             <div class="relative z-0 mb-6 w-full group">
-                                <input type="text" wire:model="slug" id="slug"
+                                <input type="text" wire:model.trim="slug" id="slug"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " />
                                 @error('slug')
@@ -200,7 +200,7 @@
                 <div class="relative z-0 mb-6 w-full group">
 
                     <label for="status" class="sr-only">select</label>
-                    <select id="status" wire:model="status"
+                    <select id="status" wire:model.trim="status"
                         class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
                         <option selected>Choose Status</option>
@@ -247,7 +247,7 @@
                                     to upload</span></p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, JPEG (MAX. 2MB)</p>
                         </div>
-                        <input id="dropzone-file" type="file" wire:model="image" class="hidden"
+                        <input id="dropzone-file" type="file" wire:model.trim="image" class="hidden"
                             accept=".jpg, .jpeg, .png, .webp" />
                     </label>
                     @endif

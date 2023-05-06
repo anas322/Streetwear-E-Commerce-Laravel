@@ -20,12 +20,12 @@
 
                     <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
                         <div class="flex items-center pb-3">
-                            <input type="number" wire:model="minPrice" wire:change.debounce.200ms="updateSearchInput"
+                            <input type="number" wire:model.trim="minPrice" wire:change.debounce.200ms="updateSearchInput"
                                 wire:keyup="updateSearchInput" id="phone"
                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                 placeholder="LE: " min="0" autocomplete="off">
                             <span class="text-gray-500 text-2xl px-2">-</span>
-                            <input type="number" wire:model="maxPrice" wire:change.debounce.200ms="updateSearchInput"
+                            <input type="number" wire:model.trim="maxPrice" wire:change.debounce.200ms="updateSearchInput"
                                 wire:keyup="updateSearchInput" id="phone"
                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                 placeholder="LE: " min="0" autocomplete="off">
@@ -49,7 +49,7 @@
 
                             @foreach ($optionValues as $key => $optionValue)
                             <div class="flex items-center  rounded">
-                                <input wire:model='filterValues. {{ $name . $key }}' wire:click="updateSearchInput"
+                                <input wire:model.trim='filterValues. {{ $name . $key }}' wire:click="updateSearchInput"
                                     value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox"
                                     class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
                                 <label for="bordered-checkbox-{{ $name . $key }}"
@@ -75,7 +75,7 @@
                         <div class="flex flex-col pb-4">
 
                             <div class="flex items-center mb-2">
-                                <input id="default-radio-1" type="radio" wire:model="sortByValue" value="latest"
+                                <input id="default-radio-1" type="radio" wire:model.trim="sortByValue" value="latest"
                                     wire:click="sortBy"
                                     class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
                                 <label for="default-radio-1"
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="flex items-center mb-2">
-                                <input id="default-radio-2" type="radio" wire:model="sortByValue" value="priceLowToHigh"
+                                <input id="default-radio-2" type="radio" wire:model.trim="sortByValue" value="priceLowToHigh"
                                     wire:click="sortBy"
                                     class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
                                 <label for="default-radio-2"
@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="flex items-center mb-2">
-                                <input id="default-radio-3" type="radio" wire:model="sortByValue" value="priceHighToLow"
+                                <input id="default-radio-3" type="radio" wire:model.trim="sortByValue" value="priceHighToLow"
                                     wire:click="sortBy"
                                     class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
                                 <label for="default-radio-3"
@@ -124,7 +124,7 @@
                         </button>
 
                         <div class="w-48">
-                            <select id="sort" wire:model="sortByValue" wire:change="sortBy"
+                            <select id="sort" wire:model.trim="sortByValue" wire:change="sortBy"
                                 class="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-0 focus:border-gray-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected value="latest">LATEST</option>
                                 <option value="priceLowToHigh">Price Low To High</option>
@@ -141,11 +141,11 @@
                             <div class="flex flex-col justify-start items-center gap-y-4">
                                 <span class="font-extralight text-base text-gray-500 w-full">Price</span>
                                 <div class="flex pb-3">
-                                    <input type="number" id="phone" wire:model="minPrice" wire:change="updateSearchInput"
+                                    <input type="number" id="phone" wire:model.trim="minPrice" wire:change="updateSearchInput"
                                         class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                         placeholder="LE: " min="0" max="10000" autocomplete="off" required>
                                     <span class="text-gray-500 text-2xl px-2">-</span>
-                                    <input type="number" id="phone" wire:model="maxPrice" wire:change="updateSearchInput"
+                                    <input type="number" id="phone" wire:model.trim="maxPrice" wire:change="updateSearchInput"
                                         class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                         placeholder="LE: " min="0" max="10000" autocomplete="off" required>
                                 </div>
@@ -163,7 +163,7 @@
 
                                                     @foreach ($optionValues as $key => $optionValue)
                                                     <div class="flex items-center  rounded">
-                                                        <input wire:model='filterValues. {{ $name . $key }}' wire:click="updateSearchInput"
+                                                        <input wire:model.trim='filterValues. {{ $name . $key }}' wire:click="updateSearchInput"
                                                             value="{{$optionValue}}" id="bordered-checkbox-{{ $name . $key }}" type="checkbox"
                                                             class="w-5 h-5 text-gray-400 bg-gray-200 rounded-full border-0 focus:ring-0 ">
                                                         <label for="bordered-checkbox-{{ $name . $key }}"

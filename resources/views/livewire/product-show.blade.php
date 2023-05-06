@@ -39,7 +39,7 @@
             <div>
                 <label for="{{ $option->name }}"
                     class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
-                <select id="{{ $option->name }}" wire:model="userOptions.{{ $option->name}}"
+                <select id="{{ $option->name }}" wire:model.trim="userOptions.{{ $option->name}}"
                     class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option disabled>Choose a size</option>
                     @foreach ($option->optionValues as $value)
