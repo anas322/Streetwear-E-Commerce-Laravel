@@ -46,6 +46,7 @@ class OrderController extends Controller
                 'quantity' => $cart->quantity,
             ]);
             
+            $productSku->decrement('quantity',$cart->quantity);
             $cart->delete();
         }
 

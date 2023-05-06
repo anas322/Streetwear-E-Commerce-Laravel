@@ -16,7 +16,7 @@ class OrderSummary extends Component
 
     public function mount(){
         if($this->order){
-            $this->subTotal = $this->order->total_price - number_format(($this->order->total_price/100) * 5,2);
+            $this->subTotal = $this->order->total_price - ($this->order->total_price/100) * 5;
             $this->tax = number_format(($this->order->total_price/100) * 5,2);
             $this->totalPrice = $this->order->total_price;
             return;
@@ -27,7 +27,7 @@ class OrderSummary extends Component
             $total +=  $productSku->price * $item->quantity;
         }
         $this->subTotal = $total;
-        $this->tax = number_format(($this->subTotal/100) * 5,2);
+        $this->tax = ($this->subTotal/100) * 5;
         $this->totalPrice = number_format($this->subTotal + $this->tax,2);
     }
 

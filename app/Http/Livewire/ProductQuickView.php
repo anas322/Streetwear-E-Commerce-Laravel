@@ -85,11 +85,9 @@ class ProductQuickView extends Component
                 $product->carts()->create([
                     'user_id' => auth()->user()->id,
                     'product_sku_id' => $this->productSku->id,
-                    'quantity' => $this->productSku->quantity,
                     'price' => $this->productSku->price,
                 ]);
     
-                $this->productSku->decrement('quantity',$this->quantity);
         
                 session()->flash('success','Product added to cart successfully');
             }
