@@ -76,7 +76,7 @@
                         Price
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Quantity
+                        All Quantity
                     </th>
                     {{-- <th scope="col" class="py-3 px-6">
                         Colors
@@ -110,10 +110,10 @@
                         {{$pro->description}}
                     </td>
                     <td class="py-4 px-6">
-                        {{$pro->price}}
+                        {{$pro->productSkus->first()->price}}
                     </td>
                     <td class="py-4 px-6">
-                        {{$pro->quantity}}
+                        {{$pro->productSkus->sum('quantity')}}
                     </td>
                     {{-- <td class="py-4 px-6">
                         <div class="space-x-1 ">

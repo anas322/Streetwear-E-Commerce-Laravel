@@ -347,7 +347,17 @@
                     @if ($images)
                     @foreach ($images as $image)
                     <li class="ui-state-default relative">
+                        @if($image->temporaryUrl())
                         <img src="{{ $image->temporaryUrl() }}" width="100" height="100">
+                        @else
+                        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium">warning alert!</span> Sorry, this image type is not supported. Please upload a JPNG, JPG, JPEG, WEBP or PNG file (MAX SIZE. 2MB).
+                            </div>
+                        </div>
+                        @endif
                         @if ($loop->iteration == 1)
                         <span
                             class="thumbnail absolute bottom-0 left-0 w-full py-2 bg-black/40 text-center text-white font-bold text-sm">First
@@ -367,11 +377,11 @@
 
                 <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                     x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
-                    x-on:livewire-upload-progress="progress = $event.detail.progress">
+                    x-on:livewire-upload-progress="progress = $event.detail.progress" >
 
-                    <input multiple wire:model.trim="images"
+                    <input  wire:model="images"  onchange="validateFile(this)" 
                         class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        id="images" type="file" accept=".jpg, .jpeg, .png, .webp">
+                        id="images" type="file" accept=".jpg, .jpeg, .png, .webp" multiple>
 
                     <div x-show="isUploading">
                         <progress max="100" x-bind:value="progress"></progress>
@@ -384,7 +394,7 @@
                     <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">Oh,snapp!</span>
                         {{ $message }}.</p>
                     @enderror
-
+                </div>
             </li>
         </ol>
 

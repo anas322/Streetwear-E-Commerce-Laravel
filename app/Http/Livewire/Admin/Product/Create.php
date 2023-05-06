@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
+use Termwind\Components\Dd;
 
 class Create extends Component
 {
@@ -132,6 +133,12 @@ class Create extends Component
     {
         //first validate the data
         $this->validate();
+       
+        //check if images are uploaded
+        if(count($this->images) == 0){
+            $this->addError('images','Please upload at least one image');
+            return;
+        }
 
         //find the right category 
         $category = Category::findOrFail($this->categoryId);
