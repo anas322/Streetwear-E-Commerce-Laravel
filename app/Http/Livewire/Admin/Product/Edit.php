@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Product;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -204,12 +205,12 @@ class Edit extends Component
         //store new images
         if(count($this->images)){
             foreach ($this->images as $image) {
-                if(is_string($image)){
-                    $product->productImages()->create(['image' => $image]);
-                    continue;
+                $path = $image;
+                if(!is_string($image)){
+                    $path = $image->store('products');
                 }
-                $path = $image->store('products');
-                $product->productImages()->create(['image' => $path]);
+                // dump($path);
+                ProductImage::updateOrCreate(['image' => $path],['product_id' => $product->id]);
             }
         }
 

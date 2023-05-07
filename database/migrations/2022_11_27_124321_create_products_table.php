@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description')->nullable();
             $table->tinyInteger('status')->default(1)->comment('1=Active,0=Draft');
+             $table->boolean("is_hot")->default(false)->comment('true->hot, false->not hot');
 
             $table->string('meta_title')->nullable();
             $table->mediumText('meta_keyword')->nullable();

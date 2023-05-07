@@ -24,8 +24,9 @@ class Index extends Component
     public function delete()
     {   
         $images = $this->product->productImages;
-        foreach ($images as $imageObject ) {
-            Storage::delete($imageObject->image);
+        foreach ($images as $imageModel ) {
+             $imageModel->delete();
+            Storage::delete($imageModel->image);
         }   
         
         $this->product->delete();

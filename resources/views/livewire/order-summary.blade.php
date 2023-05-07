@@ -15,7 +15,7 @@
 
     <div class="flex justify-between items-center border-b border-gray-200 pb-5">
         <span class="font-bold text-lg font-roboto">Shipping and handling</span>
-        <span class="text-gray-500 font-bold text-lg font-roboto">${{ $tax}}</span>
+        <span class="text-gray-500 font-bold text-lg font-roboto">${{ $tax }}</span>
     </div>
 
     <div class="flex justify-between items-center border-b border-gray-200 pb-5">
@@ -30,9 +30,8 @@
 </div>
 
 @if (!$order)
-<form action="{{ route('orders.store') }}" method="POST">
-    @csrf
-    <button class="w-full py-4 block uppercase text-base text-center bg-slate-800 text-white"> check out</button>
-</form>
+    <form action="{{ route('orders.store') }}" method="POST">
+        @csrf
+        <button class="w-full py-4 block uppercase text-base text-center bg-slate-800 text-white"> check out</button>
+    </form>
 @endif
-

@@ -1,6 +1,6 @@
   <div wire:click.self="$emit('closeModal')"
       class="flex justify-center items-center bg-black/30 overflow-y-auto overflow-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-screen">
-      <div class="relative w-full max-w-7xl md:h-5/6 h-auto" >
+      <div class="relative w-full max-w-7xl md:h-5/6 h-auto">
           <div class="mt-[31rem] md:mt-0 relative bg-white rounded-sm shadow dark:bg-gray-700 h-full">
               <div class="absolute top-4 right-4">
                   <button type="button" wire:click="$emit('closeModal')"
@@ -22,10 +22,10 @@
                           <div class="swiper-wrapper">
 
                               @foreach ($product->productImages as $productImage)
-                              <div class="swiper-slide flex justify-center items-center">
-                                  <img src="{{ asset('/storage/'.$productImage->image) }}"
-                                      class="object-contain block w-full h-full" />
-                              </div>
+                                  <div class="swiper-slide flex justify-center items-center">
+                                      <img src="{{ asset('/storage/' . $productImage->image) }}"
+                                          class="object-contain block w-full h-full" />
+                                  </div>
                               @endforeach
 
                           </div>
@@ -36,10 +36,10 @@
                           <div class="swiper-wrapper">
 
                               @foreach ($product->productImages as $productImage)
-                              <div class="swiper-slide flex justify-center items-center ho hover:cursor-pointer">
-                                  <img src="{{ asset('/storage/'.$productImage->image) }}"
-                                      class="object-contain block h-full w-full" />
-                              </div>
+                                  <div class="swiper-slide flex justify-center items-center ho hover:cursor-pointer">
+                                      <img src="{{ asset('/storage/' . $productImage->image) }}"
+                                          class="object-contain block h-full w-full" />
+                                  </div>
                               @endforeach
 
                           </div>
@@ -52,19 +52,19 @@
                               {{ $price }}</span>
 
                           @if ($product->options && $product->options->count())
-                            @foreach ($product->options as $key => $option)    
-                                <div>
-                                    <label for="{{ $option->name }}"
-                                        class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
-                                    <select id="{{ $option->name }}" wire:model = "userOptions.{{ $option->name}}"
-                                        class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                        <option disabled>Choose a size</option>
-                                        @foreach ($option->optionValues as $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endforeach    
+                              @foreach ($product->options as $key => $option)
+                                  <div>
+                                      <label for="{{ $option->name }}"
+                                          class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{ $option->name }}</label>
+                                      <select id="{{ $option->name }}" wire:model="userOptions.{{ $option->name }}"
+                                          class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                          <option disabled>Choose a size</option>
+                                          @foreach ($option->optionValues as $value)
+                                              <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                          @endforeach
+                                      </select>
+                                  </div>
+                              @endforeach
                           @endif
 
                           {{-- <div>
@@ -137,7 +137,7 @@
           </div>
       </div>
 
-      @if(session('success'))
-        {{ session('success') }}
+      @if (session('success'))
+          {{ session('success') }}
       @endif
   </div>
