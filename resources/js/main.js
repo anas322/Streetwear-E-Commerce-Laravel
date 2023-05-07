@@ -1,5 +1,8 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
+
+import flowbite from "../../node_modules/flowbite/src/flowbite.js";
+
 // ===================Start latest arrival swiper=================//
 const swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
@@ -55,6 +58,6 @@ const options = {
     interval: 3000,
 };
 
-const carousel = new Carousel(items, options);
+const carousel = new flowbite.Carousel(items, options);
 carousel.cycle();
 // ===================End header slider=================//

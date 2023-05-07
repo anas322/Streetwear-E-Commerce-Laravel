@@ -3,29 +3,30 @@
     {{-- header slider  --}}
     <x-slot name="header">
         {{-- carousel header  --}}
-        <div id="indicators-carousel" class="wow fadeIn select-none pointer-events-none relative sm:h-screen h-[50vh] pt-16" data-carousel="static">
+        <div id="indicators-carousel"
+            class="wow fadeIn select-none pointer-events-none relative sm:h-screen h-[50vh] pt-16" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative overflow-hidden h-full">
                 <!-- Item 1 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
                     id="carousel-item-1" data-carousel-item="active">
-                    <img src="{{asset('storage/dashboard/carousol1.webp')}}"
+                    <img src="{{ asset('storage/dashboard/carousol1.webp') }}"
                         class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
-                    
+
                 </div>
                 <!-- Item 2 -->
                 <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
                     id="carousel-item-2" data-carousel-item="">
-                    <img src="{{asset('storage/dashboard/carousol2.webp')}}"
+                    <img src="{{ asset('storage/dashboard/carousol2.webp') }}"
                         class="object-contain h-full object-top absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
-                        
+
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform"
                     id="carousel-item-3" data-carousel-item="">
-                    <img src="{{asset('storage/dashboard/carousol3.jpeg')}}"
+                    <img src="{{ asset('storage/dashboard/carousol3.jpeg') }}"
                         class="object-contain h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="...">
                 </div>
@@ -62,7 +63,8 @@
                     class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                     <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                        </path>
                     </svg>
                     <span class="sr-only">Next</span>
                 </span>
@@ -82,30 +84,35 @@
     <div class="container mx-auto">
         {{-- latest arrivals section  --}}
         <div class="min-h-screen pb-8 z-10">
-            <header class="wow bounceInLeft pt-12 font-semibold max-w-3xl mx-auto h-[30vh]" data-wow-delay=".3s"> 
+            <header class="wow bounceInLeft pt-12 font-semibold max-w-3xl mx-auto h-[30vh]" data-wow-delay=".3s">
                 <h1 class="md:text-6xl text-4xl text-center font-roboto pb-7"> LATEST ARRIVALS </h1>
-                <p class="text-gray-400 text-center font-normal px-4">Fashion is part of the daily air and it changes all the
-                    time, with all the events. You can even see the approaching of a revolution in clothes. You can see and
+                <p class="text-gray-400 text-center font-normal px-4">Fashion is part of the daily air and it changes
+                    all the
+                    time, with all the events. You can even see the approaching of a revolution in clothes. You can see
+                    and
                     feel everything in clothes.</p>
             </header>
 
-            <div class="swiper mySwiper !mr-4 !pt-8 " >
+            <div class="swiper mySwiper !mr-4 !pt-8 ">
                 <div class="swiper-wrapper">
 
                     @foreach ($latestArrivals as $product)
-                    <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
-                        <a href="{{ route('products.show',$product) }}">
-                            <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
-                                <img src="{{ '/storage/' . $product->productImages->first()->image }}" alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
-                            </div>
-                            <div class="pt-3 space-y-2">
-                                <p class="text-gray-400 text-medium capitalize font-medium "> {{ $product->category->name }} </p>
-                                {{-- <p class="uppercase font-medium"> white tee </p> --}}
-                                <p class="text-gray-400 font-medium"> ${{ number_format($product->productSkus->first()->price,2) }} </p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="wow fadeIn swiper-slide pl-4" data-wow-delay=".5s">
+                            <a href="{{ route('products.show', $product) }}">
+                                <div class="overflow-hidden rounded-md h-[30rem] shadow-md">
+                                    <img src="{{ '/storage/' . $product->productImages->first()->image }}"
+                                        alt="{{ $product->name }}"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700 rounded-lg">
+                                </div>
+                                <div class="pt-3 space-y-2">
+                                    <p class="text-gray-400 text-medium capitalize font-medium ">
+                                        {{ $product->category->name }} </p>
+                                    {{-- <p class="uppercase font-medium"> white tee </p> --}}
+                                    <p class="text-gray-400 font-medium">
+                                        ${{ number_format($product->productSkus->first()->price, 2) }} </p>
+                                </div>
+                            </a>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -119,18 +126,20 @@
             </header>
 
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
-                
+
                 @foreach ($categories as $cat)
                     <div class="wow fadeIn col-span-3 " data-wow-delay=".5s">
                         <div class="overflow-hidden rounded-sm shadow-xl">
-                            <img src="{{ asset('/storage/' . $cat->image) }}" class="object-cover w-full h-full hover:scale-105 transition duration-700 rounded-sm">
+                            <img src="{{ asset('/storage/' . $cat->image) }}"
+                                class="object-cover w-full h-full hover:scale-105 transition duration-700 rounded-sm">
                         </div>
 
                         <div class="flex flex-col justify-center items-center pt-8 gap-y-4">
-                            <p class="font-semibold text-xl uppercase">{{$cat->name}}</p>
-                            <a  href="{{ route('products.index',['cat' => $cat->name]) }}" class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
-                            <span>EXPLORE</span>  
-                            <x-svgs.explore class="w-7 h-5 " />
+                            <p class="font-semibold text-xl uppercase">{{ $cat->name }}</p>
+                            <a href="{{ route('products.index', ['cat' => $cat->name]) }}"
+                                class="flex space-x-3 text-white bg-gray-900 hover:scale-105 transition py-2 px-6 rounded-sm ">
+                                <span>EXPLORE</span>
+                                <x-svgs.explore class="w-7 h-5 " />
                             </a>
                         </div>
                     </div>
@@ -145,25 +154,30 @@
                 <h1 class="md:text-6xl text-5xl text-center font-roboto px-3"> WHERE TO FIND US </h1>
             </header>
 
-            <div class="flex flex-col lg:flex-row justify-around items-center md:space-x-8 space-y-8 lg:pt-40 pt-16 px-4">
+            <div
+                class="flex flex-col lg:flex-row justify-around items-center md:space-x-8 space-y-8 lg:pt-40 pt-16 px-4">
                 <div class="wow slideInLeft">
                     <x-svgs.location class="p-8 lg:h-auto h-96 max-w-full" />
                 </div>
 
                 <div class="wow slideInRight flex flex-col space-y-8">
                     <div class="flex flex-col items-center justify-center space-y-7">
-                        <p class="text-2xl text-end font-bold pb-4 font-arabic" style="letter-spacing:initial">فرع بنها : أمام بوابة القاعات لنادي بنها الرياضي اخر شارع كلية طب</p>
-                        <a href="https://goo.gl/maps/237yXv4tbSRPJxQ79" class="rounded-lg py-3 px-6 bg-gray-900 hover:scale-105 transition inline-flex items-center space-x-4 text-white box-content ">
+                        <p class="text-2xl text-end font-bold pb-4 font-arabic" style="letter-spacing:initial">فرع
+                            بنها : أمام بوابة القاعات لنادي بنها الرياضي اخر شارع كلية طب</p>
+                        <a href="https://goo.gl/maps/237yXv4tbSRPJxQ79"
+                            class="rounded-lg py-3 px-6 bg-gray-900 hover:scale-105 transition inline-flex items-center space-x-4 text-white box-content ">
                             <span>Get Direction</span>
-                            <x-svgs.small-location  class="w-7 h-7"/>
+                            <x-svgs.small-location class="w-7 h-7" />
                         </a>
                     </div>
 
                     <div class="flex flex-col items-center justify-center space-y-7">
-                        <p class="text-2xl text-end font-bold pb-4 font-arabic" style="letter-spacing:initial">فرع مدينة نصر : القاهرة - مدينة نصر - طيبة مول - الدور الاول علوي</p>
-                        <a href="https://goo.gl/maps/HvFWbDm6UM7MDi7X6" class="rounded-lg py-3 px-6 bg-gray-900 hover:scale-105 transition inline-flex items-center space-x-4 text-white box-content ">
+                        <p class="text-2xl text-end font-bold pb-4 font-arabic" style="letter-spacing:initial">فرع
+                            مدينة نصر : القاهرة - مدينة نصر - طيبة مول - الدور الاول علوي</p>
+                        <a href="https://goo.gl/maps/HvFWbDm6UM7MDi7X6"
+                            class="rounded-lg py-3 px-6 bg-gray-900 hover:scale-105 transition inline-flex items-center space-x-4 text-white box-content ">
                             <span>Get Direction</span>
-                            <x-svgs.small-location  class="w-7 h-7"/>
+                            <x-svgs.small-location class="w-7 h-7" />
                         </a>
                     </div>
                 </div>
@@ -178,34 +192,32 @@
         </header>
         <div class="flex flex-wrap py-24 justify-start gap-y-8">
             <div class="wow slideInLeft space-y-3 md:basis-2/4 basis-full">
-                <x-svgs.cash-on-delivery class="w-40 h-auto mx-auto "/>
+                <x-svgs.cash-on-delivery class="w-40 h-auto mx-auto " />
                 <p class="font-light text-center">CASH ON DELIVERY</p>
                 <p class="text-sm text-center">Pay by card or Cash on delivery</p>
             </div>
 
             <div class="wow slideInRight space-y-3 md:basis-2/4 basis-full">
-                <x-svgs.car-icon class="w-40 h-auto mx-auto "/>
+                <x-svgs.car-icon class="w-40 h-auto mx-auto " />
                 <p class="font-light text-center">FREE & EASY RETURNS</p>
                 <p class="text-sm text-center">We understand people change their minds</p>
             </div>
 
             <div class="wow slideInLeft space-y-3 md:basis-2/4 basis-full">
-                <x-svgs.t-shirt class="w-40 h-auto mx-auto "/>
+                <x-svgs.t-shirt class="w-40 h-auto mx-auto " />
                 <p class="font-light text-center">NEW STYLES EVERYDAY</p>
                 <p class="text-sm text-center">We offer affordable everyday styles for everyone</p>
             </div>
 
             <div class="wow slideInRight space-y-3 md:basis-2/4 basis-full">
-                <x-svgs.like-stars class="w-40 h-auto mx-auto "/>
+                <x-svgs.like-stars class="w-40 h-auto mx-auto " />
                 <p class="font-light text-center">SATISFACTION GUARANTEED</p>
                 <p class="text-sm text-center">You are at the heart of everything we do</p>
             </div>
         </div>
     </div>
-    
+
     @push('scripts')
-           @vite(['resources/js/main.js'])
+        @vite(['resources/js/main.js'])
     @endpush
 </x-app-layout>
-
-

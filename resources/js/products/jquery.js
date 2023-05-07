@@ -33,6 +33,6 @@ function AllCode() {
 }
 
 AllCode();
-window.addEventListener("contentChanged", (event) => {
+document.addEventListener("livewire:updated", function () {
     AllCode();
 });

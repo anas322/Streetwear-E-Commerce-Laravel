@@ -19,8 +19,12 @@ class ProductQuickView extends Component
     public $quantity ;
     public $price ;
     
+    public function updated(){
+    $this->dispatchBrowserEvent('livewire:updated');
+    }
+
     public function dehydrate(){
-        $this->dispatchBrowserEvent('contentChanged');
+        $this->dispatchBrowserEvent('livewire:updated');
     }
 
     public function mount(){

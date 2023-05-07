@@ -1,6 +1,5 @@
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-
 const app = () => {
     // ===================Start quick product view =================//
     const swiper2 = new Swiper(".product-view", {
@@ -23,6 +22,7 @@ const app = () => {
     });
 };
 app();
-window.addEventListener("contentChanged", (event) => {
+document.addEventListener("livewire:updated", function () {
+    import("/node_modules/.vite/deps/flowbite.js");
     app();
 });

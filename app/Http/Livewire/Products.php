@@ -30,12 +30,8 @@ class Products extends Component
     
     public $productQV;
 
-    public function boot(){
-        $this->dispatchBrowserEvent('contentChanged');
-    }
-
-    public function dehydrate(){
-        $this->dispatchBrowserEvent('contentChanged');
+    public function updated(){
+    $this->dispatchBrowserEvent('livewire:updated');
     }
 
     public function mount(){
