@@ -47,7 +47,14 @@ class Products extends Component
             
             $this->getOptions();
 
-            $this->maxPrice = productSku::whereIn('product_id', $this->products->pluck('id'))->max('price');
+            $this->maxPrice = productSku::whereIn('product_id', $this->products->pluck('id'))->get()->map(function ($productSku) {
+                $product = $productSku->product;
+                $sale = $product->sale;
+                if ($sale && $sale->discounted_price < $productSku->price) {
+                    return $sale->discounted_price;
+                }
+                return $productSku->price;
+            })->max();
         }else{
 
             $this->products = Product::all();
@@ -57,7 +64,6 @@ class Products extends Component
             
             $this->getOptions();
 
-            $this->maxPrice = productSku::max('price');
         }
 
         $this->sortBy();
@@ -70,7 +76,15 @@ class Products extends Component
             $this->options[$this->filters[$key]->name] = array_merge($this->options[$this->filters[$key]->name] ?? [], $option->optionValues->pluck('name')->toArray());
         }
         //get a the maximum product price
-        $this->maxPrice = $this->products->max('price');
+        $this->maxPrice = $this->products->first()->with('sale')->get()->map(function($product) {
+            if($product->sale) {
+                // dd($product->sale->discounted_price);
+                return $product->sale->discounted_price;
+            } else {
+                return $product->productSkus()->first()->price;
+            }
+        })->max();
+
     }
 
 
@@ -102,7 +116,17 @@ class Products extends Component
     private function makeQuery($query){
       
         $query->whereRelation('productSkus', function (Builder $query) {
-            $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
+            // $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
+            if ($this->minPrice || $this->maxPrice) {
+                $query->where(function (Builder $query) {
+                    $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
+                    $query->orWhereHas('product', function (Builder $query) {
+                        $query->whereHas('sale', function (Builder $query) {
+                            $query->whereBetween('discounted_price', [$this->minPrice, $this->maxPrice]);
+                        });
+                    });
+                });
+            }
         });
 
         //set filter options

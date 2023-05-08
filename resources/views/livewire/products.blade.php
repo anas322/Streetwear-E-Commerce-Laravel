@@ -21,13 +21,13 @@
 
                     <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
                         <div class="flex items-center pb-3">
-                            <input type="number" wire:model.trim="minPrice"
+                            <input type="number" wire:model.lazy.trim="minPrice"
                                 wire:change.debounce.200ms="updateSearchInput" wire:keyup="updateSearchInput"
                                 id="phone"
                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                 placeholder="LE: " min="0" autocomplete="off">
                             <span class="text-gray-500 text-2xl px-2">-</span>
-                            <input type="number" wire:model.trim="maxPrice"
+                            <input type="number" wire:model.lazy.trim="maxPrice"
                                 wire:change.debounce.200ms="updateSearchInput" wire:keyup="updateSearchInput"
                                 id="phone"
                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
@@ -146,13 +146,13 @@
                                 <div class="flex flex-col justify-start items-center gap-y-4">
                                     <span class="font-extralight text-base text-gray-500 w-full">Price</span>
                                     <div class="flex pb-3">
-                                        <input type="number" id="phone" wire:model.trim="minPrice"
+                                        <input type="number" id="phone" wire:model.lazy.trim="minPrice"
                                             wire:change="updateSearchInput"
                                             class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                             placeholder="LE: " min="0" max="10000" autocomplete="off"
                                             required>
                                         <span class="text-gray-500 text-2xl px-2">-</span>
-                                        <input type="number" id="phone" wire:model.trim="maxPrice"
+                                        <input type="number" id="phone" wire:model.lazy.trim="maxPrice"
                                             wire:change="updateSearchInput"
                                             class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                             placeholder="LE: " min="0" max="10000" autocomplete="off"
@@ -253,7 +253,16 @@
                                     @endforeach
                                 @endforeach
                                 <p class="font-roboto uppercase text-base font-light text-gray-700">LE
-                                    {{ number_format($product->productSkus->first()->price, 2, '.', '') }}</p>
+                                    <span @class(['line-through text-sm' => $product->sale != null])>
+                                        {{ number_format($product->productSkus->first()->price, 2, '.', '') }}
+                                    </span>
+                                    @if ($product->sale != null)
+                                        <span>
+                                            -
+                                            {{ number_format($product->sale->first()->discounted_price, 2, '.', '') }}
+                                        </span>
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

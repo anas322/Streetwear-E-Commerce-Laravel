@@ -6,9 +6,10 @@ use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Termwind\Components\Dd;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
-use Termwind\Components\Dd;
+use Illuminate\Contracts\Validation\Rule;
 
 class Create extends Component
 {
@@ -24,6 +25,8 @@ class Create extends Component
     public $quantity;
     public $status = "Active";
     public $is_hot = false;
+    public $on_sale = false;
+    public $on_sale_price ;
 
     public $variantsState = false;
     public $optionsCount = [0];
@@ -59,10 +62,9 @@ class Create extends Component
         "name"             => ['required','string'],
         // "slug"             => ['required','string','max:255'],
         "description"      => ['required','string'],
-        "price"            => ['required','integer','min:0'],
-        "quantity"         => ['required','integer','min:0'],
+        "price"            => ['required' ,'integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
-        "is_hot"            => ['nullable','boolean'],
+        "is_hot"           => ['nullable','boolean'],
         "images.*"         => ['required','image','mimes:jpg,jpeg,png,webp','max:2048'],
         "optionName.*"     => ['string'],
     
@@ -71,7 +73,19 @@ class Create extends Component
         "meta_description" => ['nullable','string']
     ];
 
+    public function validatedPrices()
+    {
+        if ($this->variantsState) {
+            $this->rules['price'] = ['nullable','integer','min:0'];
+        } else {
+            $this->rules['price']     = ['required','integer','min:0'];
+            $this->rules["quantity"]  = ['required','integer','min:0'];
+            if($this->on_sale){
+                $this->rules['on_sale_price'] = ['required','integer','min:0'];
+            }
+        }
 
+    }
     public function addAttr($i){  
         if(count($this->optionName) <= 0 || count($this->optionValue) <= 0) return;
         if(isset($this->optionName[$i])){
@@ -132,6 +146,7 @@ class Create extends Component
     public function submit()
     {
         //first validate the data
+        $this->validatedPrices();
         $this->validate();
        
         //check if images are uploaded
@@ -225,9 +240,15 @@ class Create extends Component
         }else{
             $productSku = $product->productSkus()->create([
                 'sku'   => uniqid(),
-                'price' => $this->price,
+                'price' =>   $this->price,
                 'quantity' => $this->quantity,
             ]);
+
+            if($this->on_sale){
+                $product->sale()->create([
+                    'discounted_price' => $this->on_sale_price,
+                ]);
+            }
         }
 
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');

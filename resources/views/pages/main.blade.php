@@ -109,7 +109,16 @@
                                         {{ $product->category->name }} </p>
                                     {{-- <p class="uppercase font-medium"> white tee </p> --}}
                                     <p class="text-gray-400 font-medium">
-                                        ${{ number_format($product->productSkus->first()->price, 2) }} </p>
+                                    <p class="font-roboto uppercase text-base font-light text-gray-700">LE
+                                        <span @class(['line-through text-sm' => $product->sale != null])>
+                                            {{ number_format($product->productSkus->first()->price, 2, '.', '') }}
+                                        </span>
+                                        @if ($product->sale != null)
+                                            <span>-
+                                                {{ number_format($product->sale->first()->discounted_price, 2, '.', '') }}
+                                            </span>
+                                        @endif
+                                    </p>
                                 </div>
                             </a>
                         </div>

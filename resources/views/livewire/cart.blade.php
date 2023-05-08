@@ -44,7 +44,15 @@
                                         {{ $item->product->name }}
                                     </td>
                                     <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-                                        ${{ $item->productSku->price }}
+                                        $@if ($item->product->sale != null)
+                                            <span>
+                                                {{ number_format($item->product->sale->first()->discounted_price, 2, '.', '') }}
+                                            </span>
+                                        @else
+                                            <span>
+                                                {{ number_format($item->productSku->price, 2, '.', '') }}
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="py-4 px-6">
                                         <div class="flex items-center space-x-3">

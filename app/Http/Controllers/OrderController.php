@@ -30,7 +30,10 @@ class OrderController extends Controller
         $subTotal = 0;
         foreach($carts as $cart){
             $productSku = productSku::where('id',$cart->product_sku_id)->first();
-            $subTotal +=  $productSku->price * $cart->quantity;
+            $price = $cart->product->sale != null ?
+                $cart->product->sale->discounted_price :
+                $cart->product->productSkus->first()->price;
+            $subTotal +=  $price * $cart->quantity;
         }
         $totalPrice = $subTotal + number_format(($subTotal/100) * 5,2);
 

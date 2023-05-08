@@ -25,6 +25,8 @@ class Edit extends Component
     public $quantity;
     public $status;
     public $is_hot;
+    public $on_sale = false;
+    public $on_sale_price ;
 
     public $variantsState ;
     public $optionsCount = [0];
@@ -62,7 +64,11 @@ class Edit extends Component
         
         if($product->options->count() === 0){
             $this->quantity = $product->productSkus->first()->quantity;
-            $this->price = $product->productSkus->first()->price;
+            if($product->sale != null){
+                $this->on_sale = true;
+                $this->on_sale_price = $product->sale->discounted_price;
+            }
+                $this->price = $product->productSkus->first()->price;
         }else{
             $this->quantity = 0;
             $this->price = 0;
@@ -116,6 +122,20 @@ class Edit extends Component
         "meta_keyword"     => ['nullable','string'],
         "meta_description" => ['nullable','string']
     ];
+
+    public function setValidates()
+    {
+        if ($this->variantsState) {
+            $this->rules['price'] = ['nullable','integer','min:0'];
+        } else {
+            $this->rules['price']     = ['required','integer','min:0'];
+            $this->rules["quantity"]  = ['required','integer','min:0'];
+            if($this->on_sale){
+                $this->rules['on_sale_price'] = ['required','integer','min:0'];
+            }
+        }
+
+    }
 
         public function addAttr($i){  
         if(count($this->optionName) <= 0 || count($this->optionValue) <= 0) return;
@@ -185,6 +205,7 @@ class Edit extends Component
     public function submit()
     {
         //first validate the data
+        $this->setValidates();
         $this->validate();
 
         //find the right category 
@@ -279,6 +300,12 @@ class Edit extends Component
                 'price' => $this->price,
                 'quantity' => $this->quantity,
             ]);
+
+            if($this->on_sale){
+                $product->sale()->create([
+                    'discounted_price' => $this->on_sale_price,
+                ]);
+            }
         }
 
         return redirect()->route('admin.product.index')->with('success','The product has been created successfully');
