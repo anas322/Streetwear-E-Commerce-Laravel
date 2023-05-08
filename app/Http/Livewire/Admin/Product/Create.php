@@ -73,7 +73,7 @@ class Create extends Component
         "meta_description" => ['nullable','string']
     ];
 
-    public function validatedPrices()
+    public function setValidates()
     {
         if ($this->variantsState) {
             $this->rules['price'] = ['nullable','integer','min:0'];
@@ -146,7 +146,7 @@ class Create extends Component
     public function submit()
     {
         //first validate the data
-        $this->validatedPrices();
+        $this->setValidates();
         $this->validate();
        
         //check if images are uploaded
