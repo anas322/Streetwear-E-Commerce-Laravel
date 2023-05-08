@@ -222,6 +222,7 @@
                                         </div>
                                     @endif
                                 </a>
+
                                 @if ($product->productSkus->sum('quantity') <= 0)
                                     <span
                                         class="absolute top-4 left-4 uppercase py-1 px-3.5 font-roboto bg-gray-400 text-white text-sm">Sold
@@ -229,6 +230,12 @@
                                 @elseif($product->is_hot == 'Hot')
                                     <span
                                         class="absolute top-4 left-4 uppercase py-1 px-3.5 font-roboto bg-red-400 text-white text-sm">HOT</span>
+                                @endif
+
+                                @if ($product->sale != null)
+                                    <span
+                                        class="absolute top-4 left-[85px] uppercase py-1 px-3.5 font-roboto bg-gray-700 text-white text-sm">Save
+                                        {{ floor((($product->productSkus->first()->price - $product->sale->discounted_price) / $product->productSkus->first()->price) * 100) }}%</span>
                                 @endif
                                 <span
                                     class="expand absolute top-4 right-4 px-2 py-2 rounded-full bg-white opacity-0 transition-opacity duration-700 hover:cursor-pointer hover:bg-gray-50"
