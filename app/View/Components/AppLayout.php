@@ -15,7 +15,9 @@ class AppLayout extends Component
     public function render()
     {
         return view('layouts.app',[
-            'categories' => Category::all(),
+            'categories' => Category::all()->filter(function ($cat) {
+                return $cat->status == 1;
+            }),
         ]);
     }
 }

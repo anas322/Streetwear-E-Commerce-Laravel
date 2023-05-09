@@ -26,8 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //check if table exists first to avoid error on migration
-        if (Schema::hasTable('categories')) {
-            View::share('categories', \App\Models\Category::all());
-        }
+        // if (Schema::hasTable('categories')) {
+        //     View::share('categories', \App\Models\Category::all()->filter(function ($cat) {
+        //         return $cat->status === "Active";
+        //     }));
+        // }
     }
 }

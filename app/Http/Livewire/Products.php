@@ -40,7 +40,9 @@ class Products extends Component
 
         if($this->categoryModel){
             //get products by category
-            $this->products = $this->categoryModel->products;
+            $this->products = $this->categoryModel->products->filter(function ($product) {
+                return $product->status == "Active";
+            });
     
             //get all options related to this product
             $this->filters = option::whereIn('product_id' , $this->categoryModel->products->pluck('id'))->get(); 
@@ -57,7 +59,9 @@ class Products extends Component
             })->max();
         }else{
 
-            $this->products = Product::all();
+            $this->products = Product::all()->filter(function ($product) {
+                return $product->status == "Active";
+            });
             
             //get all options 
             $this->filters = option::all(); 
