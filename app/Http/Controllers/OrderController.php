@@ -32,7 +32,7 @@ class OrderController extends Controller
             $productSku = productSku::where('id',$cart->product_sku_id)->first();
             $price = $cart->product->sale != null ?
                 $cart->product->sale->discounted_price :
-                $cart->product->productSkus->first()->price;
+                $cart->productSku->first()->price;
             $subTotal +=  $price * $cart->quantity;
         }
         $totalPrice = $subTotal + number_format(($subTotal/100) * 5,2);
