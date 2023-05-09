@@ -146,11 +146,29 @@ class Products extends Component
                 $this->products = $this->products->sortByDesc('created_at');
                 break;
             case 'priceLowToHigh':
-                $this->products = $this->products->sortBy('price');
+                $this->products = $this->products->sortBy(function ($product){
+                    $price = null;
+                    $sale = $product->sale;
+                    if($sale){
+                        $price = $sale->discounted_price;
+                    } else {
+                        $price = $product->productSkus()->first()->price;
+                    }
+                    return $price;
+                });
                 break;
 
             case 'priceHighToLow':
-                $this->products = $this->products->sortByDesc('price');
+                $this->products = $this->products->sortByDesc(function ($product){
+                    $price = null;
+                    $sale = $product->sale;
+                    if($sale){
+                        $price = $sale->discounted_price;
+                    } else {
+                        $price = $product->productSkus()->first()->price;
+                    }
+                    return $price;
+                });
                 break;
 
         }
