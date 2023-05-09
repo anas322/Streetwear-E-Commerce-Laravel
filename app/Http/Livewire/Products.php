@@ -79,15 +79,19 @@ class Products extends Component
             //key is the filter name and the value is the available options value
             $this->options[$this->filters[$key]->name] = array_merge($this->options[$this->filters[$key]->name] ?? [], $option->optionValues->pluck('name')->toArray());
         }
-        //get a the maximum product price
-        $this->maxPrice = $this->products->first()->with('sale')->get()->map(function($product) {
-            if($product->sale) {
-                // dd($product->sale->discounted_price);
-                return $product->sale->discounted_price;
-            } else {
-                return $product->productSkus()->first()->price;
-            }
-        })->max();
+        // //get a the maximum product price
+        if($this->products && $this->products->count() > 0){
+            $this->maxPrice = $this->products->first()->with('sale')->get()->map(function($product) {
+                if($product->sale) {
+                    // dd($product->sale->discounted_price);
+                    return $product->sale->discounted_price;
+                } else {
+                    return $product->productSkus()->first()->price;
+                }
+            })->max();
+        }else{
+            $this->maxPrice = 0;
+        }
 
     }
 
