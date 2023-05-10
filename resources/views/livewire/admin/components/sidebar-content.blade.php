@@ -37,14 +37,6 @@
                 <a href="{{ route('admin.product.index') }}"
                     class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Products</a>
             </li>
-            <li>
-                <a href="#"
-                    class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Billing</a>
-            </li>
-            <li>
-                <a href="#"
-                    class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Invoice</a>
-            </li>
         </ul>
     </li>
 
@@ -77,10 +69,40 @@
                 class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
         </a>
     </li>
+
+    <li>
+        <a href="{{ route('admin.promo.index') }}"
+            class="font-sans inline-flex items-center py-3 pl-3 pr-24 text-sm font-normal dark:text-gray-400 rounded-r-full text-white hover:text-[#00b8c5] hover:bg-[#0c3549] dark:hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0"
+                viewBox="0 0 48 48" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:dark:text-gray-400 dark:text-gray-400 dark:group-hover:text-white">
+                <g>
+                    <path
+                        d="M12 16.476a1 1 0 0 0-1 1v2.172a1 1 0 0 0 1 1 1 1 0 0 0 1-1v-2.172a1 1 0 0 0-1-1zM12 21.908a1 1 0 0 0-1 1v2.172a1 1 0 0 0 1 1 1 1 0 0 0 1-1v-2.172a1 1 0 0 0-1-1zM12 27.34a1 1 0 0 0-1 1v2.172a1 1 0 0 0 1 1 1 1 0 0 0 1-1V28.34a1 1 0 0 0-1-1z"
+                        fill="#CBD5E0" data-original="#000000" class=""></path>
+                    <path
+                        d="M8.867 5.002a3.019 3.019 0 0 0-2.613 2.045l-1.332 4.021C3.298 11.204 2 12.568 2 14.224v3.979a1 1 0 0 0 .693.951C3.941 19.557 5 21.124 5 23.043c0 1.92-1.059 3.488-2.307 3.89a1 1 0 0 0-.693.952v5.976a3.197 3.197 0 0 0 3.182 3.182h15.787l16.978 5.797c1.568.535 3.283-.341 3.8-1.903l1.296-3.918c1.64-.118 2.957-1.49 2.957-3.158v-5.978a1 1 0 0 0-.693-.951c-1.248-.403-2.307-1.97-2.307-3.89 0-1.919 1.059-3.487 2.307-3.89a1 1 0 0 0 .693-.951v-3.977a3.197 3.197 0 0 0-3.182-3.181H27.035L10.06 5.144c-.393-.137-.822-.12-1.192-.142zm.147 1.984c.13-.009.265.008.4.053l11.524 4.004h-13.9l1.114-3.37a.973.973 0 0 1 .862-.687zm-3.832 6.057H11v.951a1 1 0 1 0 2 0v-.951h29.818c.672 0 1.182.51 1.182 1.181v3.405c-1.847.973-3 3.07-3 5.414 0 2.343 1.154 4.44 3 5.412v5.406c0 .672-.51 1.182-1.182 1.182h-29.82c.005-.345.002-.7.002-1.049a1 1 0 0 0-2 0c-.002.347 0 .706.002 1.049h-5.82c-.673 0-1.182-.51-1.182-1.182v-5.404c1.847-.973 3-3.07 3-5.414s-1.154-4.44-3-5.412v-3.407c0-.672.51-1.181 1.182-1.181zm21.976 24h13.77l-1.08 3.265c-.18.543-.725.82-1.254.64z"
+                        fill="#CBD5E0" data-original="#000000" class=""></path>
+                    <path
+                        d="M32.762 25.56c1.78 0 3.244 1.463 3.244 3.243s-1.464 3.246-3.244 3.246-3.246-1.466-3.246-3.246 1.466-3.244 3.246-3.244zm0 2c-.7 0-1.246.544-1.246 1.243s.547 1.246 1.246 1.246 1.244-.546 1.244-1.246-.545-1.244-1.244-1.244zM23.24 16.037a3.26 3.26 0 0 1 3.244 3.244c0 1.78-1.464 3.244-3.245 3.244s-3.246-1.464-3.246-3.244a3.26 3.26 0 0 1 3.246-3.244zm0 2c-.7 0-1.247.545-1.247 1.244 0 .7.547 1.244 1.246 1.244.7 0 1.245-.545 1.245-1.244 0-.7-.545-1.244-1.245-1.244zM32.055 18.574l-9.524 9.524a1 1 0 0 0 1.414 1.414l9.524-9.524a1 1 0 0 0 0-1.414c-.409-.363-1.03-.401-1.414 0z"
+                        fill="#CBD5E0" data-original="#000000" class=""></path>
+                </g>
+            </svg>
+
+            <span class="flex-1 ml-3 whitespace-nowrap tracking-wide">Promo Codes</span>
+        </a>
+    </li>
+
     <li>
         <a href="{{ route('home') }}"
             class="font-sans inline-flex items-center py-3 pl-3 pr-24 text-sm font-normal dark:text-gray-400 rounded-r-full text-white hover:text-[#00b8c5] hover:bg-[#0c3549] dark:hover:bg-gray-700">
-            <svg class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:dark:text-gray-400 dark:group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+            <svg class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:dark:text-gray-400 dark:group-hover:text-white"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                </path>
+            </svg>
             <span class="flex-1 ml-3 whitespace-nowrap tracking-wide">Website</span>
         </a>
     </li>

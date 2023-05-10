@@ -15,7 +15,9 @@ class navMenuDropdown extends Component
      */
     public function __construct()
     {
-        $this->categories = Category::all();
+        $this->categories = Category::all()->filter(function ($cat) {
+            return $cat->status == 1;
+        });
     }
 
     /**

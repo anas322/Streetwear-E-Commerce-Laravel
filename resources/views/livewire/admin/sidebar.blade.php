@@ -2,19 +2,20 @@
     {{-- aside menu in medium screen and above  --}}
     <aside class="md:block hidden w-64 z-40 min-h-screen" aria-label="Sidebar">
         <div class="overflow-y-auto py-4 rounded dark:bg-gray-800">
-            <a href="{{ route('home')}}" class="flex items-center pl-3 pr-4 pb-8">
+            <a href="{{ route('home') }}" class="flex items-center pl-3 pr-4 pb-8">
                 <x-application-logo class="mr-3 h-12 w-12 fill-slate-50" alt="street wear Logo" />
-                <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap text-white">Street Wear</span>
+                <span class="self-center text-2xl font-moda font-semibold whitespace-nowrap text-white">Street
+                    Wear</span>
             </a>
             <livewire:admin.components.sidebar-content />
         </div>
     </aside>
-    
+
     {{-- aside menu for smaller than medium screen  --}}
     <!-- drawer component -->
     <div id="drawer-navigation"
-        class="md:hidden  block fixed z-40 min-h-screen p-4 bg-[#0E2238] overflow-y-auto w-80 dark:bg-gray-800" tabindex="-1"
-        aria-labelledby="drawer-navigation-label">
+        class="md:hidden  block fixed z-40 min-h-screen p-4 bg-[#0E2238] overflow-y-auto w-80 dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-navigation-label">
         <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu
         </h5>
         <button type="button" data-drawer-dismiss="drawer-navigation" aria-controls="drawer-navigation"

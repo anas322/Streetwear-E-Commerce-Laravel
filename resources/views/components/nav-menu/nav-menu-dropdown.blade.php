@@ -1,9 +1,4 @@
 <ul id='test' class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-    @php
-        $categories = App\Models\Category::all()->filter(function ($cat) {
-            return $cat->status == 1;
-        });
-    @endphp
     @if ($categories)
         @foreach ($categories as $cat)
             <li>

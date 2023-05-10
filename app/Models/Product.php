@@ -78,6 +78,10 @@ class Product extends Model
         return $this->hasOne(Sale::class);
     }
 
+    public function promos(){
+        return $this->belongsToMany(Promo::class)->withTimestamps();
+    }
+
 
 
 
