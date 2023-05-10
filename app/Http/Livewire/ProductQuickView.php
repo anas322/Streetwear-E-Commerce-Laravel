@@ -81,10 +81,7 @@ class ProductQuickView extends Component
         })->first()->productSku;
 
         $this->quantity = $this->productSku->quantity ;
-        $this->price = $product->sale != null ?
-            number_format($product->sale->discounted_price,2,'.','')
-            :
-            number_format($product->productSkus->first()->price,2,'.','');
+        $this->price = $this->prodductSku->price;
 
     }
 

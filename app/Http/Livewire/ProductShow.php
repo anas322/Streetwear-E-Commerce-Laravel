@@ -20,7 +20,7 @@ class ProductShow extends Component
     public $price ;
     
     public function dehydrate(){
-        $this->dispatchBrowserEvent('contentChanged');
+        $this->dispatchBrowserEvent('livewire:updated');
     }
 
     public function mount(){
@@ -76,10 +76,7 @@ class ProductShow extends Component
         })->first()->productSku;
 
         $this->quantity = $this->productSku->quantity;
-        $this->price = $product->sale != null ?
-            number_format($product->sale->discounted_price,2,'.','')
-            :
-            number_format($product->productSkus->first()->price,2,'.','');
+        $this->price = $this->productSku->price;
 
     }
 

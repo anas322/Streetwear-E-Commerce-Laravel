@@ -273,7 +273,7 @@
                                     @if ($product->sale != null)
                                         <span>
                                             -
-                                            {{ number_format($product->sale->first()->discounted_price, 2, '.', '') }}
+                                            {{ number_format($product->sale->discounted_price, 2, '.', '') }}
                                         </span>
                                     @endif
                                 </p>

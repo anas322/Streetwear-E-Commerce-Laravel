@@ -18,4 +18,8 @@ class SkuValue extends Model
     public function productSku(){
         return $this->belongsTo(productSku::class);
     }
+
+    public function optionValue(){
+        return $this->belongsTo(optionValue::class);
+    }
 }

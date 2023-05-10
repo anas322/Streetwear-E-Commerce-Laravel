@@ -41,7 +41,16 @@
                                             alt="Apple Watch">
                                     </td>
                                     <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-                                        {{ $item->product->name }}
+                                        {{ $item->product->name }} -
+                                        @foreach ($item->productSku->productSkuValues as $skuValue)
+                                            <span>
+                                                {{ $skuValue->optionValue->name }}
+                                            </span>
+
+                                            @if ($loop->remaining > 0)
+                                                \
+                                            @endif
+                                        @endforeach
                                     </td>
                                     <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
                                         $@if ($item->product->sale != null)
