@@ -29,15 +29,15 @@
 </head>
 
 <body class="font-sans antialiased">
-    {{-- <livewire:search-input />  --}}
+    {{-- <livewire:search-input /> --}}
     <x-jet-banner />
 
     <div class="font-sans antialiased bg-white h-0">
         <div class="min-h-screen relative">
             <div class="flex items-stretch bg-slate-50">
-                @livewire('admin.sidebar')
+                <livewire:admin.sidebar />
                 <div class="container mx-auto min-h-screen px-4">
-                    @livewire('admin.navigation')
+                    <livewire:admin.navigation />
 
                     <x-alert />
                     <!-- Page Content -->

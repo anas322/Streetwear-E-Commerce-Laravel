@@ -36,15 +36,15 @@
                 </div>
                 <ul class="py-1" aria-labelledby="user-menu-button">
                     <li>
-                        <a href="{{ route("home") }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Visit Website</a>
+                        <a href="{{ route('home') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Visit
+                            Website</a>
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
 
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                        @click.prevent="$root.submit();">
+                            <x-jet-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                                 {{ __('Log Out') }}
                             </x-jet-dropdown-link>
                         </form>
@@ -75,4 +75,4 @@
             </ul>
         </div> --}}
     </div>
-</nav>
+    </nav>
