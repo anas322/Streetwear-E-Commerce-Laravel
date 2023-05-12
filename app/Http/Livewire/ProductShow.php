@@ -101,7 +101,8 @@ class ProductShow extends Component
     }
 
     public function buyNow(){
-        dd($this->userOptions,$this->quantity);
+        $this->addToCart();
+        return redirect()->route('cart');
     }
 
     public function render()

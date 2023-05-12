@@ -56,6 +56,16 @@ class Cart extends Component
         $this->mount();
     }
 
+    public function canIncrement($itemId){
+        $cartItem = CartModel::findOrFail($itemId);
+        return $cartItem->productSku->quantity > $this->quantity[$itemId];
+    }
+
+    public function canDecrement($itemId){
+        $cartItem = CartModel::findOrFail($itemId);
+        return $cartItem->quantity > 1;
+    }
+
 
     public function render()
     {
