@@ -55,7 +55,7 @@
                                     <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
                                         $@if ($item->product->sale != null)
                                             <span>
-                                                {{ number_format($item->product->sale->first()->discounted_price, 2, '.', '') }}
+                                                {{ number_format($item->product->sale->discounted_price, 2, '.', '') }}
                                             </span>
                                         @else
                                             <span>

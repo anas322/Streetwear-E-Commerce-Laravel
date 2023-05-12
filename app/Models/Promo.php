@@ -63,4 +63,9 @@ class Promo extends Model
     {
         return $this->belongsToMany(Product::class)->withTimestamps();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }

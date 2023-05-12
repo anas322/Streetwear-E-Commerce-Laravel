@@ -81,7 +81,7 @@ class ProductQuickView extends Component
         })->first()->productSku;
 
         $this->quantity = $this->productSku->quantity ;
-        $this->price = $this->prodductSku->price;
+        $this->price = $this->productSku->price;
 
     }
 
