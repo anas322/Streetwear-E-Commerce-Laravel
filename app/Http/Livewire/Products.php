@@ -178,7 +178,11 @@ class Products extends Component
                     return $price;
                 });
                 break;
-
+            case 'onSale':
+                $this->products = $this->products->filter(function ($product){
+                    return $product->sale;
+                });
+                break;
         }
     }
 

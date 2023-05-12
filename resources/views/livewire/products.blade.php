@@ -110,6 +110,15 @@
                                         to Low</label>
                                 </div>
 
+                                <div class="flex items-center mb-2">
+                                    <input id="default-radio-4" type="radio" wire:model.trim="sortByValue"
+                                        value="onSale" wire:click="sortBy"
+                                        class="w-5 h-5 text-gray-400 bg-gray-100 rounded-full border-0 focus:ring-0">
+                                    <label for="default-radio-4"
+                                        class="py-1 ml-2 w-full text-sm capitalize tracking-wide text-gray-500">On
+                                        Sale</label>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -139,6 +148,7 @@
                                     <option selected value="latest">LATEST</option>
                                     <option value="priceLowToHigh">Price Low To High</option>
                                     <option value="priceHighToLow">Price High To Low</option>
+                                    <option value="onSale">On Sale</option>
                                 </select>
                             </div>
                         </div>
