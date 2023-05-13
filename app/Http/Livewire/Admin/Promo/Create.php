@@ -106,7 +106,7 @@ class Create extends Component
         $this->validate();
 
         $promo = Promo::create([
-            'name' => $this->name,
+            'name' => trim($this->name),
             'type' => $this->type,
             'value' => $this->value,
             'type_of_value' => $this->value_type_state,

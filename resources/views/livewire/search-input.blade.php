@@ -36,7 +36,7 @@
                                 </svg>
 
                             </div>
-                            <input type="text" wire:model.trim="search" id="simple-search"
+                            <input type="text" wire:model="search" id="simple-search"
                                 class="h-16 placeholder:text-xl  text-xl bg-gray-50 border-0 font-roboto font-light border-gray-300 text-gray-900 rounded-md focus:ring-0 focus:border-gray-300 block w-full pl-14 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Search by product name">
                         </div>

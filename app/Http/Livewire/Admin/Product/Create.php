@@ -6,10 +6,8 @@ use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Termwind\Components\Dd;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Contracts\Validation\Rule;
 
 class Create extends Component
 {
@@ -92,10 +90,10 @@ class Create extends Component
             if( trim($this->optionValue[$i]) == "" || trim($this->optionName[$i]) == "" ) return ;
     
             if(isset($this->optionValue[$i]) && isset($this->optionValuesArray[$i]) && is_array($this->optionValuesArray[$i]) ){
-                array_push($this->optionValuesArray[$i],trim($this->optionValue[$i]));
+                array_push($this->optionValuesArray[$i],trim(strtoupper($this->optionValue[$i])));
                 $this->reset('optionValue');
             }else{
-                $this->optionValuesArray[$i] = [trim($this->optionValue[$i])];
+                $this->optionValuesArray[$i] = [trim(strtoupper($this->optionValue[$i]))];
                 $this->reset('optionValue');
             }
         }
@@ -160,14 +158,14 @@ class Create extends Component
 
         //store product
         $product = $category->products()->create([
-            'name'             => $this->name,
-            'slug'             => $this->name,
-            'description'      => $this->description,
+            'name'             => trim($this->name),
+            'slug'             => trim($this->name),
+            'description'      => trim($this->description),
             'status'           => $this->status,
             'is_hot'           => $this->is_hot,
-            'meta_title'       => $this->meta_title,
-            'meta_keyword'     => $this->meta_keyword,
-            'meta_description' => $this->meta_description
+            'meta_title'       => trim($this->meta_title),
+            'meta_keyword'     => trim($this->meta_keyword),
+            'meta_description' => trim($this->meta_description)
         ]);
 
         //store product images
@@ -192,13 +190,13 @@ class Create extends Component
             foreach ($options as $optionName => $optionValues) {
                 //options of product
                 $singleOption = $product->options()->create([
-                    'name' => Str::of($optionName)->snake()
+                    'name' => Str::ucfirst(Str::of($optionName)->snake())
                 ]);
 
                 //values of this option
                 foreach ($optionValues as $optionValue) {
                     $singleOptionValue = $singleOption->optionValues()->create([
-                        'name' =>$optionValue
+                        'name' => strtoupper($optionValue) 
                     ]);
                 }
             }

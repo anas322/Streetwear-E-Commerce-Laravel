@@ -35,7 +35,7 @@
 
                 <div>
                     <div class="relative z-0 mb-6 w-full group">
-                        <input type="text" wire:model.trim="name" id="name"
+                        <input type="text" wire:model="name" id="name"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " />
                         @error('name')
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="relative z-0 mb-6 w-full group">
-                        <input type="text" wire:model.trim="description" id="description"
+                        <input type="text" wire:model="description" id="description"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " />
                         @error('description')
@@ -62,7 +62,7 @@
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 mb-6 w-full group">
                             <label for="categoryId" class="sr-only">select</label>
-                            <select id="categoryId" wire:model.trim="categoryId"
+                            <select id="categoryId" wire:model="categoryId"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                                 <option>Choose Category</option>
 
@@ -79,7 +79,7 @@
                         </div>
 
                         {{-- <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model.trim="slug" id="slug"
+                            <input type="text" wire:model ="slug" id="slug"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " />
                             @error('slug')
@@ -93,7 +93,7 @@
                             <div class="flex flex-row justify-between gap-12">
                                 <div class="relative z-0 mb-6 w-full group ">
 
-                                    <input type="number" wire:model.trim="price" id="price" min="0"
+                                    <input type="number" wire:model="price" id="price" min="0"
                                         class=" @if ($on_sale) line-through @endif block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder=" " />
                                     @error('price')
@@ -107,7 +107,7 @@
                                 </div>
                                 @if ($on_sale)
                                     <div class="relative z-0 mb-6 w-full group ">
-                                        <input type="number" wire:model.trim="on_sale_price" id="on_sale_price"
+                                        <input type="number" wire:model="on_sale_price" id="on_sale_price"
                                             min="0"
                                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                             placeholder=" " />
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="relative z-0 mb-6 w-full group">
-                                <input type="number" wire:model.trim="quantity" min="0" id="quantity"
+                                <input type="number" wire:model="quantity" min="0" id="quantity"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " />
                                 @error('quantity')
@@ -139,7 +139,7 @@
                         <div class="relative z-0 mb-6 w-full group">
 
                             <label for="status" class="sr-only">select</label>
-                            <select id="status" wire:model.trim="status"
+                            <select id="status" wire:model="status"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
                                 <option selected>Choose Status</option>
@@ -156,7 +156,7 @@
                         @if (!$variantsState)
                             <div class="py-4">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" wire:model.trim="on_sale" class="sr-only peer">
+                                    <input type="checkbox" wire:model="on_sale" class="sr-only peer">
                                     <div
                                         class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                                     </div>
@@ -170,7 +170,7 @@
 
                     <div class="py-4">
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" wire:model.trim="is_hot" class="sr-only peer">
+                            <input type="checkbox" wire:model="is_hot" class="sr-only peer">
                             <div
                                 class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                             </div>
@@ -183,7 +183,7 @@
 
                         <label class="inline-flex relative items-center cursor-pointer"
                             wire:click="$toggle('variantsState')">
-                            <input type="checkbox" wire:model.trim="variantsState" class="sr-only peer">
+                            <input type="checkbox" wire:model="variantsState" class="sr-only peer">
                             <div
                                 class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                             </div>
@@ -215,8 +215,8 @@
                                                     <div class="">
                                                         {{-- add option name  --}}
                                                         <input type="text"
-                                                            wire:model.trim="optionName.{{ $i }}"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                            wire:model="optionName.{{ $i }}"
+                                                            class="capitalize bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         @error('optionName.*')
                                                             <span class="error">{{ $message }}</span>
                                                         @enderror
@@ -243,9 +243,9 @@
                                                         <div>
                                                             {{-- add option value  --}}
                                                             <input type="text"
-                                                                wire:model.trim="optionValue.{{ $i }}"
+                                                                wire:model="optionValue.{{ $i }}"
                                                                 wire:keydown.enter="addAttr({{ $i }})"
-                                                                class="h-[22px] min-w-[4rem] inline bg-gray-50 w-full focus:border-0 border-0 focus-visible:outline-0 focus-visible:ring-0 ">
+                                                                class="uppercase h-[22px] min-w-[4rem] inline bg-gray-50 w-full focus:border-0 border-0 focus-visible:outline-0 focus-visible:ring-0 ">
                                                         </div>
 
                                                     </div>
@@ -316,20 +316,20 @@
                                                         <td class="py-4 px-6">
                                                             <div>
                                                                 <input type="number"
-                                                                    wire:model.trim="optionPrices.{{ $key }}"
+                                                                    wire:model="optionPrices.{{ $key }}"
                                                                     min="0"
                                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             </div>
                                                         </td>
                                                         <td class="py-4 px-6">
                                                             <input type="number"
-                                                                wire:model.trim="optionQuantities.{{ $key }}"
+                                                                wire:model="optionQuantities.{{ $key }}"
                                                                 min="0"
                                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </td>
                                                         <td class="py-4 px-6">
                                                             <input type="text"
-                                                                wire:model.trim="skus.{{ $key }}"
+                                                                wire:model="skus.{{ $key }}"
                                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </td>
                                                     </tr>
@@ -365,7 +365,7 @@
                 <div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model.trim="meta_title" id="meta_title"
+                            <input type="text" wire:model="meta_title" id="meta_title"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " />
                             @error('meta_title')
@@ -378,7 +378,7 @@
                         </div>
 
                         <div class="relative z-0 mb-6 w-full group">
-                            <input type="text" wire:model.trim="meta_keyword" id="meta_keyword"
+                            <input type="text" wire:model="meta_keyword" id="meta_keyword"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " />
                             @error('meta_keyword')
@@ -392,7 +392,7 @@
                     </div>
 
                     <div class="relative z-0 mb-6 w-full group">
-                        <input type="text" wire:model.trim="meta_description" id="meta_description"
+                        <input type="text" wire:model="meta_description" id="meta_description"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " />
                         @error('meta_description')
@@ -450,7 +450,7 @@
                     x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
                     x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-                    <input wire:model.trim="images"
+                    <input wire:model="images"
                         class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                         id="images" type="file" accept=".jpg, .jpeg, .png, .webp">
 

@@ -12,7 +12,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.customer.index',[
-            'customers' => User::where('name','like','%'.$this->search.'%')->where('role_as',0)->paginate(10),
+            'customers' => User::where('name','like','%'.trim($this->search).'%')->where('role_as',0)->paginate(10),
         ]);
     }
 }

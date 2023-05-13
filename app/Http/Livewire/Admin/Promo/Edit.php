@@ -119,7 +119,7 @@ class Edit extends Component
         $this->validate();
 
         $this->promo->update([
-            'name' => $this->name,
+            'name' => trim($this->name),
             'type' => $this->type,
             'value' => $this->value,
             'type_of_value' => $this->value_type_state,

@@ -11,7 +11,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <input wire:model.trim="search" type="search" id="table-search"
+                <input wire:model="search" type="search" id="table-search"
                     class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-white rounded-lg focus:ring-0 border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white placeholder:text-xs"
                     placeholder="Search by Customer name..">
             </div>
@@ -36,7 +36,8 @@
                             aria-labelledby="dropdownActionButton">
                             <li>
                                 <span
-                                    class="block py-2 px-4 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Recently added</span>
+                                    class="block py-2 px-4 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Recently
+                                    added</span>
                             </li>
                         </ul>
                     </div>
@@ -77,24 +78,25 @@
             </thead>
             <tbody wire:loading.remove wire:target="search">
                 @foreach ($customers as $cus)
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$cus->name}}
-                    </th>
-                    {{-- <td class="py-4 px-6">
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <th scope="row"
+                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $cus->name }}
+                        </th>
+                        {{-- <td class="py-4 px-6">
                         {{$cus->slug}}
                     </td> --}}
-                    <td class="py-4 px-6">
-                        {{$cus->email}}
-                    </td>
-                    <td class="py-4 px-6">
-                        {{ $cus->orders->count()  }}
-                    </td>
-                    <td class="py-4 px-6">
-                        EGP {{ $cus->orders->sum('total_price')   }}
-                    </td>
-                </tr>
+                        <td class="py-4 px-6">
+                            {{ $cus->email }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $cus->orders->count() }}
+                        </td>
+                        <td class="py-4 px-6">
+                            EGP {{ $cus->orders->sum('total_price') }}
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

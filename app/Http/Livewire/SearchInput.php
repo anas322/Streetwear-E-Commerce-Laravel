@@ -14,7 +14,7 @@ class SearchInput extends Component
     public function render()
     {
         return view('livewire.search-input',[
-            'products' => Product::where('name','like','%'.$this->search.'%')->limit(8)->get(),
+            'products' => Product::where('name','like','%'.trim($this->search).'%')->limit(8)->get(),
         ]);
     }
 }

@@ -94,7 +94,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.category.index',[
-            'categories' => Category::where('name','like','%'.$this->search.'%')->paginate(10),
+            'categories' => Category::where('name','like','%'.trim($this->search).'%')->paginate(10),
         ]);
     }
 }

@@ -5,10 +5,10 @@
             <div class="swiper-wrapper cursor-grabbing">
 
                 @foreach ($product->productImages as $productImage)
-                <div class="swiper-slide flex justify-center items-center">
-                    <img src="{{ asset('/storage/'.$productImage->image) }}"
-                        class="object-contain block w-full h-full" />
-                </div>
+                    <div class="swiper-slide flex justify-center items-center">
+                        <img src="{{ asset('/storage/' . $productImage->image) }}"
+                            class="object-contain block w-full h-full" />
+                    </div>
                 @endforeach
 
             </div>
@@ -19,10 +19,10 @@
             <div class="swiper-wrapper ">
 
                 @foreach ($product->productImages as $productImage)
-                <div class="swiper-slide flex justify-center items-center ho hover:cursor-pointer">
-                    <img src="{{ asset('/storage/'.$productImage->image) }}"
-                        class="object-contain block h-full w-full" />
-                </div>
+                    <div class="swiper-slide flex justify-center items-center ho hover:cursor-pointer">
+                        <img src="{{ asset('/storage/' . $productImage->image) }}"
+                            class="object-contain block h-full w-full" />
+                    </div>
                 @endforeach
 
             </div>
@@ -35,19 +35,19 @@
                 {{ $price }}</span>
 
             @if ($product->options && $product->options->count())
-            @foreach ($product->options as $key => $option)
-            <div>
-                <label for="{{ $option->name }}"
-                    class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{$option->name}}</label>
-                <select id="{{ $option->name }}" wire:model.trim="userOptions.{{ $option->name}}"
-                    class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option disabled>Choose a size</option>
-                    @foreach ($option->optionValues as $value)
-                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            @endforeach
+                @foreach ($product->options as $key => $option)
+                    <div>
+                        <label for="{{ $option->name }}"
+                            class="block mb-2 text-xl font-bold text-gray-900 dark:text-white uppercase">{{ $option->name }}</label>
+                        <select id="{{ $option->name }}" wire:model="userOptions.{{ $option->name }}"
+                            class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option disabled>Choose a size</option>
+                            @foreach ($option->optionValues as $value)
+                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endforeach
             @endif
 
             {{-- <div>

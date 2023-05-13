@@ -27,7 +27,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <input wire:model.trim="search" type="search" id="table-search"
+                <input wire:model="search" type="search" id="table-search"
                     class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-white rounded-lg focus:ring-0 border border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white placeholder:text-xs"
                     placeholder="Search by product name..">
             </div>

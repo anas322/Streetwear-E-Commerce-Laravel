@@ -143,10 +143,10 @@ class Edit extends Component
             if( trim($this->optionValue[$i]) == "" || trim($this->optionName[$i]) == "" ) return ;
     
             if(isset($this->optionValue[$i]) && isset($this->optionValuesArray[$i]) && is_array($this->optionValuesArray[$i]) ){
-                array_push($this->optionValuesArray[$i],trim($this->optionValue[$i]));
+                array_push($this->optionValuesArray[$i],trim(strtoupper($this->optionValue[$i])));
                 $this->reset('optionValue');
             }else{
-                $this->optionValuesArray[$i] = [trim($this->optionValue[$i])];
+                $this->optionValuesArray[$i] = [trim(strtoupper($this->optionValue[$i]))];
                 $this->reset('optionValue');
             }
         }
@@ -213,14 +213,14 @@ class Edit extends Component
 
         //store product
         $product = $category->products()->create([
-            'name'             => $this->name,
-            'slug'             => $this->name,
-            'description'      => $this->description,
+            'name'             => trim($this->name),
+            'slug'             => trim($this->name),
+            'description'      => trim($this->description),
             'status'           => $this->status,
             'is_hot'           => $this->is_hot,
-            'meta_title'       => $this->meta_title,
-            'meta_keyword'     => $this->meta_keyword,
-            'meta_description' => $this->meta_description
+            'meta_title'       => trim($this->meta_title),
+            'meta_keyword'     => trim($this->meta_keyword),
+            'meta_description' => trim($this->meta_description)
         ]);
 
         //store new images
@@ -251,13 +251,13 @@ class Edit extends Component
             foreach ($options as $optionName => $optionValues) {
                 //options of product
                 $singleOption = $product->options()->create([
-                    'name' => Str::of($optionName)->snake()
+                    'name' => Str::ucfirst(Str::of($optionName)->snake())
                 ]);
 
                 //values of this option
                 foreach ($optionValues as $optionValue) {
                     $singleOptionValue = $singleOption->optionValues()->create([
-                        'name' =>$optionValue
+                        'name' => strtoupper($optionValue) 
                     ]);
                 }
             }

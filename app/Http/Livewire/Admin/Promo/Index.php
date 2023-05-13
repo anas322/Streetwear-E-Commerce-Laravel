@@ -78,7 +78,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.promo.index',[
-            'promos' => Promo::where('name','like','%'.$this->search.'%')->paginate(10),
+            'promos' => Promo::where('name','like','%'.trim($this->search).'%')->paginate(10),
         ]);
     }
 }
