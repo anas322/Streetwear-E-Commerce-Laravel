@@ -118,7 +118,7 @@
                             </span>
                         </td>
                         <td class="py-4 px-6">
-                            {{ $pro->description }}
+                            {{ Str::words($pro->description, 3, '....') }}
                         </td>
                         <td class="py-4 px-6 ">
                             <span @class([

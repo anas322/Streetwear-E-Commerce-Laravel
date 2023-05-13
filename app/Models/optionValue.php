@@ -13,4 +13,8 @@ class optionValue extends Model
         'name'
     ];
 
+
+    public function option(){
+        return $this->belongsTo(option::class);
+    }
 }
