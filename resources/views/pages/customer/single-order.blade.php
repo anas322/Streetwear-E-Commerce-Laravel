@@ -27,16 +27,18 @@
                         <header class="py-4 px-3 bg-gray-100">
                             <span class="font-bold font-roboto text-xl">Invoive Address</span>
                         </header>
-
-                        <div class="px-3 space-y-4 py-4">
-                            <p class="font-roboto font-semibold text-gray-500 ">
-                                {{ auth()->user()->address->first_name }} {{ auth()->user()->address->last_name }} </p>
-                            <p class="font-roboto font-semibold text-gray-500 ">
-                                {{ auth()->user()->address->address_line_1 }} </p>
-                            <p class="font-roboto font-semibold text-gray-500 ">
-                                {{ auth()->user()->address->country }} {{ auth()->user()->address->city }}
-                                {{ auth()->user()->address->region }} </p>
-                        </div>
+                        @if (auth()->user()->address)
+                            <div class="px-3 space-y-4 py-4">
+                                <p class="font-roboto font-semibold text-gray-500 ">
+                                    {{ auth()->user()->address->first_name }} {{ auth()->user()->address->last_name }}
+                                </p>
+                                <p class="font-roboto font-semibold text-gray-500 ">
+                                    {{ auth()->user()->address->address_line_1 }} </p>
+                                <p class="font-roboto font-semibold text-gray-500 ">
+                                    {{ auth()->user()->address->country }} {{ auth()->user()->address->city }}
+                                    {{ auth()->user()->address->region }} </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

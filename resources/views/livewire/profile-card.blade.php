@@ -7,7 +7,8 @@
         <a href="#">
             <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">
                 {{ auth()->user()->name }}</h5>
-            <h4 class="text-sm text-gray-500 font-semibold text-center">{{ auth()->user()->address->address_line_1 }}
+            <h4 class="text-sm text-gray-500 font-semibold text-center">
+                {{ auth()->user()->address->address_line_1 ?? '' }}
             </h4>
         </a>
         <div class="flex flex-col items-center mt-2.5">

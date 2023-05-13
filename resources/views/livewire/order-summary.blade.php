@@ -41,7 +41,7 @@
     </div>
 
     @if (!$order)
-        <form action="{{ route('orders.store') }}?promo={{ $promoId }}" method="POST">
+        <form action="{{ route('orders.store') }}/?promo={{ $promoId }}" method="POST">
             @csrf
             <button class="w-full py-4 block uppercase text-base text-center bg-slate-800 text-white"> check
                 out</button>

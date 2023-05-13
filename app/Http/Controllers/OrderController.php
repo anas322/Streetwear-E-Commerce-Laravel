@@ -53,12 +53,15 @@ class OrderController extends Controller
             'total_price' => $totalPrice,
         ]);
 
-        $promoModel = Promo::findOrFail($promoCodeId);
-        $promoModel->count += 1;
-        $promoModel->save();
-
-        if($promoModel->purchase_once){
-            $promoModel->users()->attach(auth()->user()->id);
+        
+        if($promoCodeId != null){
+            $promoModel = Promo::findOrFail($promoCodeId);
+            $promoModel->count += 1;
+            $promoModel->save();
+    
+            if($promoModel->purchase_once){
+                $promoModel->users()->attach(auth()->user()->id);
+            }
         }
         
         //attach the order to the cart items and delete the cart items
@@ -71,8 +74,6 @@ class OrderController extends Controller
             $productSku->decrement('quantity',$cart->quantity);
             $cart->delete();
         }
-
-
         return to_route('orders.index')->with('success','Order Placed Successfully');
     }
 
