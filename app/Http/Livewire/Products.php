@@ -78,11 +78,17 @@ class Products extends Component
     }
 
     private function getOptions(){
+
         //get all possible option values 
-        foreach ($this->filters as  $key => $option) {
+        foreach ($this->filters as $key => $option) {
             //key is the filter name and the value is the available options value
-            $this->options[$this->filters[$key]->name] = array_merge($this->options[$this->filters[$key]->name] ?? [], $option->optionValues->pluck('name')->toArray());
+            $optionValues = $option->optionValues->pluck('name')->map(function ($item, $key) {
+                return strtolower($item);
+            })->toArray();
+
+            $this->options[strtolower($this->filters[$key]->name)] = array_merge($this->options[strtolower($this->filters[$key]->name)] ?? [], $optionValues);
         }
+
         // //get a the maximum product price
         if($this->products && $this->products->count() > 0){
             $this->maxPrice = $this->products->first()->with('sale')->get()->map(function($product) {
