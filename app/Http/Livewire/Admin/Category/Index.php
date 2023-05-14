@@ -15,26 +15,28 @@ class Index extends Component
     
     public $categoryId;
     public $name;
-    // public $slug;
     public $description;
     public $image;
     public $status;
 
     public $showModel = false;
-    public $showDeleteModal = false;
     public Category|null $category = null;
 
     public $search = '';
+    
 
     protected $rules = [
         "categoryId"  => ['nullable','integer'],
         "name"        => ['required','string'],
-        // "slug"        => ['required','string','max:255'],
         "description" => ['required'],
         "image"       => ['required'],
         "status"      => ['required','in:Active,Draft'],
     ];
     
+    public function dehydrate()
+    {
+        $this->dispatchBrowserEvent('reinit-flowbite');
+    }
 
     public function editModel(Array $category = [])
     {   
@@ -47,14 +49,12 @@ class Index extends Component
            $this->name = $category['name'];
            $this->description = $category['description'];
            $this->image = $category['image'];
-        //    $this->slug = $category['slug'];
            $this->status = $category['status'] == 1 ? 'Active' : 'Draft';
         }
 
     }
 
     public function deleteModal(Category $category){
-        $this->showDeleteModal = true;
         $this->category = $category;
     }
 
@@ -82,12 +82,18 @@ class Index extends Component
         session()->flash('success','This record has been updated successfully');
     }
 
-    public function delete()
+    public function delete($id)
     {      
-        $this->category->delete();
-        Storage::delete($this->category->image);
+        $category = Category::findOrFail($id);
+        if($category->products->count() > 0){
+            session()->flash('error','This category cannot be deleted because it has products');
+            return;
+        }
 
-        $this->reset(['showDeleteModal','category']);
+        $category->delete();
+        Storage::delete($category->image);
+
+
         session()->flash('success','This record has been deleted successfully');
     }
     

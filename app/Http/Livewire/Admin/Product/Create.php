@@ -149,7 +149,7 @@ class Create extends Component
        
         //check if images are uploaded
         if(count($this->images) == 0){
-            $this->addError('images','Please upload at least one image');
+            session()->flash('error','Please upload at least one image' );
             return;
         }
 
