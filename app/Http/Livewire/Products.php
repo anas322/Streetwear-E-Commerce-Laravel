@@ -34,6 +34,10 @@ class Products extends Component
     $this->dispatchBrowserEvent('livewire:updated');
     }
 
+    public function dehydrate(){
+    $this->dispatchBrowserEvent('livewire:updated');
+    }
+
     public function mount(){
         
         $this->categoryModel = Category::whereName($this->cat)->first();
@@ -102,6 +106,7 @@ class Products extends Component
 
     public function closeModal(){
         $this->productQV = false;
+        $this->dispatchBrowserEvent('livewire:updated');
     }
 
 
