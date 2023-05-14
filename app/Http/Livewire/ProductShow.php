@@ -92,7 +92,11 @@ class ProductShow extends Component
                 ]);
     
                 session()->flash('success','Product added to cart successfully');
+                $this->emit('productAddedToCart');
+                
                 return redirect()->route('cart');
+            }else{
+                session()->flash('error','Product is out of stock');
             }
 
         }else{

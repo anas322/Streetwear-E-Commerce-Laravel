@@ -107,6 +107,8 @@ class ProductQuickView extends Component
     
         
                 session()->flash('success','Product added to cart successfully');
+                $this->emit('productAddedToCart');
+
             }
 
         }else{

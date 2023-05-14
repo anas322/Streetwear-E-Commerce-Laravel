@@ -1,4 +1,21 @@
 <div class="md:h-[94vh] md:block flex flex-col mt-16">
+
+    @if (session('error'))
+        <div class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-green-800"
+            role="alert" wire:poll.1000ms>
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium text-xl">{{ session('error') }}.
+            </div>
+        </div>
+    @endif
+
     <div class="p-6  md:w-1/2 w-full md:h-full h-[49rem] md:float-left">
         <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
             class="w-full h-4/5 mx-auto swiper product-view-carousel">
@@ -92,27 +109,29 @@
                         </div>
                     </div>
             </div> --}}
+            @if ($quantity < 1)
+                <span class="text-red-500 text-2xl text-center ">Out of stock</span>
+            @else
+                <div>
+                    <div class="flex">
+                        <button type="submit" wire:click="addToCart"
+                            class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
+                            <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
+                                </path>
+                            </svg>
+                            <span class="md:text-lg text-base font-medium uppercase ">add to cart</span>
+                        </button>
+                    </div>
 
-            <div>
-                <div class="flex">
-                    <button type="submit" wire:click="addToCart"
-                        class="hover:text-white hover:bg-[#24292F] border border-[#24292F] text-black focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30  mb-2 transition duration-500">
-                        <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
-                            </path>
-                        </svg>
-                        <span class="md:text-lg text-base font-medium uppercase ">add to cart</span>
+                    <button type="submit" wire:click="buyNow"
+                        class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 transition">
+                        <span class="md:text-lg text-base font-medium uppercase">buy now</span>
                     </button>
                 </div>
-
-                <button type="submit" wire:click="buyNow"
-                    class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium text-sm px-5 h-12 w-full text-center inline-flex items-center justify-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 transition">
-                    <span class="md:text-lg text-base font-medium uppercase">buy now</span>
-                </button>
-            </div>
-
+            @endif
         </div>
     </div>
 </div>

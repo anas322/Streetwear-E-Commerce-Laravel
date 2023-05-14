@@ -255,7 +255,7 @@
                                     @endif
                                 @endif
                                 <span
-                                    class="expand absolute top-4 right-4 px-2 py-2 rounded-full bg-white opacity-0 transition-opacity duration-700 hover:cursor-pointer hover:bg-gray-50"
+                                    class="expand absolute top-4 right-4 px-2 py-2 rounded-full bg-gray-700 opacity-0 transition-opacity duration-700 hover:cursor-pointer "
                                     data-tooltip-target="tooltip-left-{{ $product->id }}"
                                     data-tooltip-placement="left">
                                     <button wire:click="$set('productQV', {{ $product->id }})" type="button">
