@@ -98,7 +98,8 @@
                             <div class="flex flex-row justify-between gap-12">
                                 <div class="relative z-0 mb-6 w-full group ">
 
-                                    <input type="number" wire:model="price" id="price" min="0"
+                                    <input type="number" step="0.01" wire:model="price" id="price"
+                                        min="0"
                                         class=" @if ($on_sale) line-through @endif block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder=" " />
                                     @error('price')
@@ -112,8 +113,8 @@
                                 </div>
                                 @if ($on_sale)
                                     <div class="relative z-0 mb-6 w-full group ">
-                                        <input type="number" wire:model="on_sale_price" id="on_sale_price"
-                                            min="0"
+                                        <input type="number" step="0.01" wire:model="on_sale_price"
+                                            id="on_sale_price" min="0"
                                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                             placeholder=" " />
 
@@ -318,7 +319,7 @@
                                                         </th>
                                                         <td class="py-4 px-6">
                                                             <div>
-                                                                <input type="number"
+                                                                <input type="number" step="0.01"
                                                                     wire:model="optionPrices.{{ $key }}"
                                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             </div>

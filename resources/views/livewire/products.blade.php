@@ -22,13 +22,13 @@
 
                         <div data-filter-name="price" class="max-h-0 overflow-hidden transition-all duration-700">
                             <div class="flex items-center pb-3">
-                                <input type="number" wire:model.lazy="minPrice"
+                                <input type="number" step="0.01" wire:model.lazy="minPrice"
                                     wire:change.debounce.200ms="updateSearchInput" wire:keyup="updateSearchInput"
                                     id="phone"
                                     class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                     placeholder="LE: " min="0" autocomplete="off">
                                 <span class="text-gray-500 text-2xl px-2">-</span>
-                                <input type="number" wire:model.lazy="maxPrice"
+                                <input type="number" step="0.01" wire:model.lazy="maxPrice"
                                     wire:change.debounce.200ms="updateSearchInput" wire:keyup="updateSearchInput"
                                     id="phone"
                                     class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-500 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
@@ -161,14 +161,14 @@
                                     <div class="flex flex-col justify-start items-center gap-y-4">
                                         <span class="font-extralight text-base text-gray-500 w-full">Price</span>
                                         <div class="flex pb-3">
-                                            <input type="number" id="phone" wire:model.lazy="minPrice"
-                                                wire:change="updateSearchInput"
+                                            <input type="number" step="0.01" id="phone"
+                                                wire:model.lazy="minPrice" wire:change="updateSearchInput"
                                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                                 placeholder="LE: " min="0" max="10000" autocomplete="off"
                                                 required>
                                             <span class="text-gray-500 text-2xl px-2">-</span>
-                                            <input type="number" id="phone" wire:model.lazy="maxPrice"
-                                                wire:change="updateSearchInput"
+                                            <input type="number" step="0.01" id="phone"
+                                                wire:model.lazy="maxPrice" wire:change="updateSearchInput"
                                                 class="w-28 focus:ring-0 focus:border-gray-300 border border-gray-300 text-gray-900 text-lg rounded-sm block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                                 placeholder="LE: " min="0" max="10000" autocomplete="off"
                                                 required>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Promo;
-use App\Models\productSku;
-use Termwind\Components\Dd;
 use Illuminate\Support\Carbon;
 
 class OrderController extends Controller
@@ -47,8 +45,7 @@ class OrderController extends Controller
         }
         
         $tax = ($subTotal/100) * 5;
-        $totalPrice = number_format($subTotal + $tax);
-
+        $totalPrice = $subTotal + $tax;
         //create the order
         $order = auth()->user()->orders()->create([
             'total_price' => $totalPrice,
@@ -187,7 +184,6 @@ class OrderController extends Controller
             $subTotal = $total;
         }
 
-        // $this->totalPrice = number_format($this->subTotal + $this->tax,2);
 
         return $subTotal;
     }

@@ -112,7 +112,7 @@ class Edit extends Component
         "name"             => ['required','string'],
         // "slug"             => ['required','string','max:255'],
         "description"      => ['required','string'],
-        "price"            => ['required','integer','min:0'],
+        "price"            => ['required','regex:/^\d+(\.\d{1,2})?$/','min:1'],
         "quantity"         => ['required','integer','min:0'],
         "status"           => ['required','in:Active,Draft'],
         "is_hot"           => ['nullable','boolean'],
@@ -126,12 +126,12 @@ class Edit extends Component
     public function setValidates()
     {
         if ($this->variantsState) {
-            $this->rules['price'] = ['nullable','integer','min:0'];
+            $this->rules['price'] = ['nullable','regex:/^\d+(\.\d{1,2})?$/','min:1'];
         } else {
-            $this->rules['price']     = ['required','integer','min:0'];
-            $this->rules["quantity"]  = ['required','integer','min:0'];
+            $this->rules['price']     = ['required','regex:/^\d+(\.\d{1,2})?$/','min:1'];
+            $this->rules["quantity"]  = ['required','integer','min:1'];
             if($this->on_sale){
-                $this->rules['on_sale_price'] = ['required','integer','min:0'];
+                $this->rules['on_sale_price'] = ['required','regex:/^\d+(\.\d{1,2})?$/','min:1'];
             }
         }
 
