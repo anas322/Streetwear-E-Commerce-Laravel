@@ -14,6 +14,6 @@ class Order extends Model
     ];
 
     public function productSkus(){
-        return $this->belongsToMany(productSku::class,'order_product_skus')->withPivot('quantity')->withTimestamps();;
+        return $this->belongsToMany(productSku::class,'order_product_skus')->withPivot('quantity','price')->withTimestamps();;
     }
 }

@@ -21,6 +21,7 @@ class OrderController extends Controller
      * 
      * @return a redirect to the 'orders.index' route with a success message.
      */
+
     public function store(){
 
         if(auth()->user()->address == null)
@@ -67,8 +68,12 @@ class OrderController extends Controller
         //attach the order to the cart items and delete the cart items
         foreach($carts as $cart){
             $productSku = $cart->productSku;
+            $price = $cart->product->sale != null ?
+                $cart->product->sale->discounted_price :
+                $cart->productSku->price;
             $productSku->orders()->attach($order->id,[
                 'quantity' => $cart->quantity,
+                'price' => $price,
             ]);
             
             $productSku->decrement('quantity',$cart->quantity);
@@ -77,7 +82,7 @@ class OrderController extends Controller
         return to_route('orders.index')->with('success','Order Placed Successfully');
     }
 
-    public function ApplyPromoCode($promoCodeId,$subTotal){
+    private function ApplyPromoCode($promoCodeId,$subTotal){
         $promoCode = Promo::findOrFail((int)$promoCodeId);
         if(!$promoCode || $promoCode->status == 'Draft'){
             session()->flash('error','Invalid Promo Code');
@@ -208,10 +213,10 @@ class OrderController extends Controller
     }
 
     public function show(Order $order){
-
          return view('pages.customer.single-order',
          [
              'order' => $order,
+             'items' => $order->productSkus,
          ]);
     }
 
