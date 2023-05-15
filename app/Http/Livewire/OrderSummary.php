@@ -13,10 +13,12 @@ class OrderSummary extends Component
     public $subTotal;
     public $tax ;
     public $totalPrice;
+    public $oldTotalPrice;
     public $order;
 
     public $promoCode = '';
     public $promoId;
+    public $promoCodeButtonState = false;
 
     public function mount(){
         if($this->order){
@@ -157,7 +159,9 @@ class OrderSummary extends Component
             $this->promoId = $promoCode->id;
         }
 
+        $this->oldTotalPrice = $this->totalPrice;
         $this->totalPrice = number_format($this->subTotal + $this->tax);
+        $this->promoCodeButtonState = true;
     }
 
     private function checkPrice ($price,$value , $type){
@@ -178,6 +182,12 @@ class OrderSummary extends Component
         }
 
         return $price;
+    }
+
+    public function removePromoCode(){
+        $this->mount();
+        $this->promoCodeButtonState = false;
+        $this->oldTotalPrice = null;
     }
 
     public function render()
