@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Promo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -22,61 +23,73 @@ class OrderController extends Controller
 
     public function store(){
 
-        if(auth()->user()->address == null)
-            return to_route('address.index')->with('error','Please Add Your Address First');
-
-        //get the user's cart items
-        $carts = auth()->user()->carts;
-
-        //calculate the total price of the order
-        $subTotal = 0;
-        foreach($carts as $cart){
-            $productSku = $cart->productSku;
-            $price = $cart->product->sale != null ?
-                $cart->product->sale->discounted_price :
-                $cart->productSku->price;
-            $subTotal +=  $price * $cart->quantity;
-        }
-
-        //apply the promo code if it exists
-        $promoCodeId = request()->promo;
-        if($promoCodeId != null){
-            $subTotal = $this->ApplyPromoCode(intval($promoCodeId),$subTotal);
-        }
-        
-        $tax = ($subTotal/100) * 5;
-        $totalPrice = $subTotal + $tax;
-        //create the order
-        $order = auth()->user()->orders()->create([
-            'total_price' => $totalPrice,
-        ]);
-
-        
-        if($promoCodeId != null){
-            $promoModel = Promo::findOrFail($promoCodeId);
-            $promoModel->count += 1;
-            $promoModel->save();
-    
-            if($promoModel->purchase_once){
-                $promoModel->users()->attach(auth()->user()->id);
-            }
-        }
-        
-        //attach the order to the cart items and delete the cart items
-        foreach($carts as $cart){
-            $productSku = $cart->productSku;
-            $price = $cart->product->sale != null ?
-                $cart->product->sale->discounted_price :
-                $cart->productSku->price;
-            $productSku->orders()->attach($order->id,[
-                'quantity' => $cart->quantity,
-                'price' => $price,
-            ]);
+        try {
+            DB::beginTransaction();
             
-            $productSku->decrement('quantity',$cart->quantity);
-            $cart->delete();
+            if(auth()->user()->address == null)
+                return to_route('address.index')->with('error','Please Add Your Address First');
+
+            //get the user's cart items
+            $carts = auth()->user()->carts;
+        
+            //calculate the total price of the order
+            $subTotal = 0;
+            foreach($carts as $cart){
+                $productSku = $cart->productSku;
+                $price = $cart->product->sale != null ?
+                    $cart->product->sale->discounted_price :
+                    $cart->productSku->price;
+                $subTotal +=  $price * $cart->quantity;
+            }
+        
+            //apply the promo code if it exists
+            $promoCodeId = request()->promo;
+            if($promoCodeId != null){
+                $subTotal = $this->ApplyPromoCode(intval($promoCodeId),$subTotal);
+            }
+            
+            $tax = ($subTotal/100) * 5;
+            $totalPrice = $subTotal + $tax;
+            //create the order
+            $order = auth()->user()->orders()->create([
+                'total_price' => $totalPrice,
+            ]);
+        
+            
+            if($promoCodeId != null){
+                $promoModel = Promo::findOrFail($promoCodeId);
+                $promoModel->count += 1;
+                $promoModel->save();
+        
+                if($promoModel->purchase_once){
+                    $promoModel->users()->attach(auth()->user()->id);
+                }
+            }
+            
+            //attach the order to the cart items and delete the cart items
+            foreach($carts as $cart){
+                $productSku = $cart->productSku;
+                $price = $cart->product->sale != null ?
+                    $cart->product->sale->discounted_price :
+                    $cart->productSku->price;
+                $productSku->orders()->attach($order->id,[
+                    'quantity' => $cart->quantity,
+                    'price' => $price,
+                ]);
+                
+                $productSku->decrement('quantity',$cart->quantity);
+                $cart->delete();
+            }
+
+            DB::commit();
+            return to_route('orders.index')->with('success','Order Placed Successfully');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }
-        return to_route('orders.index')->with('success','Order Placed Successfully');
+
+
     }
 
     private function ApplyPromoCode($promoCodeId,$subTotal){
