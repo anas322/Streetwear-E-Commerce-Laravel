@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-[#0E2238]">
     {{-- aside menu in medium screen and above  --}}
-    <aside class="md:block hidden w-64 z-40 min-h-screen" aria-label="Sidebar">
+    <aside class="md:block hidden w-64 z-40 min-h-screen">
         <div class="overflow-y-auto py-4 rounded dark:bg-gray-800">
             <a href="{{ route('home') }}" class="flex items-center pl-3 pr-4 pb-8">
                 <x-application-logo class="mr-3 h-12 w-12 fill-slate-50" alt="street wear Logo" />
@@ -13,12 +13,14 @@
 
     {{-- aside menu for smaller than medium screen  --}}
     <!-- drawer component -->
-    <div id="drawer-navigation"
-        class="md:hidden  block fixed z-40 min-h-screen p-4 bg-[#0E2238] overflow-y-auto w-80 dark:bg-gray-800"
-        tabindex="-1" aria-labelledby="drawer-navigation-label">
-        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu
+    <div id="drawer-navigation-dashboard"
+        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto bg-[#0E2238]  transition-transform -translate-x-full w-80 dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-navigation-dashboard-label">
+        <h5 id="drawer-navigation-dashboard-label"
+            class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu
         </h5>
-        <button type="button" data-drawer-dismiss="drawer-navigation" aria-controls="drawer-navigation"
+        <button type="button" data-drawer-hide="drawer-navigation-dashboard"
+            aria-controls="drawer-navigation-dashboard"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">

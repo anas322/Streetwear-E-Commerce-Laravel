@@ -15,7 +15,7 @@
     <li>
         <button type="button"
             class="inline-flex items-center py-3 pl-3 pr-8 text-sm font-normal dark:text-gray-400 transition duration-75 rounded-r-full group hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700"
-            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+            aria-controls="dropdown-ecommerce" data-collapse-toggle="dropdown-ecommerce">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor"
                 class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:dark:text-gray-400 dark:text-gray-400 dark:group-hover:text-white">
@@ -32,7 +32,7 @@
                 </svg>
             </div>
         </button>
-        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+        <ul id="dropdown-ecommerce" class=" py-2 space-y-2">
             <li>
                 <a href="{{ route('admin.product.index') }}"
                     class="font-sans flex items-center w-full p-3 font-normal dark:text-gray-400 transition duration-75 rounded-lg pl-11 group text-xs hover:text-[#00b8c5] hover:bg-[#0c3549] text-white dark:hover:bg-gray-700 tracking-wide">Products</a>
