@@ -17,35 +17,35 @@
                         {{ __('Home') }}
                     </x-jet-nav-link>
 
-                    <div id="mega-menu-icons"
-                        class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
-                        <ul class="flex flex-col mt-4 text-sm font-medium md:flex-row md:space-x-8 md:mt-0">
-                            <li>
-                                <button id="dropdownDefault" data-dropdown-toggle="dropdown"
-                                    class="flex justify-between items-center text-xl font-light font-roboto w-full text-gray-700 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0  md:p-0 pl-3 pr-4 py-2 border-l-4 border-transparent hover:text-gray-800 hover:border-gray-300 focus:outline-none focus:text-gray-800  focus:border-gray-300 transition">
-                                    Shop
-                                    <svg aria-hidden="true" class="ml-1 w-5 h-5 md:w-4 md:h-4" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
+                    <div id="mega-menu-icons" class="hidden justify-between items-center w-full md:flex md:w-auto">
+                        <a href="{{ route('products.index') }}">
+                            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
+                                data-dropdown-trigger="hover" data-dropdown-delay="100"
+                                class="flex justify-between items-center text-xl font-light font-roboto w-full text-gray-500 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0  md:p-0 pl-3 pr-4 py-2 border-l-4 border-transparent hover:text-gray-800 hover:border-gray-300 focus:outline-none focus:text-gray-800  focus:border-gray-300 transition">
+                                Shop
+                                <svg aria-hidden="true" class="ml-1 w-5 h-5 md:w-4 md:h-4" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
 
-                                <div id="dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow   dark:bg-gray-700">
-                                    <x-nav-menu.nav-menu-dropdown />
-                                </div>
-
-                            </li>
-
-                        </ul>
+                            <div id="dropdownHover"
+                                class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow   dark:bg-gray-700">
+                                <x-nav-menu.nav-menu-dropdown />
+                            </div>
+                        </a>
                     </div>
-
 
                     <x-jet-nav-link href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')"
                         class="text-xl font-light font-roboto">
                         {{ __('Orders') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')"
+                        class="text-xl font-light font-roboto">
+                        {{ __('Contact Us') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -230,12 +230,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         @auth
-            <div class="pt-2 pb-3 space-y-1">
-                <x-jet-responsive-nav-link href="#" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-jet-responsive-nav-link>
-            </div>
-
+            @if (Auth::user()->role_as == 1)
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            @endif
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="flex items-center px-4">

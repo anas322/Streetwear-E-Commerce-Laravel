@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
         $imagePath = $this->faker->image('public/storage/products/', 640, 480, null, false);
         $imageName = str_replace('public/storage/', '', $imagePath);
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->word(),
             'slug' => $this->faker->slug,
             'description' => $this->faker->text,
             'status' => 'Active',
