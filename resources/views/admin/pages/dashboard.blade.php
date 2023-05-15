@@ -142,10 +142,18 @@
                 </div>
             </div>
 
-            <div class="md:basis-1/2 basis-full flex-1 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/2 basis-full flex-1 h-96 bg-white p-4 rounded-md shadow-sm">
+                <div class="text-center">
+                    <span class="text-xl uppercase py-4 font-bold font-roboto ">Earnings</span>
+                </div>
+                <livewire:livewire-area-chart :area-chart-model="$earningsChartModel" />
             </div>
 
-            <div class="md:basis-1/3 basis-full flex-1 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/3 basis-full flex-1 h-96 bg-white p-4 rounded-md shadow-sm">
+                <div class="text-center">
+                    <span class="text-xl uppercase py-4 font-bold font-roboto ">ORDER STATUS</span>
+                </div>
+                <livewire:livewire-pie-chart :pie-chart-model="$ordersChartModel" />
             </div>
 
         </div>
