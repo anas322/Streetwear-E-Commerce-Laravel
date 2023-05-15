@@ -4,7 +4,7 @@
 
         <div class="flex justify-between gap-4 flex-wrap">
 
-            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 shadow-md sm:rounded-lg">
                 <div class="card-header flex justify-between items-start">
                     <div class="space-y-4">
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">CLIENTS</h2>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 shadow-md sm:rounded-lg">
                 <div class="card-header flex justify-between items-start">
                     <div class="space-y-4">
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">ORDERS</h2>
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/4 basis-full flex-1 bg-white p-4 shadow-md sm:rounded-lg">
                 <div class="card-header flex justify-between items-start">
                     <div class="space-y-4">
                         <h2 class="font-roboto text-xs tracking-wide font-light text-gray-400">EARNINGS</h2>
@@ -142,18 +142,94 @@
                 </div>
             </div>
 
-            <div class="md:basis-1/2 basis-full flex-1 h-96 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/2 basis-full flex-1 h-96 bg-white p-4 shadow-md sm:rounded-lg">
                 <div class="text-center">
                     <span class="text-xl uppercase py-4 font-bold font-roboto ">Earnings</span>
                 </div>
                 <livewire:livewire-area-chart :area-chart-model="$earningsChartModel" />
             </div>
 
-            <div class="md:basis-1/3 basis-full flex-1 h-96 bg-white p-4 rounded-md shadow-sm">
+            <div class="md:basis-1/3 basis-full flex-1 h-96 bg-white p-4 shadow-md sm:rounded-lg">
                 <div class="text-center">
                     <span class="text-xl uppercase py-4 font-bold font-roboto ">ORDER STATUS</span>
                 </div>
                 <livewire:livewire-pie-chart :pie-chart-model="$ordersChartModel" />
+            </div>
+
+            <div class="md:basis-2/3  basis-full flex-1 h-96 p-4 mb-6">
+                <div class="mb-10">
+                    <span class="text-xl uppercase py-4 font-bold font-roboto ">recent orders</span>
+                </div>
+
+
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Order No
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Price
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Date
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Customer
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($latest_orders as $order)
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        #{{ $order->id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $order->total_price }} EGP
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if ($order->status == 'pending')
+                                            <span
+                                                class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @elseif($order->status == 'delivered')
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @elseif($order->status == 'failed')
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @else
+                                            <span
+                                                class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $order->created_at->diffForHumans() }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $order->user->name }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
 
         </div>

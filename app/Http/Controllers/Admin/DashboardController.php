@@ -52,6 +52,8 @@ class DashboardController extends Controller
             }
         }
 
+        $latest_orders = Order::latest()->take(5)->get();
+
         return view("admin.pages.dashboard",[
             'clients_count' => User::where('role_as',0)->count(),
             'today_clients_count' => User::where('role_as',0)->whereDate('created_at', today())->count(),
@@ -67,6 +69,8 @@ class DashboardController extends Controller
 
             'earningsChartModel' => $earningsChartModel,
             'ordersChartModel' => $ordersChartModel,
+
+            'latest_orders' => $latest_orders,
         ]);
     }
 }
