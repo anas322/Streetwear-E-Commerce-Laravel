@@ -168,8 +168,8 @@
                 @endif
             </div>
 
-            <div class="md:basis-2/3  basis-full flex-1 h-96 p-4 mb-6">
-                <div class="mb-10">
+            <div class="md:basis-2/3  basis-full flex-1 h-96 p-4 mb-10">
+                <div>
                     <span class="text-xl uppercase py-4 font-bold font-roboto ">recent orders</span>
                 </div>
 

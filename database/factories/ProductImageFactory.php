@@ -18,7 +18,7 @@ class ProductImageFactory extends Factory
      */
     public function definition()
     {
-        $imagePath = $this->faker->image('public/storage/products/',480 , 640, null, false);
+        $imagePath = $this->faker->image('public/storage/products/',380 , 1040, null, false);
         $imageName = str_replace('public/storage/', '', $imagePath);
         return [
             'image' => 'products/' . $imageName,
