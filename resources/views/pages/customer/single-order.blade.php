@@ -14,7 +14,7 @@
 
         <div class="flex lg:flex-row flex-col justify-start gap-4 mb-8">
             <div class="lg:basis-3/5 basis-full">
-                <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                <div class="overflow-x-auto relative shadow-md sm:rounded-lg max-h-80">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>

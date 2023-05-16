@@ -85,7 +85,7 @@ class Index extends Component
     public function delete($id)
     {      
         $category = Category::findOrFail($id);
-        if($category->products->count() > 0){
+        if($category->products && $category->products->count() > 0){
             session()->flash('error','This category cannot be deleted because it has products');
             return;
         }

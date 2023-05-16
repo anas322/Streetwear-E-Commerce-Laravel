@@ -23,15 +23,23 @@ class Index extends Component
 
     public function delete($id)
     {   
-        $this->product = Product::find($id);
-        $images = $this->product->productImages;
-        foreach ($images as $imageModel ) {
-             $imageModel->delete();
-            Storage::delete($imageModel->image);
-        }   
+        $productSearch = Product::whereHas('productSkus.orders')->find($id);
         
-        $this->product->delete();
-        session()->flash('delete','This record has been deleted successfully');
+        if($productSearch){
+            session()->flash('error','This product cannot be deleted because it has orders');
+            return;
+        }else{
+            $this->product = Product::find($id);
+    
+            $images = $this->product->productImages;
+            foreach ($images as $imageModel ) {
+                 $imageModel->delete();
+                Storage::delete($imageModel->image);
+            }   
+            
+            $this->product->delete();
+            session()->flash('delete','This record has been deleted successfully');
+        }
     }
     
     public function render()

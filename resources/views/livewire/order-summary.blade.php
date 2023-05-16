@@ -39,23 +39,25 @@
             <span class="text-gray-500 font-bold text-lg font-roboto">$0.00</span>
         </div>
 
-        <div class="border-b border-gray-200 pb-5">
-            <div class="relative">
-                <label for="Promo Code" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Promo
-                    Code</label>
-                <input type="text" wire:model="promoCode" id="Promo Code"
-                    class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Promo Code">
-                @if ($promoCodeButtonState)
-                    <button type="button" wire:click="removePromoCode"
-                        class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
-                @else
-                    <button type="button" wire:click="ApplyPromoCode"
-                        class="text-white absolute right-2.5 bottom-2.5 bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Apply</button>
-                @endif
+        @if (!$order)
+            <div class="border-b border-gray-200 pb-5">
+                <div class="relative">
+                    <label for="Promo Code" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Promo
+                        Code</label>
+                    <input type="text" wire:model="promoCode" id="Promo Code"
+                        class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Promo Code">
+                    @if ($promoCodeButtonState)
+                        <button type="button" wire:click="removePromoCode"
+                            class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
+                    @else
+                        <button type="button" wire:click="ApplyPromoCode"
+                            class="text-white absolute right-2.5 bottom-2.5 bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Apply</button>
+                    @endif
 
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="flex justify-between items-center  pb-5">
             <span class="font-bold text-lg font-roboto">Total</span>

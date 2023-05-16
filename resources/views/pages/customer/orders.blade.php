@@ -47,9 +47,27 @@
                                         ${{ $order->total_price }}
                                     </td>
                                     <td class="py-4 px-6">
-                                        <span class="py-1 px-2 bg-green-100 text-green-800 rounded-lg">
-                                            {{ $order->status }}
-                                        </span>
+                                        @if ($order->status == 'pending')
+                                            <span
+                                                class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @elseif($order->status == 'delivered')
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @elseif($order->status == 'failed')
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @else
+                                            <span
+                                                class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                                                {{ $order->status }}
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="py-4 px-6 text-right flex">
                                         <form action="{{ route('orders.show', $order) }}">
