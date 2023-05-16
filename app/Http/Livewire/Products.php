@@ -40,6 +40,11 @@ class Products extends Component
 
     public function mount(){
         
+        $this->setProducts();
+        $this->sortBy();
+    }
+
+    private function setProducts(){
         $this->categoryModel = Category::whereName($this->cat)->first();
 
         if($this->categoryModel){
@@ -74,7 +79,6 @@ class Products extends Component
 
         }
 
-        $this->sortBy();
     }
 
     private function getOptions(){
@@ -160,11 +164,14 @@ class Products extends Component
     }
 
     public function sortBy(){
+
         switch($this->sortByValue){
             case 'latest':
+                $this->setProducts();
                 $this->products = $this->products->sortByDesc('created_at');
                 break;
             case 'priceLowToHigh':
+                $this->setProducts();
                 $this->products = $this->products->sortBy(function ($product){
                     $price = null;
                     $sale = $product->sale;
@@ -178,6 +185,7 @@ class Products extends Component
                 break;
 
             case 'priceHighToLow':
+                $this->setProducts();
                 $this->products = $this->products->sortByDesc(function ($product){
                     $price = null;
                     $sale = $product->sale;
@@ -190,6 +198,7 @@ class Products extends Component
                 });
                 break;
             case 'onSale':
+                $this->setProducts();
                 $this->products = $this->products->filter(function ($product){
                     return $product->sale;
                 });
