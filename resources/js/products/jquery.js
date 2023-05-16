@@ -33,6 +33,6 @@ function AllCode() {
 }
 
 AllCode();
-document.addEventListener("livewire:updated", function () {
+document.addEventListener("reinit-flowbite", function () {
     AllCode();
 });

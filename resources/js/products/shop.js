@@ -22,6 +22,6 @@ const app = () => {
     });
 };
 app();
-document.addEventListener("livewire:updated", function () {
+document.addEventListener("reinit-flowbite", function () {
     app();
 });
