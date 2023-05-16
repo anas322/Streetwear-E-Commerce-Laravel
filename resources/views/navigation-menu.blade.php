@@ -12,7 +12,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
                     <x-jet-nav-link href="{{ url('/') }}" :active="request()->routeIs('home')" class="text-xl font-light font-roboto">
                         {{ __('Home') }}
                     </x-jet-nav-link>
@@ -44,13 +44,13 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')"
-                        class="text-xl font-light font-roboto">
+                        class="text-xl font-light font-roboto whitespace-nowrap">
                         {{ __('Contact Us') }}
                     </x-jet-nav-link>
                 </div>
             </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden lg:flex lg:items-center lg:ml-6">
                 {{-- right hand navbar items  --}}
                 <div class="flex items-center gap-x-4">
                     <livewire:search-input />
@@ -203,7 +203,7 @@
                             <a href="{{ route('login') }}"
                                 class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Login</a>
                             <a href="{{ route('register') }}"
-                                class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign
+                                class="text-white bg-gray-800 whitespace-nowrap hover:bg-gray-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign
                                 up</a>
                         @endguest
 
@@ -212,7 +212,7 @@
             </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center  lg:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -228,7 +228,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden lg:hidden">
         @auth
             @if (Auth::user()->role_as == 1)
                 <div class="pt-2 pb-3 space-y-1">

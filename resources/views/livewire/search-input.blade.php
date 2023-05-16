@@ -14,7 +14,7 @@
     </script>
 @endpush
 <div wire:keydown.escape="$set('modal',false)" wire:keydown.window="toggleModal">
-    <div class="relative hover:cursor-pointer" wire:click="$set('modal',true)">
+    <div class="relative hover:cursor-pointer max-w-[9rem]" wire:click="$set('modal',true)">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -23,13 +23,13 @@
             </svg>
         </div>
         <input type="search" id="nav-search-button"
-            class="hover:cursor-pointer block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300  rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="hover:cursor-pointer block w-full p-1 pl-10 text-sm text-gray-900 border border-gray-300  rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             disabled>
-        <span class="text-gray-500 absolute right-2.5 bottom-2.5 text-sm dark:text-gray-400">
+        <span class="hidden xl:block text-gray-500 absolute right-2.5 bottom-1.5 text-sm dark:text-gray-400">
             <kbd
-                class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">Ctrl</kbd>
+                class="p-[2px] text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">Ctrl</kbd>
             + <kbd
-                class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">K</kbd>
+                class="p-[2px] text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">K</kbd>
         </span>
 
     </div>
