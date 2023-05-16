@@ -11,6 +11,20 @@ class SearchInput extends Component
 
     public $modal = false;
 
+    protected $listeners = ['toggleModal'];
+
+    // public function mount() {
+    //     $this->listeners['toggleModal'] = '$refresh';
+    // }
+
+    public function toggleModal()
+    {
+        $this->modal = !$this->modal;
+        
+        if($this->modal )
+        $this->dispatchBrowserEvent('focusOnSearchInput');
+    }
+
     public function render()
     {
         return view('livewire.search-input',[

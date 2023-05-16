@@ -52,7 +52,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 {{-- right hand navbar items  --}}
-                <div class="flex gap-x-4">
+                <div class="flex items-center gap-x-4">
                     <livewire:search-input />
                     <a href='{{ route('cart') }}'
                         class="relative hover:text-gray-400 text-gray-900 dark:hover:text-white">
