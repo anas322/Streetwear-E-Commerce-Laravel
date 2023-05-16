@@ -55,7 +55,7 @@ class Create extends Component
     }
 
     public function dehydrate(){
-        $this->dispatchBrowserEvent('livewire:updated');
+        $this->dispatchBrowserEvent('reinit-flowbite');
     }
 
     public function mount() {

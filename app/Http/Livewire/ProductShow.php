@@ -20,7 +20,7 @@ class ProductShow extends Component
     public $price ;
     
     public function dehydrate(){
-        $this->dispatchBrowserEvent('livewire:updated');
+        $this->dispatchBrowserEvent('reinit-flowbite');
     }
 
     public function mount(){

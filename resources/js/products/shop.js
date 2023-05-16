@@ -23,6 +23,5 @@ const app = () => {
 };
 app();
 document.addEventListener("livewire:updated", function () {
-    import("/node_modules/.vite/deps/flowbite.js");
     app();
 });

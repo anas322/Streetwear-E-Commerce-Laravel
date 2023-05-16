@@ -30,13 +30,11 @@ class Products extends Component
     
     public $productQV;
 
-    public function updated(){
-    $this->dispatchBrowserEvent('livewire:updated');
+    public function dehydrate(){
+        $this->dispatchBrowserEvent('reinit-flowbite');
     }
 
-    public function dehydrate(){
-    $this->dispatchBrowserEvent('livewire:updated');
-    }
+
 
     public function mount(){
         
@@ -81,23 +79,34 @@ class Products extends Component
 
     }
 
+    /**
+     * Retrieve the unique lowercase option names as keys and their corresponding option values.
+     */ 
     private function getOptions(){
 
         //get all possible option values 
-        foreach ($this->filters as $key => $option) {
-            //key is the filter name and the value is the available options value
-            $optionValues = $option->optionValues->pluck('name')->map(function ($item, $key) {
+        $this->options = collect($this->filters)->reduce(function ($carry, $option) {
+
+            $optionName = strtolower($option->name);
+            $optionValues = $option->optionValues->pluck('name')->map(function ($item) {
                 return strtolower($item);
             })->toArray();
 
-            $this->options[strtolower($this->filters[$key]->name)] = array_merge($this->options[strtolower($this->filters[$key]->name)] ?? [], $optionValues);
-        }
+            //if the option name is not set in the array, set it otherwise merge the values
+            if (!isset($carry[$optionName])) {
+                $carry[$optionName] = $optionValues;
+            } else {
+                $carry[$optionName] = array_unique(array_merge($carry[$optionName], $optionValues));
+            }
 
-        // //get a the maximum product price
+            return $carry;
+            }, []);
+
+
+        //get a the maximum product price
         if($this->products && $this->products->count() > 0){
             $this->maxPrice = $this->products->first()->with('sale')->get()->map(function($product) {
                 if($product->sale) {
-                    // dd($product->sale->discounted_price);
                     return $product->sale->discounted_price;
                 } else {
                     return $product->productSkus()->first()->price;
@@ -116,7 +125,6 @@ class Products extends Component
 
     public function closeModal(){
         $this->productQV = false;
-        $this->dispatchBrowserEvent('livewire:updated');
     }
 
 
@@ -139,14 +147,13 @@ class Products extends Component
     private function makeQuery($query){
       
         $query->whereRelation('productSkus', function (Builder $query) {
-            // $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
+
+            $this->minPrice = $this->minPrice ? $this->minPrice : 0;
             if ($this->minPrice || $this->maxPrice) {
                 $query->where(function (Builder $query) {
                     $query->whereBetween('price', [$this->minPrice, $this->maxPrice]);
-                    $query->orWhereHas('product', function (Builder $query) {
-                        $query->whereHas('sale', function (Builder $query) {
-                            $query->whereBetween('discounted_price', [$this->minPrice, $this->maxPrice]);
-                        });
+                    $query->orWhereHas('product.sale', function (Builder $query) {
+                        $query->whereBetween('discounted_price', [$this->minPrice, $this->maxPrice]);
                     });
                 });
             }
@@ -154,10 +161,10 @@ class Products extends Component
 
         //set filter options
         if($this->filterValues){
-            foreach($this->filterValues as $key => $singleFilterValue ){
+            foreach($this->filterValues as  $singleFilterValue ){
                 //if the property has a value
                 if($singleFilterValue){
-                    $query->whereRelation('options.optionValues', 'name',$singleFilterValue );
+                    $query->whereRelation('options.optionValues', 'name', $singleFilterValue );
                 }
             }
         }

@@ -39,9 +39,7 @@
 
                     <hr class="!mt-0">
 
-
                     @foreach ($options as $name => $optionValues)
-                        <!-- {{ $name }}  -->
                         <div class="space-y-2 ">
                             <button id="{{ $name }}" class="filter flex items-center justify-between w-full">
                                 <span
@@ -155,7 +153,7 @@
 
                         @if ($aboveFilterToggle)
                             <div class="max-h-auto overflow-hidden transition-all duration-700">
-                                <div class="flex flex-wrap justify-start max-h-80 gap-6 py-4">
+                                <div class="flex flex-wrap justify-start max-h-80 gap-6 py-4 overflow-auto">
 
                                     {{-- price  --}}
                                     <div class="flex flex-col justify-start items-center gap-y-4">
