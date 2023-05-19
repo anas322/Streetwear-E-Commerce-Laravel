@@ -59,8 +59,11 @@ Start the development server: Run the following command to start the development
  php artisan serve
 ```
 
+## Admin credentials
+- gmail: admin@gmail.com 
+- password: 12345678
 
-
+or create your own admin user through the database directly if you don't seed the database
 
 
 
