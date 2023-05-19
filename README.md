@@ -75,22 +75,28 @@ Start the development server: Run the following command to start the development
 
 -   #### To view all individual screenshot open the 'screenshots' folder in the root folder
 
+#### _Dashboard and products Admin Pages_
+
+[🖼️ dashboard.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/dashboard.png) [🖼️ admin_products.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/products.png)
+![Dashboard and products Admin Pages](screenshots/dashboardProducts.png)
+
 #### _Home and Products Pages_
 
 [🖼️Home.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/home.png) [🖼️ shop.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/shop.png)
 
 ![home and product view](screenshots/homeproducts.png)
 
+#### _product view Pages_
+
+[🖼️ product_quick_view.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/quickview.png) [🖼️ single_product.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/productshow.png)
+
+![Orders and Cart Pages](screenshots/productView.png)
+
 #### _Orders and Cart Pages_
 
 [🖼️ cart.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/cart.png) [🖼️ orders.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/orders.png)[ 🖼️ singel_order.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/singleorder.png)
 
-![Orders and Cart Pages](screenshots/productView.png)
-
-#### _Dashboard and products Admin Pages_
-
-[🖼️ dashboard.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/dashboard.png) [🖼️ admin_products.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/products.png)
-![Dashboard and products Admin Pages](screenshots/dashboardProducts.png)
+![Orders and Cart Pages](screenshots/ordersView.png)
 
 ## License
 
