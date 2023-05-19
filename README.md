@@ -69,7 +69,7 @@ Start the development server: Run the following command to start the development
 
 ## 🔗 Links
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anas-elnahef-10074021b/)
+[linkedin](https://www.linkedin.com/in/anas-elnahef-10074021b/)
 
 ## Screenshots
 
@@ -77,14 +77,19 @@ Start the development server: Run the following command to start the development
 
 #### _Home and Products Pages_
 
+[🖼️Home.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/home.png) [🖼️ shop.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/shop.png)
+
 ![home and product view](screenshots/homeproducts.png)
 
 #### _Orders and Cart Pages_
+
+[🖼️ cart.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/cart.png) [🖼️ orders.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/orders.png)[ 🖼️ singel_order.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/singleorder.png)
 
 ![Orders and Cart Pages](screenshots/productView.png)
 
 #### _Dashboard and products Admin Pages_
 
+[🖼️ dashboard.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/dashboard.png) [🖼️ admin_products.png](https://github.com/anas322/Streetwear-E-Commerce-Laravel/blob/main/screenshots/products.png)
 ![Dashboard and products Admin Pages](screenshots/dashboardProducts.png)
 
 ## License
