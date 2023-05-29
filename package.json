@@ -3,7 +3,14 @@
     "scripts": {
         "dev": "vite --force",
         "build": "vite build"
-    },
+    }, "keywords": [
+    "e-commerce",
+    "shop",
+    "branding",
+        "laravel",
+        "livewire",
+        "E-commerce website",
+  ],
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/typography": "^0.5.0",
