@@ -137,8 +137,8 @@
             <div class="grid grid-cols-6 pt-28 xl:px-52 lg:px-20 px-7 gap-8">
 
                 @foreach ($categories as $cat)
-                    <div class="wow fadeIn col-span-3 " data-wow-delay=".5s">
-                        <div class="overflow-hidden rounded-sm shadow-xl">
+                    <div class="wow fadeIn col-span-3 h-screen" data-wow-delay=".5s">
+                        <div class="overflow-hidden rounded-sm shadow-xl h-2/3">
                             <img src="{{ asset('/storage/' . $cat->image) }}"
                                 class="object-cover w-full h-full hover:scale-105 transition duration-700 rounded-sm">
                         </div>
