@@ -96,11 +96,13 @@
                                             <div>
                                                 <input type="text" wire:model="quantity.{{ $item->id }}" disabled
                                                     id="first_product"
-                                                    class="w-14 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    class="w-14 text-center border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="1">
                                             </div>
                                             <button wire:click="incrementQnt({{ $item->id }})"
                                                 wire:loading.attr="disabled" @disabled(!$this->canIncrement($item->id))
+                                                data-popover-target="popover-top-{{ $item->id }}"
+                                                data-popover-placement="top"
                                                 class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                                 type="button">
                                                 <span class="sr-only">Quantity button</span>
@@ -111,6 +113,16 @@
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </button>
+
+                                            @if (!$this->canIncrement($item->id))
+                                                <div data-popover id="popover-top-{{ $item->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block w-fit text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                                    <div class="px-3 py-2 ">
+                                                        <p>That's all we have yet</p>
+                                                    </div>
+                                                    <div data-popper-arrow></div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="py-4 px-6">
