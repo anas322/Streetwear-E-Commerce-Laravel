@@ -3,6 +3,9 @@
 Streetwear E-commerce is a Laravel-based e-commerce project that offers a seamless shopping experience for customers and a comprehensive administration panel for store owners. The project aims to provide a modern and efficient e-commerce solution by leveraging the power of various technologies and libraries.
 
 
+https://github.com/user-attachments/assets/cad62cf4-4a06-41fa-8bec-156a7960d2bc
+
+
 
 # Hi, I'm Anas! 👋
 I'm a full stack web developer passionate about
