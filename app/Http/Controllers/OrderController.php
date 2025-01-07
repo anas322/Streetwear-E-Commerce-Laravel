@@ -7,11 +7,13 @@ use App\Models\Order;
 use App\Models\Promo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 
 class OrderController extends Controller
 {
-    public function index(){
-        return view('pages.customer.orders',['orders' => auth()->user()->orders()->latest()->get()]);
+    public function index()
+    {
+        return view('pages.customer.orders', ['orders' => auth()->user()->orders()->latest()->get()]);
     }
 
     /**
@@ -21,177 +23,174 @@ class OrderController extends Controller
      * @return a redirect to the 'orders.index' route with a success message.
      */
 
-    public function store(){
+    public function store(): RedirectResponse
+    {
 
         try {
             DB::beginTransaction();
-            
-            if(auth()->user()->address == null)
-                return to_route('address.index')->with('error','Please Add Your Address First');
+
+            if (auth()->user()->address == null)
+                return to_route('address.index')->with('error', 'Please Add Your Address First');
 
             //get the user's cart items
             $carts = auth()->user()->carts;
-        
+
             //calculate the total price of the order
             $subTotal = 0;
-            foreach($carts as $cart){
+            foreach ($carts as $cart) {
                 $productSku = $cart->productSku;
                 $price = $cart->product->sale != null ?
                     $cart->product->sale->discounted_price :
                     $cart->productSku->price;
                 $subTotal +=  $price * $cart->quantity;
             }
-        
+
             //apply the promo code if it exists
             $promoCodeId = request()->promo;
-            if($promoCodeId != null){
-                $subTotal = $this->ApplyPromoCode(intval($promoCodeId),$subTotal);
+            if ($promoCodeId != null) {
+                $subTotal = $this->ApplyPromoCode(intval($promoCodeId), $subTotal);
             }
-            
-            $tax = ($subTotal/100) * 5;
+
+            $tax = ($subTotal / 100) * 5;
             $totalPrice = $subTotal + $tax;
             //create the order
             $order = auth()->user()->orders()->create([
                 'total_price' => $totalPrice,
             ]);
-        
-            
-            if($promoCodeId != null){
+
+
+            if ($promoCodeId != null) {
                 $promoModel = Promo::findOrFail($promoCodeId);
                 $promoModel->count += 1;
                 $promoModel->save();
-        
-                if($promoModel->purchase_once){
+
+                if ($promoModel->purchase_once) {
                     $promoModel->users()->attach(auth()->user()->id);
                 }
             }
-            
+
             //attach the order to the cart items and delete the cart items
-            foreach($carts as $cart){
+            foreach ($carts as $cart) {
                 $productSku = $cart->productSku;
                 $price = $cart->product->sale != null ?
                     $cart->product->sale->discounted_price :
                     $cart->productSku->price;
-                $productSku->orders()->attach($order->id,[
+                $productSku->orders()->attach($order->id, [
                     'quantity' => $cart->quantity,
                     'price' => $price,
                 ]);
-                
-                $productSku->decrement('quantity',$cart->quantity);
+
+                $productSku->decrement('quantity', $cart->quantity);
                 $cart->delete();
             }
 
             DB::commit();
-            return to_route('orders.index')->with('success','Order Placed Successfully');
-
+            return to_route('orders.index')->with('success', 'Order Placed Successfully');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }
-
-
     }
 
-    private function ApplyPromoCode($promoCodeId,$subTotal){
+    private function ApplyPromoCode($promoCodeId, $subTotal)
+    {
         $promoCode = Promo::findOrFail((int)$promoCodeId);
-        if(!$promoCode || $promoCode->status == 'Draft'){
-            session()->flash('error','Invalid Promo Code');
+        if (!$promoCode || $promoCode->status == 'Draft') {
+            session()->flash('error', 'Invalid Promo Code');
             return;
         }
 
-        
-        if($promoCode->end_date == null){
+
+        if ($promoCode->end_date == null) {
             $promoCode->end_date = $promoCode->start_date;
         }
-        
+
         //check if promo code is expired
-        if(!now()->betweenIncluded(Carbon::parse($promoCode->start_date)->toDateString(),Carbon::parse($promoCode->end_date)->toDateString()) && !now()->isSameDay(Carbon::parse($promoCode->end_date)->toDateString())){
-            session()->flash('error','Invalid Promo Code');
+        if (!now()->betweenIncluded(Carbon::parse($promoCode->start_date)->toDateString(), Carbon::parse($promoCode->end_date)->toDateString()) && !now()->isSameDay(Carbon::parse($promoCode->end_date)->toDateString())) {
+            session()->flash('error', 'Invalid Promo Code');
             return;
         }
 
 
-        if($promoCode->purchase_once){
-            if(!auth()->check()){
-                session()->flash('error','Invalid Promo Code');
+        if ($promoCode->purchase_once) {
+            if (!auth()->check()) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
 
-            if($promoCode->users->contains(auth()->user()->id)){
-                session()->flash('error','Invalid Promo Code');
+            if ($promoCode->users->contains(auth()->user()->id)) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
         }
 
         //check if promo code is used more than max usage
-        if($promoCode->count >= $promoCode->max_usage && $promoCode->max_usage != 0){
-            session()->flash('error','Invalid Promo Code');
+        if ($promoCode->count >= $promoCode->max_usage && $promoCode->max_usage != 0) {
+            session()->flash('error', 'Invalid Promo Code');
             return;
         }
 
         //check if user have to login to use promo code
-        if($promoCode->must_login){
-            if(!auth()->check()){
-                session()->flash('error','Invalid Promo Code');
+        if ($promoCode->must_login) {
+            if (!auth()->check()) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
         }
 
-        if($promoCode->min_purchase > 0){
-            if($subTotal < $promoCode->min_purchase){
-                session()->flash('error','Invalid Promo Code');
+        if ($promoCode->min_purchase > 0) {
+            if ($subTotal < $promoCode->min_purchase) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
         }
 
-        
-        if($promoCode->type == 'order'){
+
+        if ($promoCode->type == 'order') {
 
 
-            $subTotalCheck = $this->checkPrice($subTotal,$promoCode->value,$promoCode->type_of_value);
+            $subTotalCheck = $this->checkPrice($subTotal, $promoCode->value, $promoCode->type_of_value);
 
-            if(!$subTotalCheck){
+            if (!$subTotalCheck) {
                 return;
             }
 
             $subTotal = $subTotalCheck;
+        } elseif ($promoCode->type == 'product') {
 
-        }elseif($promoCode->type == 'product'){
-            
-            $cart = Cart::where('user_id',auth()->user()->id)->get();
+            $cart = Cart::where('user_id', auth()->user()->id)->get();
 
             $total = 0;
-            foreach($cart as $item){
+            foreach ($cart as $item) {
                 $productSku = $item->productSku;
 
-                if($item->product->sale != null  ){
-                    
+                if ($item->product->sale != null) {
+
                     $price = $item->product->sale->discounted_price;
-                    
-                    if($promoCode->products->contains($productSku->product_id)){
 
-                        $price = $this->checkPrice($price,$promoCode->value,$promoCode->type_of_value);
-                        if(!$price){
-                            continue;
-                        }
-                    $total += $price * $item->quantity;
-                    continue;
-                    }
+                    if ($promoCode->products->contains($productSku->product_id)) {
 
-                    $total += $item->product->sale->discounted_price * $item->quantity;
-                }else{
-                    if($promoCode->products->contains($productSku->product_id)){
-                        $price = $this->checkPrice($productSku->price,$promoCode->value,$promoCode->type_of_value);
-                        if(!$price){
+                        $price = $this->checkPrice($price, $promoCode->value, $promoCode->type_of_value);
+                        if (!$price) {
                             continue;
                         }
                         $total += $price * $item->quantity;
                         continue;
                     }
-    
+
+                    $total += $item->product->sale->discounted_price * $item->quantity;
+                } else {
+                    if ($promoCode->products->contains($productSku->product_id)) {
+                        $price = $this->checkPrice($productSku->price, $promoCode->value, $promoCode->type_of_value);
+                        if (!$price) {
+                            continue;
+                        }
+                        $total += $price * $item->quantity;
+                        continue;
+                    }
+
                     $total += $productSku->price * $item->quantity;
                 }
-                
             }
 
             $subTotal = $total;
@@ -201,18 +200,19 @@ class OrderController extends Controller
         return $subTotal;
     }
 
-    private function checkPrice ($price,$value , $type){
+    private function checkPrice($price, $value, $type)
+    {
 
         //true means percentage and false means fixed
-        if($type){
-            if($price < ($price/100) * $value){
-                session()->flash('error','Invalid Promo Code');
+        if ($type) {
+            if ($price < ($price / 100) * $value) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
-            $price = $price - ($price/100) * $value;
-        }else{
-            if($price < $value){
-                session()->flash('error','Invalid Promo Code');
+            $price = $price - ($price / 100) * $value;
+        } else {
+            if ($price < $value) {
+                session()->flash('error', 'Invalid Promo Code');
                 return;
             }
             $price = $price - $value;
@@ -221,12 +221,14 @@ class OrderController extends Controller
         return $price;
     }
 
-    public function show(Order $order){
-         return view('pages.customer.single-order',
-         [
-             'order' => $order,
-             'items' => $order->productSkus,
-         ]);
+    public function show(Order $order)
+    {
+        return view(
+            'pages.customer.single-order',
+            [
+                'order' => $order,
+                'items' => $order->productSkus,
+            ]
+        );
     }
-
 }

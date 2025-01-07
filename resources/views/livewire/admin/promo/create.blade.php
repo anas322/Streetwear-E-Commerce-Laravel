@@ -19,7 +19,7 @@
 
                 <div>
                     <div class="relative z-0 mb-6 w-full group">
-                        <input type="text" wire:model="name" id="name"
+                        <input type="text" wire:model.trim="name" id="name"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " />
                         @error('name')
@@ -128,53 +128,9 @@
                                                             style="backdrop-filter: blur(5px);">
 
                                                             @if ($this->isProductSelected($product->id))
-                                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                    xmlns:svgjs="http://svgjs.com/svgjs" width="512"
-                                                                    height="512" x="0" y="0"
-                                                                    viewBox="0 0 512 512"
-                                                                    style="enable-background:new 0 0 512 512"
-                                                                    xml:space="preserve" class="w-5 h-auto">
-                                                                    <g>
-                                                                        <g data-name="Layer 2">
-                                                                            <circle cx="256" cy="256"
-                                                                                r="256" fill="#f32121"
-                                                                                data-original="#2196f3" class="">
-                                                                            </circle>
-                                                                            <rect width="270" height="77.4"
-                                                                                x="121" y="217.3"
-                                                                                fill="#ffffff" rx="38.7"
-                                                                                data-original="#ffffff"
-                                                                                class="">
-                                                                            </rect>
-                                                                        </g>
-                                                                    </g>
-                                                                </svg>
+                                                                <x-svgs.minus-sign />
                                                             @else
-                                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                    xmlns:svgjs="http://svgjs.com/svgjs"
-                                                                    width="512" height="512" x="0"
-                                                                    y="0" viewBox="0 0 64 64"
-                                                                    style="enable-background:new 0 0 512 512"
-                                                                    xml:space="preserve" class="w-5 h-auto">
-                                                                    <g>
-                                                                        <linearGradient id="a" x1="3.346"
-                                                                            x2="60.654" y1="31.924"
-                                                                            y2="31.924"
-                                                                            gradientUnits="userSpaceOnUse">
-                                                                            <stop offset="0" stop-color="#096fe0">
-                                                                            </stop>
-                                                                            <stop offset=".158" stop-color="#167ce3">
-                                                                            </stop>
-                                                                            <stop offset="1" stop-color="#5ec3f6">
-                                                                            </stop>
-                                                                        </linearGradient>
-                                                                        <path fill="url(#a)"
-                                                                            d="M32 2.924C16.204 2.924 3.346 15.968 3.346 32c1.571 38.571 55.743 38.56 57.308 0C60.654 15.968 47.796 2.924 32 2.924zm14.386 32.799H36.334c-.597 0-1.085.503-1.085 1.117v10.195c-.154 4.925-7.221 4.94-7.374 0V36.84c0-.614-.488-1.117-1.084-1.117H16.728c-2.028 0-3.687-1.666-3.687-3.723s1.659-3.722 3.687-3.722H26.79c.596 0 1.084-.503 1.084-1.118V16.965c0-2.057 1.649-3.733 3.687-3.733 2.028 0 3.687 1.676 3.687 3.733V27.16c0 .615.488 1.118 1.085 1.118h10.052c4.88.151 4.895 7.288 0 7.445z"
-                                                                            data-original="url(#a)"></path>
-                                                                    </g>
-                                                                </svg>
+                                                                <x-svgs.plus-sign />
                                                             @endif
                                                         </button>
                                                     </div>
@@ -194,9 +150,7 @@
                         </div>
                     @endif
 
-                    <div>
 
-                    </div>
                 @endif
 
                 @if (count($selectedProducts) > 0 && $type == 'product')
@@ -210,7 +164,7 @@
                                     </div>
 
                                     <div>
-                                        <span>{{ $product['name'] }}</span>
+                                        <span>{{ $product['name'] }} </span>
                                     </div>
 
                                     <div>
@@ -219,18 +173,8 @@
                                             wire:click="deleteProductFromProductList({{ $product['id'] }})"
                                             class="p-2 rounded-full  hover:bg-zinc-900/20"
                                             style="backdrop-filter: blur(5px);">
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512"
-                                                x="0" y="0" viewBox="0 0 512 512"
-                                                style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                class="w-5 h-auto">
-                                                <g>
-                                                    <path fill="#fc0005" fill-rule="evenodd"
-                                                        d="M170.8 14.221A14.21 14.21 0 0 1 185 .014L326.991.006a14.233 14.233 0 0 1 14.2 14.223v35.117H170.8zm233.461 477.443a21.75 21.75 0 0 1-21.856 20.33H127.954a21.968 21.968 0 0 1-21.854-20.416L84.326 173.06H427.5l-23.234 318.6zm56.568-347.452H51.171v-33A33.035 33.035 0 0 1 84.176 78.2l343.644-.011a33.051 33.051 0 0 1 33 33.02v33zm-270.79 291.851a14.422 14.422 0 1 0 28.844 0V233.816a14.42 14.42 0 0 0-28.839-.01v202.257zm102.9 0a14.424 14.424 0 1 0 28.848 0V233.816a14.422 14.422 0 0 0-28.843-.01z"
-                                                        data-original="#fc0005" class=""></path>
-                                                </g>
-                                            </svg>
+
+                                            <x-svgs.delete />
 
                                         </button>
                                     </div>

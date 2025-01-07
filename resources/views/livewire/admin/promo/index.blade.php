@@ -97,7 +97,7 @@
                         </td>
 
                         <td class="py-4 px-6">
-                            @foreach ($this->getConditions($pro) as $con)
+                            @foreach ($this->getConditionsOfApplyingPromoCode($pro) as $con)
                                 <span style="letter-spacing: initial">- {{ $con }}</span>
                                 @if (!$loop->last)
                                     <br>
@@ -115,12 +115,12 @@
                         </td>
                         <td class="py-4 px-6">
                             <span style="letter-spacing: initial">
-                                {{ $this->getDate($pro->start_date) }}
+                                {{ $this->formatDate($pro->start_date) }}
                             </span>
                             @if ($pro->end_date)
                                 <span style="letter-spacing: initial">
 
-                                    {{ ' - ' . $this->getDate($pro->end_date) }}
+                                    {{ ' - ' . $this->formatDate($pro->end_date) }}
                                 </span>
                             @endif
                         </td>
@@ -149,12 +149,12 @@
 
 
     {{-- delete promo  modal  --}}
-    @if ($showDeleteModal)
-        <div wire:click.self="$toggle('showDeleteModal')"
+    @if ($toggleModal)
+        <div wire:click.self="$toggle('toggleModal')"
             class="bg-black/30 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full justify-center items-center flex">
             <div class="relative w-full max-w-md h-full md:h-auto">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <button wire:click="$toggle('showDeleteModal')" type="button"
+                    <button wire:click="$toggle('toggleModal')" type="button"
                         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +177,7 @@
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                             Yes, I'm sure
                         </button>
-                        <button wire:click="$toggle('showDeleteModal')" type="button"
+                        <button wire:click="$toggle('toggleModal')" type="button"
                             class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
                             cancel</button>
                     </div>
